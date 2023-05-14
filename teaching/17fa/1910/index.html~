@@ -1,0 +1,343 @@
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="../../../style/style.css">
+
+    <title>
+      Math 1910, Fall 2016
+    </title>
+  </head>
+
+  <body>
+    <div id="container">
+
+      <div id="banner">
+        <h1> Math 1910, Fall 2017 </h1>
+      </div>
+
+      <div id="page">
+        <div id="content">
+
+          <center>
+
+            <h2>Course Information </h2>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td align="left"><b>TA:</b></td>
+                  <td><a href="../../../index.html">David Mehrle</a>
+                    (rhymes with "early")</td>
+                </tr>
+                <tr>
+                  <td><b>Email:</b></td>
+                  <td>dfm223@cornell.edu</td>
+                </tr>
+                <tr>
+                  <td><b>Course Website:</b></td>
+                  <td>
+                    <a href="https://blackboard.cornell.edu/">
+		                  blackboard.cornell.edu/
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Section 203:</b></td>
+                  <td>TR 8:00 to 8:50 in Hollister 368</td>
+                </tr>
+                <tr>
+                  <td><b>Section 210:</b></td>
+                  <td>TR 9:05 to 9:55 in Hollister 368</td>
+                </tr>
+                <tr>
+                  <td><b>Office Hours:</b></td>
+		  <td> T 3:30 - 4:30, W 4 - 5 in Malott 218 </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </br>
+
+            <h2>Handouts</h2>
+            <table>
+              <thead align="left">
+                <th>Date</th>
+                <th></th>
+                <th></th>
+              </thead>
+              <tbody>
+<!-- Syllabus -->
+                <tr>
+                  <td> 24 August 2017 </td>
+		                <td>
+                      <a href="handouts/1910fa17-syllabus.pdf">
+                        Syllabus
+                      </a>
+                    </td>
+                    <td> </td>
+                </tr>
+<!-- 1910fa17-recitation01 -->
+                <tr>
+                  <td> 24 August 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation01.pdf">
+                      Handout 01
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation01-solutions.pdf">
+                      Solutions 01
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation02 -->
+                <tr>
+                  <td> 29 August 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation02.pdf">
+                      Handout 02
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation02-solutions.pdf">
+                      Solutions 02
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation03 -->
+                <tr>
+                  <td> 05 September 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation03.pdf">
+                      Handout 03
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation03-solutions.pdf">
+                      Solutions 03
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation04 -->
+                <tr>
+                  <td> 07 September 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation04.pdf">
+                      Handout 04
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation04-solutions.pdf">
+                      Solutions 04
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation05 -->
+                <tr>
+                  <td> 12 September 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation05.pdf">
+                      Handout 05
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation05-solutions.pdf">
+                      Solutions 05
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation06 -->
+                <tr>
+                  <td> 19 September 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation06.pdf">
+                      Handout 06
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation06-solutions.pdf">
+                      Solutions 06
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation07 -->
+                <tr>
+                  <td> 26 September 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation07.pdf">
+                      Handout 07
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation07-solutions.pdf">
+                      Solutions 07
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td>
+                    <a href="handouts/1910fa17-prelim1-review.pdf">
+                      Prelim 1 Review
+                    </a>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation08 -->
+                <tr>
+                  <td> 28 September 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation08.pdf">
+                      Handout 08
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation08-solutions.pdf">
+                      Solutions 08
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation09 -->
+                <tr>
+                  <td> 12 October 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation09.pdf">
+                      Handout 09
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation09-solutions.pdf">
+                      Solutions 09
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation10 -->
+                <tr>
+                  <td> 17 October 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation10.pdf">
+                      Handout 10
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation10-solutions.pdf">
+                      Solutions 10
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation11 -->
+                <tr>
+                  <td> 24 October 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation11.pdf">
+                      Handout 11
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation11-solutions.pdf">
+                      Solutions 11
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation12 -->
+                <tr>
+                  <td> 31 October 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation12.pdf">
+                      Handout 12
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation12-solutions.pdf">
+                      Solutions 12
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation13 -->
+                <tr>
+                  <td> 02 November 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation13.pdf">
+                      Handout 13
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation13-solutions.pdf">
+                      Solutions 13
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td>
+                    <a href="handouts/1910fa17-prelim2-review.pdf">
+                      Prelim 2 Review
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-prelim2-review-solutions.pdf">
+                      Solutions
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation14 -->
+                <tr>
+                  <td> 14 November 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation14.pdf">
+                      Handout 14
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation14-solutions.pdf">
+                      Solutions 14
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation15 -->
+                <tr>
+                  <td> 22 November 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation15.pdf">
+                      Handout 15
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation15-solutions.pdf">
+                      Solutions 15
+                    </a>
+                  </td>
+                </tr>
+<!-- 1910fa17-recitation16 -->
+                <tr>
+                  <td> 28 November 2017 </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation16.pdf">
+                      Handout 16
+                    </a>
+                  </td>
+                  <td>
+                    <a href="handouts/1910fa17-recitation16-solutions.pdf">
+                      Solutions 16
+                    </a>
+                  </td>
+                </tr>
+		<tr> 
+		  <td> </td> 
+		  <td> <a href="handouts/1910fa17-final-review.pdf">Final review </a> </td>
+		  <td> <a href="handouts/1910fa17-final-review-solutions.pdf"> Answers </a></td>
+		</tr>
+<!-- Add Content Here -->
+              </tbody>
+            </table>
+
+
+          </center>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

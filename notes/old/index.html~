@@ -1,0 +1,161 @@
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="../../style/style.css">
+  <link rel="icon" type="image.png" href="../../images/gondor.png">
+
+    <title>
+      David Mehrle
+    </title>
+  </head>
+
+  <body>
+
+    <div id="container">
+
+      <div id="banner">
+        <h1> <a href="../index.html"> David Mehrle </a> | Old Notes </h1>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="../../index.html">About</a></li>
+          <li><a href="../../research/index.html"> Research </a></li>
+          <li><a href="../../teaching/index.html"> Teaching </a></li>
+          <li><a href="../../notes/index.html"> Notes </a></li>
+        </ul>
+      </nav>
+
+      <div id="page">
+        <div id="content">
+	  <p>
+These notes are here mainly for the benefit of my classmates, but feel free to use them as you see fit.
+	  </p>
+	  <h2> PCMI 2015 </h2>
+	  <p> Notes from the <a href=http://pcmi.ias.edu>Park City Math Institute</a> 2015. </p>
+
+    <center>
+      <table>
+        <thead align="left">
+          <tr>
+            <th>Item</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="pcmi15/groupobjectsetude.pdf">groupobjectsetude.pdf</a></td>
+            <td>A worksheet on group objects created for the undergrad summer school.</td>
+          </tr>
+          <tr>
+            <td><a href="pcmi15/flagvarieties.pdf">flagvarieties.pdf</a></td>
+            <td>PCMI 2015 Lectures on Flag Varieties by Aaron Bertram.</td>
+          </tr>
+          <tr>
+            <td><a href="pcmi15/modulispaces.pdf">modulispaces.pdf</a></td>
+            <td>PCMI 2015 Lectures on Moduli Spaces by Tom Garrity.</td>
+          </tr>
+      </table>
+    </center>
+
+	  <h2> PROMYS 2014 </h2>
+    <p>Notes from counselor seminars at <a href=http://www.promys.org>PROMYS</a> 2015. </p>
+
+    <center>
+      <table>
+        <thead align="left">
+          <tr>
+            <th>Item</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="promys14/graphcoloring.pdf">graphcoloring.pdf</a></td>
+            <td>Notes for a lecture on graph coloring using algebraic geometry.</td>
+          </tr>
+          <tr>
+            <td><a href="promys14/liealgebras.pdf">liealgebras.pdf</a></td>
+            <td>Notes for an intro to Lie algebras.</td>
+          <tr>
+          <tr>
+            <td><a href="promys14/rootsystems.pdf">rootsystems.pdf</a></td>
+            <td>Notes for an intro to root systems.</td>
+          <tr>
+      </table>
+    </center>
+
+	  <h2> Carnegie Mellon </h2>
+
+	  <p> These scans are from a dark time when I used to take notes by hand. I can guarantee neither the correctness nor the legibility of these notes, and should not be held responsible for either. </p>
+
+    <center>
+      <table>
+        <thead align="left">
+          <tr>
+            <th>Course</th>
+            <th>Semester</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="alggeo">Algebraic Geometry</a></td>
+            <td>Spring 2013</td>
+            <td>Class handouts by <a href="http://www2.kenyon.edu/Depts/Math/holdenerj/">Judy Holdener.</a></td>
+          </tr>
+          <tr>
+            <td><a href="commalg.pdf">Commutative Algebra</a></td>
+            <td>Fall 2013</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Complex Analysis</td>
+            <td>Spring 2014</td>
+            <td><a href="complexanalysis1.pdf">Part 1</a> and <a href="complexanalysis2.pdf">Part 2</a></td>
+          </tr>
+          <tr>
+            <td><a href="extremal.pdf"> Extremal Combinatorics </a></td>
+            <td>Spring 2014</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="fieldtheory.pdf"> Galois Theory </a></td>
+            <td>Spring 2014</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="physicsgroups.pdf"> Group Theory with Physics Applications</a></td>
+            <td>Spring 2014</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="algebra3.pdf">Representation Theory </a></td>
+            <td>Fall 2014</td>
+            <td>Taken at the University of Pittsburgh</td>
+          </tr>
+          <tr>
+            <td><a href="diffgeo.pdf">Differential Geometry (Physics)</a></td>
+            <td>Fall 2014</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="categorytheory.pdf"> Category Theory </a></td>
+            <td>Spring 2015</td>
+            <td></td>
+          </tr>
+          </table>
+    </center>
+
+          </br></br>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+
+
+</html>
+
+
+<!-- Please visit nicepipesbill.tumblr.com -->

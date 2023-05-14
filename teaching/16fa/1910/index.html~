@@ -1,0 +1,169 @@
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="../../../style/style.css">
+
+    <title>
+      Math 1910, Fall 2016
+    </title>
+  </head>
+
+  <body>
+    <div id="container">
+
+      <div id="page">
+        <div id="content">
+
+          <center>
+            <h1> Math 1910, Fall 2016 </h1>
+
+
+            <h2>Course Information </h2>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td align="left"><b>TA:</b></td>
+                  <td><a href="../../../index.html">David Mehrle</a> (rhymes with "early")</td>
+                </tr>
+                <tr>
+                  <td><b>Email:</b></td>
+                  <td>dfm223@cornell.edu</td>
+                </tr>
+                <tr>
+                  <td><b>Course Website:</b></td>
+                  <td><a href="https://blackboard.cornell.edu/">blackboard.cornell.edu/</a></td>
+                </tr>
+                <tr>
+                  <td><b>Section 205:</b></td>
+                  <td>8:00 to 8:50 in Phillips Hall 307</td>
+                </tr>
+                <tr>
+                  <td><b>Section 209:</b></td>
+                  <td>9:05 to 9:55 in Phillips Hall 307</td>
+                </tr>
+                <tr>
+                  <td><b>Office Hours:</b></td>
+                  <td> Mondays 15:30 to 17:30 in Malott 218</td>
+
+                </tr>
+              </tbody>
+            </table>
+
+          </br>
+
+            <h2>Handouts</h2>
+            <table>
+              <thead align="left">
+                <th>Date</th>
+                <th></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> 25 August 2016 </td>
+                  <td><a href="handouts/1910f16-handout01.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout01sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 30 August 2016 </td>
+                  <td><a href="handouts/1910f16-handout02.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout02sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 6 September 2016 </td>
+                  <td><a href="handouts/1910f16-handout03.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout03sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 8 September 2016 </td>
+                  <td><a href="handouts/1910f16-handout04.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout04sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 13 Septeber 2016 </td>
+                  <td><a href="handouts/1910f16-handout05.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout05sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 20 September 2016 </td>
+                  <td><a href="handouts/1910f16-handout06.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout06sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 27 September 2016 </td>
+                  <td><a href="handouts/1910f16-handout07.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout07sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 29 September 2016 </td>
+                  <td><a href="handouts/1910f16-handout08.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout08sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 4 October 2016 </td>
+                  <td>Review Day</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td> 13 October 2016 </td>
+                  <td><a href="handouts/1910f16-handout09.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout09sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 18 October 2016 </td>
+                  <td><a href="handouts/1910f16-handout10.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout10sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 25 October 2016 </td>
+                  <td><a href="handouts/1910f16-handout11.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout11sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 1 November 2016 </td>
+                  <td><a href="handouts/1910f16-handout12.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout12sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 3 November 2016 </td>
+                  <td><a href="handouts/1910f16-handout13.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout13sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 8 November 2016 </td>
+                  <td><a href="handouts/1910f16-prelim2-review.pdf">Review</a></td>
+                  <td><a href="handouts/1910f16-prelim2-review-sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 15 November 2016 </td>
+                  <td><a href="handouts/1910f16-handout14.pdf">In-class</a></td>
+                 <td><a href="handouts/1910f16-handout14sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 22 November 2016 </td>
+                  <td><a href="handouts/1910f16-handout15.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout15sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 29 November 2016 </td>
+                  <td><a href="handouts/1910f16-handout16.pdf">In-class</a></td>
+                  <td><a href="handouts/1910f16-handout16sol.pdf">Solutions</a></td>
+                </tr>
+                <tr>
+                  <td> 1 December 2016 </td>
+                  <td><a href="handouts/1910f16-final-review.pdf">Review</a></td>
+                  <td><a href="handouts/1910f16-final-review-sol.pdf">Solutions</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </center>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

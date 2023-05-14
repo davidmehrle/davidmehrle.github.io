@@ -1,0 +1,82 @@
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="../../../style/style.css">
+
+    <title>
+      Math 1910, Fall 2016
+    </title>
+  </head>
+
+  <body>
+    <div id="container">
+
+      <div id="banner">
+        <h1> Math 1910, Fall 2017 </h1>
+      </div>
+
+      <div id="page">
+        <div id="content">
+
+          <center>
+
+            <h2>Course Information </h2>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td align="left"><b>TA:</b></td>
+                  <td><a href="../../../index.html">David Mehrle</a>
+                    (rhymes with "early")</td>
+                </tr>
+                <tr>
+                  <td><b>Email:</b></td>
+                  <td>dfm223@cornell.edu</td>
+                </tr>
+                <tr>
+                  <td><b>Course Website:</b></td>
+                  <td><a href="https://blackboard.cornell.edu/">
+		      blackboard.cornell.edu/</a></td>
+                </tr>
+                <tr>
+                  <td><b>Section 203:</b></td>
+                  <td>TR 8:00 to 8:50 in Hollister 368</td>
+                </tr>
+                <tr>
+                  <td><b>Section 210:</b></td>
+                  <td>TR 9:05 to 9:55 in Hollister 368</td>
+                </tr>
+                <tr>
+                  <td><b>Office Hours:</b></td>
+		  <td> TBA </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </br>
+
+            <h2>Handouts</h2>
+            <table>
+              <thead align="left">
+                <th>Date</th>
+                <th></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> 24 August 2017 </td>
+		  <td><a href="handouts/1910fa17-syllabus.pdf">Syllabus</a></td>
+		  <td> </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </center>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

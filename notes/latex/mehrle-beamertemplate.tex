@@ -1,0 +1,94 @@
+\documentclass[xcolor=x11names]{beamer}
+
+% Packages 
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{rotating}
+
+%Beamer layout things
+\useinnertheme{default}
+\usefonttheme{serif}
+\usepackage{palatino}
+\setbeamertemplate{itemize items}[circle]
+
+%Change fonts
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+
+%Change colors of text
+\setbeamercolor*{normal text}{fg=black,bg=white} 
+\setbeamercolor*{alerted text}{fg=red} 
+\setbeamercolor*{example text}{fg=black} 
+\setbeamercolor*{structure}{fg=black} 
+\setbeamercolor*{frametitle}{fg=DeepSkyBlue4}
+\setbeamercolor*{block body}{bg=Azure3}
+\setbeamercolor*{block title}{bg=Azure3}
+
+%Remove the annoying navigation bar
+\beamertemplatenavigationsymbolsempty
+
+
+%commands for text colors
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{SeaGreen4}{#1}}
+\newcommand{\black}[1]{\textcolor{black}{#1}}
+
+%spacing commands 
+\newcommand{\vspacer}{\vspace*{1em}}
+\newcommand{\hspacer}{\hspace*{1em}}
+\newcommand{\vcloser}{\vspace*{-1em}}
+\newcommand{\hcloser}{\hspace*{-1em}}
+
+%Document Begins
+\begin{document}
+
+
+	%Title Page
+	
+	%Draw the fancy elliptic curve in the background
+	{\setbeamertemplate{background canvas}{
+		\tikz[remember picture,overlay]
+		\node[opacity=0.3] at (current page.center) {
+			\includegraphics[width=\paperwidth,
+							 height=\paperheight]{curve.png}};} 
+							%replace "curve.png" with another picture
+
+
+	%The actual slide
+	\begin{frame}
+		\title{\textsc{Beamer Template}}
+		\author{David Mehrle \\ \textit{Carnegie Mellon University}}
+		\date{\today}
+		\maketitle
+
+	\end{frame}}
+
+
+
+	\begin{frame}
+		\frametitle{Slide} 
+	
+		\begin{block}{\underline{\textsc{Important Stuff Block}}}
+			Look at this important thing 
+		\end{block}
+		
+		\vspacer
+		
+		\begin{itemize}
+			%Make the 
+			\setlength{\itemsep}{1em}
+			
+			\item Item 1
+			
+			\item Item 2
+		
+		\end{itemize} 
+		
+		
+	
+	\end{frame}
+	
+
+\end{document}

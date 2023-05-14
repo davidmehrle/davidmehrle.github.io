@@ -1,0 +1,171 @@
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="../../../../style/style.css">
+
+    <title>
+      Homotopy Theory Reading Group
+    </title>
+  </head>
+
+  <body>
+    <div id="container">
+
+      <div id="page">
+        <div id="content">
+
+          <center>
+            <h1> Homotopy Theory Reading Group </h1>
+
+	   <p> This webpage is to maintain the schedule for the Homotopy Theory Reading group in the Spring 2018 semester.</p>
+	    
+            <h2> Information </h2>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td><b>Meeting Time:</b></td>
+                  <td>Tuesdays 3:00 until Olivetti snacktime</td>
+                </tr>
+                <tr>
+                  <td><b>Meeting Place:</b></td>
+		  <td> TBD </td>
+                </tr>
+              </tbody>
+            </table>
+
+	    <h2> Schedule </h2> 
+
+            <table>
+              <thead align="left">
+                <th>Date</th>
+                <th>Topic</th>
+                <th>Speaker</th>
+		<th> </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> 23 January </td>
+		  <td> The Serre Spectral Sequence, Part I</td>
+		  <td> David </td>
+		  <td> </td>
+                </tr> 
+               <tr>
+                  <td> 30 January </td>
+		  <td> The Serre Spectral Sequence, Part II</td>
+		  <td> David </td>
+		  <td><a href="sseq-handout-2018-01-30.pdf">Handout</a></td>
+                </tr>
+                <tr>
+                  <td> 6 February </td>
+		  <td> The Adams Spectral Sequence </td>
+		  <td> Oliver </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+		  <td> 13 February </td>
+		  <td> Homotopy Limits and Colimits </td>
+		  <td> Brandon </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+                  <td> 27 February </td>
+		  <td> Homotopy Limits and Colimits </td>
+		  <td> Brandon </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+		  <td> 6 March </td>
+		  <td> Infinity Categories </td>
+		  <td> Maru </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+                  <td> 13 March </td>
+		  <td> Infinity Categories </td>
+		  <td> Maru </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+		  <td> 20 March </td>
+		  <td> Infinity Categories  </td>
+		  <td> Maru </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+		  <td> 27 March </td>
+		  <td> Stable Infinity Categories </td>
+		  <td> Oliver </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+		  <td> 10 April </td>
+		  <td> Functor Calculus </td>
+		  <td> Elise </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+		  <td> 17 April </td>
+		  <td> Functor Calculus </td>
+		  <td> Elise </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+		  <td> 24 April </td>
+		  <td> Topological Hochschild Homology </td>
+		  <td> David </td>
+		  <td> <a href="thh-notes-2018-04-24.pdf">Notes</a> </td>
+                </tr> 
+                <tr>
+		  <td> 1 May </td>
+		  <td> </td>
+		  <td> Oliver </td>
+		  <td> </td>
+                </tr> 
+                <tr>
+		  <td> 8 May </td>
+		  <td> Applied Category Theory </td>
+		  <td> Maru </td>
+		  <td> </td>
+                </tr> 
+            </table>
+
+	    <h2> Possible Future Topics </h2>
+
+	    <table>
+	      <thead>
+		<th> </th>
+	      </thead>
+	      <tbody>
+		<tr>
+		  <td> 
+		    Goodwillie Calculus
+		  </td>
+		</tr>
+		<tr>
+		  <td> 
+		    Topos Theory
+		  </td>
+		</tr>
+		<tr>
+		  <td> 
+		    Rational Homotopy Theory
+		  </td>
+		</tr>
+		<tr>
+		  <td> 
+		    Motivic Homotopy Theory
+		  </td>
+		</tr>
+	      </tbody>
+	    </table>
+          </center>
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>
