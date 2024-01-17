@@ -1,0 +1,167 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../../style/style.css">
+
+    <title>
+      eCHT Stable Homotopy
+    </title>
+  </head>
+
+  <body>
+    <div id="container">
+
+      <div id="banner">
+	<h1>eCHT Stable Homotopy Theory</h1>
+      </div>
+
+      <div id="page">
+	<div id="content">
+	  <center>
+
+	    <h2>Course Information</h2>
+
+	    <table>
+	      <tbody>
+		<tr>
+		  <td align="left"><b>Instructor:</b></td>
+		  <td>
+		    <a href="../../index.html">David Mehrle</a>
+		    (rhymes with "early")
+		  </td>
+		</tr>
+		<tr>
+		  <td><b>Email:</b></td>
+		  <td><a href="mailto:davidm@uky.edu">davidm@uky.edu</a></td>
+		</tr>
+		<tr>
+		  <td><b>Office Hours:</b></td>
+		  <td>
+		    <a href="https://uky.zoom.us/j/87029741455?pwd=Z00zM2pkT3pZTlh6Q3hvTUJtc1B4Zz09">
+		      13:00 to 13:50 (EST) Tues/Thurs
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td></br></td>
+		</tr>
+		<tr>
+		  <td><b>Teaching Assistant:</b></td>
+		  <td>Millie Rose</td>
+		</tr>
+		<tr>
+		  <td><b>Email:</b></td>
+		  <td></td>
+		</tr>
+		<tr>
+		  <td><b>Office Hours:</b></td>
+		  <td>
+		    <a href="https://uky.zoom.us/j/6875676471?pwd=RVpkVFVtYU1RRHpCUEVxdExiQW82dz09">
+		      13:00 to 14:00 (EST) Weds/Fri
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td></br></td>
+		</tr>
+		<tr>
+		  <td><b>Teaching Assistant:</b></td>
+		  <td>
+		    <a href="https://hassanabdallah.com">
+		      Hassan Abdallah
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td><b>Email:</b></td>
+		  <td>
+		    <a href="mailto:es2483@wayne.edu">
+		      es2483@wayne.edu
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td><b>Office Hours:</b></td>
+		  <td>
+		    <a href="https://wayne-edu.zoom.us/j/9486065385?pwd=UU1tTno5c0FvaGZvVm1lTjVtWU41UT09">
+		      9:00 to 10:00 (EST) Mon/Weds
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td><br></td>
+		</tr>
+
+		<tr>
+		  <td><b>Class:</b></td>
+		  <td>
+		    <a href="https://uky.zoom.us/j/87029741455?pwd=Z00zM2pkT3pZTlh6Q3hvTUJtc1B4Zz09">
+		      12:00 to 12:50 (EST) Tues/Thurs
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td><b>Links:</b></td>
+		  <td>
+		    <a href="https://uky.zoom.us/j/87029741455?pwd=Z00zM2pkT3pZTlh6Q3hvTUJtc1B4Zz09">
+		      Zoom
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td></td>
+		  <td>
+		    <a href="https://echt.zulipchat.com/">
+		      Zulip
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td></td>
+		  <td>
+		    <a href="https://www.gradescope.com/courses/707849">
+		      Gradescope
+		    </a>
+		  </td>
+		</tr>
+		<tr>
+		  <td></td>
+		  <td><a href="syllabus.pdf">Syllabus</a></td>
+		</tr>
+	      </tbody>
+	    </table>
+
+	    <br><br>
+	    
+	    <h2>Schedule</h2>
+
+	    <table>
+	      <thead>
+		<tr>
+		  <td>Week</td>
+		  <td>Topic</td>
+		  <td>Speaker</td>
+		  <td>Problem Set</td>
+		</tr>
+	      </thead>
+	      <tbody>
+		<tr>
+		  <td>Jan 16, Jan 18</td>
+		  <td></td>
+		  <td></td>
+		  <td></td>
+		</tr>
+	      </tbody>
+	    </table>
+
+
+
+	  </center>
+
+
+
+	</div>
+      </div>
+      
+    </div>
+  </body>
+</html>
