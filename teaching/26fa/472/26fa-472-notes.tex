@@ -1,0 +1,308 @@
+\documentclass[noname]{notes}
+
+
+\input{preamble}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage[symbol]{footmisc}
+
+
+\begin{document}
+\title{Math 472: Introduction to Topology}
+\author{David Mehrle} 
+\contact{\email{david.mehrle@colostate.edu}}
+\place{Colorado State University}
+\date{Fall 2026} 
+%\online{The latest version is online \link{here}{http://www.math.cornell.edu/~dmehrle/notes}.}
+\maketitle
+
+{\pagestyle{plain}
+\tableofcontents
+\cleardoublepage}
+
+\newpage 
+
+
+{\pagestyle{plain}
+\listoflectures
+\cleardoublepage}
+
+\lecture{00}{24 August 2026}
+\chapter*{What is topology?}
+
+At its core, topology is the study of continuity, not only continuity of functions, but also continuous deformations of spaces, shapes, and surfaces. The popular conception of topology (M\"obius strips, coffee cups = donuts, knots, etc.), however, fails to see what Kyle Ormsby calls the ``\ldots stunning breadth and extreme utility of topology in contemporary mathematics." \cite[Week 1 Lecture Notes]{ormsby}. Here is a woefully incomplete list of places in mathematics and other fields of science where topology arises: 
+
+\begin{enumerate}[(1)]
+	\item Manifold geometry: the study of manifolds and higher-dimensional surfaces requires passage from local regions to global geometry. Questions about gluing and connection. 
+	\item Algebraic geometry: the Zariski topology, intersection theory, moduli spaces, complex varieties as topological spaces, etc. 
+	\item Number Theory: there's a whole set of number-theoretic metrics out there called $p$-adic metrics, whereby two numbers are close to each other if they share the same divisors. Number theorists do analysis using this measure of distance.
+	\item Dynamical Systems and Flows: long-term behavior of differential equations,  attractors, and qualitative features that persist under perturbation.
+	\item Combinatorics of Geometric Objects: graphs, posets, simplicial complexes; topological invariants constrain which objects exist and how they behave. 
+	\item Topological Data Analysis: studying high-dimensional point clouds via their topology and using this to create summary statistics about data sets with homology.
+	\item Physics: Phase spaces, gauge symmetry, and homotopy theory in high energy physics.
+	\item Paleontology (and biology): I just read a book about modern paleontology and lots of the ideas therein seemed decidedly topological (although I doubt the author thought about them like that!). For example, distinguishing species of dinosaur by the number of holes in their skulls, or grouping species based on the number of shared characteristics (this is a notion of distance -- hence continuity!) 
+\end{enumerate}
+
+The breadth of applications here implies that topology is a very abstract subject, and that is true in many ways. That's how topology shows up, but here's some of the ideas that characterize modern topology.  
+
+\begin{enumerate}[(1)]
+	\item \textbf{Properties over construction}: when we study objects that are the same under continuous deformation, it often doesn't matter exactly how they are built. What we want to know is that no matter how you build them, they have the same topological properties. This leads naturally to the idea of category theory and universal properties, where we will \emph{define} objects by the properties they have rather than by their construction. 
+	\item \textbf{Topological equivalence}: there are many different ways to define a circle. Is it the image of $t \mapsto e^{2 \pi i t}$ in $\C$? Or is it the image of $\theta \mapsto (\cos\theta, \sin \theta)$ in $\R^2$? Or is it what results from taking the unit interval $[0,1]$ and gluing $0$ to $1$? These are all really the same thing, and we say that they are topologically equivalent. The object that we really want to study is independent of the model chosen. There are multiple ways to measure topological equivalence, some more rigid than others. 
+	\item \textbf{Invariants}: Given many different topologically equivalent avatars for the same object, we need some way to make differentiate between objects even when they're presented differently. Enter invariants: an invariant is a piece of data that stays the same (is ``invariant") when replacing an object by a topologically equivalent one. We can use invariants to tell objects apart: if object $X$ has invariant $I(X) = 1$ and object $Y$ has invariant $I(Y) = 0$, then they cannot be topologically equivalent. 
+\end{enumerate}
+
+
+\chapter{Topological Spaces and Continuous Functions}
+
+\lecture{01}{26 August 2026}
+\section{Metric Spaces} 
+
+The first principle above is properties over construction. With that in mind, our first task is to extract the properties of continuity that we learned from analysis and determine which properties determine them. We did this a little bit with the property of distance on the worksheet. 
+
+\begin{definition}
+	Let $X$ be a set. A \emph{metric} on $X$ is a function $d \colon X \times X \to [0,\infty)$ with the following properties: 
+	\begin{itemize}
+		\item For any $x \in X$, $d(x,x) = 0$. 
+		\item (positivity) For any $x,y \in X$, if $x \neq y$, then $d(x,y) > 0$
+		\item (symmetry) For any $x,y \in X$, $d(x,y) = d(y,x)$
+		\item (triangle inequality) For any $x,y,z \in X$, $d(x,z) \leq d(x,y) + d(y,z)$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	A \emph{metric space} is a pair $(X,d)$ of a set $X$ and a metric $d$ on $X$. 
+\end{definition}
+
+\begin{example}
+	Here are some examples of metric spaces. 
+	\begin{enumerate}[(a)]
+		\item The metric space $(\R^n, d)$ where $d$ is the standard Euclidean metric. For vectors $\vec u$ and $\vec v$, the distance between them is the length of their difference: 
+		\[
+			d(\vec u, \vec v) = \|\vec u - \vec v\|. 
+		\]
+		In $\R^2$ with vectors $\vec u = (u_0, u_1)$ and $\vec v = (v_0, v_1)$, we get 
+		\[
+			d(\vec u, \vec v) = \sqrt{(u_0 - v_0)^2 + (u_1 - v_1)^2}.
+		\]
+		\item The taxicab metric on $\R^n$. 
+		\item The $L^p$ metric on $\R^n$. 
+		\item The $L^\infty$ metric on $\R^n$. 
+		\item The set of binary strings of length $n$ and Hamming distance: the number of positions at which the strings differ. 
+		\item The discrete metric on any space. 
+	\end{enumerate}
+\end{example}
+
+Given a notion of distance, we can talk about open balls in a metric space. 
+
+\begin{definition}
+	Let $(X,d)$ be a metric space. Let $x \in X$ and let $r > 0$ be a positive real number. The \emph{open ball of radius $r$ around $x$} is the set 
+	\[
+		B_r(x) := \Big\{ y \in X\ \Big\vert\ d(x,y) < r \Big\}.
+	\]
+\end{definition}
+
+We saw some examples of this on the worksheet. 
+
+\begin{example}
+	In the hamming distance example, the open ball of radius $2$ around any string is the set of all strings that differ from it by at most one character. The open ball of radius $1$ around a given string is just the string itself (remember that it's a strict $<$). 
+\end{example}
+
+\begin{definition}
+	Let $(X,d)$ be a metric space. An \emph{open set} in $X$ is a set $U$ such that for all $x \in U$, there exists some $r > 0$ such that $B_r(x) \subseteq U$. 
+\end{definition}
+
+\begin{lemma}
+\label{open balls are open}
+	The open ball $B_r(x)$ is an open set. 
+\end{lemma}
+
+\begin{proof}
+	Let $y \in B_r(x)$. Then $d(x,y) < r$ by the definition of an open ball. Let $\varepsilon = r - d(x,y)$. We claim that $B_\varepsilon(y) \subseteq B_r(x)$. Let $z \in B_\varepsilon(y)$. Then 
+	\begin{align*}
+		d(x,z) &\leq d(x,y) + d(y,z) \\
+			&< d(x,y) + (r - d(x,y)) \\
+			&= r.
+	\end{align*}
+	Therefore, $d(x,z) < r$, so $z \in B_r(x)$. Hence, $B_\varepsilon(y) \subseteq B_r(x)$. 
+\end{proof}
+
+\begin{example}
+	Draw some pictures of open sets in $\R^2$ with various metrics. 
+\end{example}
+
+\begin{question}
+	Are there sets in $\R^2$ that are open in the Euclidean metric that are not open in the taxicab metric, or vice versa? 
+\end{question}
+
+\begin{example}
+	Every subset of $\R^2$ is open for the discrete metric, because the open balls of radius $1$ are just points! 
+\end{example}
+
+\lecture{02}{28 August 2026}
+\section{Bases for a Topology} 
+
+A topology on a set $X$ is the collection of open sets on $X$ (these must follow some rules, which we'll get to soon). For metric spaces, we can define the open sets by those sets $U$ such that around each point $x \in U$, there is an open ball $B_\varepsilon(x)$ completely contained in $U$. This suggests that the important thing in the topology is not just the open sets, but the open balls in particular. The notion of a basis generalizes the collection of open balls, without any reference to distances. 
+
+Recall that if $X$ is a set, then $\mathcal P(X)$ is the powerset of $X$: the set of all subsets of $X$. 
+
+\begin{definition}
+	Let $X$ be a set. A (topological) basis for $X$ is a collection $\beta \subseteq \mathcal P(X)$ of subsets of $X$ satisfying the following properties: 
+	\begin{itemize}
+		\item (covering) For each $x \in X$, there exists some $B \in \beta$ such that $x \in B$. 
+		\item (filtered) For all $B_1, B_2 \in \beta$ and all $x \in B_1 \cap B_2$, there exists $B_3 \in \beta$ such that $x \in B_3$ and $B_3 \subseteq B_1 \cap B_2$. 
+	\end{itemize}
+\end{definition}
+\noindent Another way to say the covering property is that the union of all sets in $\beta$ is $X$. In symbols: 
+\[
+	\bigcup_{B \in \beta} B = X.
+\]
+
+\begin{example}
+	The set of open balls in a metric space forms a basis for that topology. You will prove this on your homework. The proof uses similar ideas to the ones that we used in \ref{open balls are open}.
+\end{example}
+
+\begin{example}
+	For $a, b \in \Z$, let $S(a,b) = \big\{an + b \mid n \in \Z\big\}$. This is called an \emph{arithmetic progression}. Then a topological basis on $\Z$ is given by the set of all arithmetic progressions 
+	\[
+		\beta = \Big\{ S(a,b) \ \Big\vert\ a,b \in \Z\Big\}. 
+	\]
+	You can use this to give a proof of the infinitude of primes different from Euler's proof.  
+\end{example}
+
+Given a basis, we can define open sets just as we did with the open balls, but with no reference whatsoever to a metric. 
+
+\begin{definition}
+	Let $X$ be a set with a basis $\beta$. An subset $U \subseteq X$ is \emph{open in $X$} if for each $x \in U$, there exists some $B \in \beta$ such that $x \in B$ and  $B \subseteq U$. 
+\end{definition}
+
+\begin{example}
+	\label{empty and everything are open}
+	Let $X$ be a set with a topological basis $\beta$. Then $\emptyset$ is open (vacuously) and $X$ is open (by the covering axiom). 
+\end{example}
+
+With the notion of a topological basis, we have axiomatized the idea of open balls to something more general than metric spaces. But we can go even further, and axiomatize the open sets themselves. Let's first think about some of the properties of open sets. 
+
+\begin{lemma}
+	\label{arbitrary unions of basis opens}
+	Let $X$ be a set with topological basis $\beta$. Let $I$ be a set, and for each $i \in I$, let $U_i \subseteq X$ be an open set in $X$. Then the union $U$ of all of the $U_i$, 
+	\[
+		U := \bigcup_{i \in I} U_i 
+	\]
+	is open as well. 
+\end{lemma}
+
+\begin{proof}
+	Let $U = \bigcup_{i \in I} U_i$. We must show that for each $x \in U$, there is some $B \in \beta$ such that $x \in B$ and $B \subseteq U$. To that end, note that if $x \in U$, then $x \in U_j$ for some $j$. Since $U_j$ is open, there is some $B \in \beta$ such that $x \in B$ and $B \subseteq U_j$. But note that $U_j \subseteq U$ ($U_j$ is a subset of the union of all of the $U_i$s), and therefore this $B$ is the one we search for. In particular, $x \in B$ and $B \subseteq U_j \subseteq U$. 
+\end{proof}
+
+\begin{lemma}
+	\label{intersection of two opens is open}
+	Let $X$ be a set with topological basis $\beta$. Let $U$ and $V$ be open sets in $X$. Then $U \cap V$ is open. 
+\end{lemma}
+
+\begin{proof}
+	To show that $U \cap V$ is open, we must pick an arbitrary $x \in U \cap V$ and then find some $B \in \beta$ such that $x \in B$ and $B \subseteq U \cap V$. 
+	
+	To that end, let $x \in U \cap V$. Then $x \in U$, and $U$ is open, so there exists some $B_1 \in \beta$ such that $x \in B_1$ and $B_1 \subseteq U$. 
+	
+	Similarly, $x \in V$, and $V$ is open, so there exists some $B_2 \in \beta$ such that $x \in B_2$ and $B_2 \subseteq V$. 
+	
+	Now we have $x \in B_1$ and $x \in B_2$, which means that $x \in B_1 \cap B_2$. By the filtering axiom of a basis, this means that there exists some $B_3 \in \beta$ such that $x \in B_3$ and $B_3 \subseteq B_1 \cap B_2$. 
+	
+	This is the $B$ that we were searching for: since $B_1 \subseteq U$ and $B_2 \subseteq V$, we have 
+	\[
+		B_1 \cap B_2 \subseteq U \cap V. 
+	\]
+	Then $B_3 \subseteq B_1 \cap B_2$ implies that $B_3 \subseteq U \cap V$. We also have $x \in B_3$, so we're done! 
+\end{proof}
+
+\begin{lemma}
+	\label{finite intersections of basis opens}
+	Let $X$ be a set with topological basis $\beta$. Let $U_1, \ldots, U_n$ be open sets in $X$. Then the intersection 
+	\[
+		\bigcap_{i=1}^n U_i
+	\]
+	is open. 
+\end{lemma}
+
+\begin{proof}
+	Proof by induction on $n$. For $n = 0$ the empty intersection is all of $X$, which we already showed was open in \ref{empty and everything are open}. For $n = 1$, the intersection of one open set is open again. For $n = 2$, this is the previous lemma \ref{intersection of two opens is open}. This handles the base cases. 
+	
+	For the inductive step, assume that the intersection of any $n-1$ open sets is open. Let $V = \bigcap_{i=1}^{n-1} U_i$. Then by the previous lemma \ref{intersection of two opens is open}, $U_n \cap V$ is the intersection of two opens, and is therefore open. But 
+	\[
+		U_n \cap V = U_n \cap \bigcap_{i=1}^{n-1} U_i = \bigcap_{i=1}^n U_i,
+	\]
+	which is what we were trying to prove is open. 
+\end{proof}
+
+\begin{example}
+	We can't get away with arbitrary intersections of open sets being open. For example, consider the intersection of all open balls of radius $1/n$ in the Euclidean topology on $\R^2$: 
+	\[
+		\bigcap_{n=1}^\infty B_{\frac{1}{n}}\big((0,0)\big). 
+	\]
+	This set contains just one point: the origin. And a single point isn't open. 
+\end{example}
+
+
+\section{Topologies}
+
+Knowing what we know about the open sets in $X$ with respect to a basis $\beta$, we can axiomatize the open sets. 
+
+\begin{definition}
+	Let $X$ be a set. A \emph{topology} $\tau$ on $X$ is a collection $\tau \subseteq \mathcal{P}(X)$ of subsets of $X$ such that 
+	\begin{itemize}
+		\item Arbitrary unions of sets in $\tau$ are again in $\tau$. In symbols: if $I$ is a set and $U_i \in \tau$ for all $i \in I$, then 
+		\[
+			\bigcup_{i \in I} U_i \in \tau.
+		\]
+		\item Finite intersections of sets in $\tau$ are again in $\tau$. In symbols: if $U_1, \ldots, U_n \in \tau$ for some nonnegative integer $n$, then 
+		\[
+			\bigcap_{i=1}^n U_i \in \tau.
+		\]
+	\end{itemize}
+	We call the elements of $\tau$ the \emph{open sets} of the topology. 
+\end{definition}	 
+
+\begin{remark}
+	Some authors also demand the axiom that $\emptyset \in \tau$ and $X \in \tau$. But these follow from the axioms given above! Can you see why?\footnote{The answer is that the union of zero sets is the empty set, so $\emptyset \in \tau$ follows from the unions axiom. Similarly, the intersection of zero sets is all of $X$, so $X \in \tau$ follows from the finite intersection axiom.}
+\end{remark}
+
+This is even more abstract than the abstract bases we talked about earlier! But we already have some examples given by sets with bases. 
+
+\begin{theorem}
+	Let $X$ be a set with a topological basis $\beta$. Let $\tau$ be the set 
+	\[
+		\tau := \Big\{ U \subseteq X\ \Big\vert\ U \text{ is open with respect to the basis } \beta \Big\}. 
+	\]
+	We call this the \emph{topology generated by the basis $\beta$}. Then $\tau$ is a topology on $X$. 
+\end{theorem}
+
+\begin{proof}
+	This is what we proved in the last section. See \ref{arbitrary unions of basis opens} and \ref{finite intersections of basis opens}
+\end{proof}
+
+But there are many, many more examples. 
+
+\begin{example}
+	Cofinite topology on $\N$. The topology $\tau_\text{cof}$ is 
+	\[
+		\tau_\text{cof} := \Big\{ U \subseteq \N \ \Big\vert\ \N \setminus U \text{ is finite} \Big\} \cup \Big\{\emptyset\Big\}. 
+	\]
+	In words, the nonempty open sets in this topology are the subsets of $\N$ whose complement is finite. Note that this is different than infinite sets being open! The odd numbers is an infinite set whose complement (the even numbers) is still infinite. 
+\end{example}
+
+\begin{example}
+	On any set $X$, the \emph{discrete topology} is the topology $\tau_\text{disc}$ where every set is open. Then $\tau_{\text{disc}}$ is the whole powerset of $X$:  $\tau_\text{disc} := \mathcal{P}(X)$
+\end{example}
+
+\begin{example}
+	On any set $X$, the \emph{indiscrete topology} or the \emph{concrete topology} is the topology $\tau_\text{conc} := \{\emptyset, X\}$. That is, the only open sets in this topology are empty or the whole set. 
+\end{example}	
+
+\nocite{*}
+\bibliographystyle{alpha}
+\bibliography{../references/references.bib}
+
+
+\end{document}
