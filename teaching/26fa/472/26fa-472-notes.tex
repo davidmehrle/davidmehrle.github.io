@@ -273,7 +273,11 @@ Knowing what we know about the open sets in $X$ with respect to a basis $\beta$,
 		\]
 	\end{itemize}
 	We call the elements of $\tau$ the \emph{open sets} of the topology. 
-\end{definition}	 
+\end{definition}	
+
+\begin{definition}
+	A \emph{topological space} is a pair $(X,\tau)$ of a set $X$ and a topology $\tau$ on $X$. 
+\end{definition} 
 
 \begin{remark}
 	Some authors also demand the axiom that $\emptyset \in \tau$ and $X \in \tau$. But these follow from the axioms given above! Can you see why?\footnote{The answer is that the union of zero sets is the empty set, so $\emptyset \in \tau$ follows from the unions axiom. Similarly, the intersection of zero sets is all of $X$, so $X \in \tau$ follows from the finite intersection axiom.}
@@ -310,6 +314,26 @@ But there are many, many more examples.
 \begin{example}
 	On any set $X$, the \emph{indiscrete topology} or the \emph{concrete topology} is the topology $\tau_\text{conc} := \{\emptyset, X\}$. That is, the only open sets in this topology are empty or the whole set. 
 \end{example}	
+
+\begin{example}
+	The set $\{0,1\}$ has a topology given by 
+	\[
+		\tau = \Big\{\emptyset,\ \{1\},\ \{0,1\} \Big\}.
+	\]
+	This is not the discrete topology (because $\{0\}$ isn't open), and it's not the concrete topology (because $\{1\}$ is open). So this is a genuinely new topology on $\{0,1\}$. Are there any others? 
+\end{example}
+
+\begin{example}
+	Given a topological space $(X,\tau)$ and a subset $A \subseteq X$, we can build a new topology on $A$ by saying that the open sets in $A$ are the sets of the form $U \cap A$ for some open set $U$ of $X$. In symbols, the topology on $A$ is
+	\[
+		\tau' = \Big\{U \cap A\ \Big\vert\ U \in \tau\Big\}. 
+	\]
+	This is called the \emph{subspace topology}. 
+\end{example}
+
+\section{Continuous Functions}
+
+
 
 \nocite{*}
 \bibliographystyle{alpha}
