@@ -256,6 +256,7 @@ With the notion of a topological basis, we have axiomatized the idea of open bal
 \end{example}
 
 
+\lecture{03}{August 31, 2026}
 \section{Topologies}
 
 Knowing what we know about the open sets in $X$ with respect to a basis $\beta$, we can axiomatize the open sets. 
@@ -300,14 +301,6 @@ This is even more abstract than the abstract bases we talked about earlier! But 
 But there are many, many more examples. 
 
 \begin{example}
-	Cofinite topology on $\N$. The topology $\tau_\text{cof}$ is 
-	\[
-		\tau_\text{cof} := \Big\{ U \subseteq \N \ \Big\vert\ \N \setminus U \text{ is finite} \Big\} \cup \Big\{\emptyset\Big\}. 
-	\]
-	In words, the nonempty open sets in this topology are the subsets of $\N$ whose complement is finite. Note that this is different than infinite sets being open! The odd numbers is an infinite set whose complement (the even numbers) is still infinite. 
-\end{example}
-
-\begin{example}
 	On any set $X$, the \emph{discrete topology} is the topology $\tau_\text{disc}$ where every set is open. Then $\tau_{\text{disc}}$ is the whole powerset of $X$:  $\tau_\text{disc} := \mathcal{P}(X)$
 \end{example}
 
@@ -331,6 +324,91 @@ But there are many, many more examples.
 	This is called the \emph{subspace topology}. 
 \end{example}
 
+\begin{example}
+	Cofinite topology on $\N$. The topology $\tau_\text{cof}$ is 
+	\[
+		\tau_\text{cof} := \Big\{ U \subseteq \N \ \Big\vert\ \N \setminus U \text{ is finite} \Big\} \cup \Big\{\emptyset\Big\}. 
+	\]
+	In words, the nonempty open sets in this topology are the subsets of $\N$ whose complement is finite. Note that this is different than infinite sets being open! The odd numbers is an infinite set whose complement (the even numbers) is still infinite. 
+\end{example}
+
+\begin{example}
+	The poset topology. Let $(P, \leq)$ be a poset. A subset $U \subseteq P$ is called \emph{upwards closed} if for all $x \in U$ and $y \in P$ such that $x \leq y$, then $y \in U$ as well. In other words, $U$ is upwards closed if $x \in U$ implies that $y \in U$ for all $y \geq x$. 
+	
+	Let $\tau$ be the set of all upwards closed subsets of $P$. Then $\tau$ is a topology on $P$. 
+	\[
+		\tau = \Big\{ U \subseteq P\ \Big\vert\ U \text{ is upwards closed}\Big\}.
+	\]
+\end{example}
+
+Frequently in the previous few sections, we made use of open balls around a point. But when we're talking about general topological spaces, we no longer have open balls. So we use the idea of a neighborhood instead. This is  very important vocabulary that we will use often!
+
+\begin{definition}
+	Let $(X, \tau)$ be a topological space and let $x \in X$. An \emph{(open) neighborhood} of $x$ is an open set $U \in \tau$ such that $x \in U$. 
+\end{definition}
+
+%%% Closed sets
+\section{Closed Sets}
+
+Another important idea in topology is the notion of a closed set. 
+
+\begin{definition}
+	Let $(X, \tau)$ be a topological space. A subset $K \subseteq X$ is \emph{closed} if $X \setminus K$ is open. 
+\end{definition}
+
+\begin{example}
+	Since $\emptyset$ and $X$ are always open, then $X = X \setminus \emptyset$ and $\emptyset = X \setminus X$ are always closed as well. This illustrates that closed and open are not mutually exclusive! 
+\end{example}
+
+It is false to say that if a set is not open, then it is closed, as the following example shows. 
+
+\begin{example}
+	In the Euclidean topology on $\R$, open intervals $(a,b)$ are open sets, and closed intervals $[a,b]$ are closed sets. But there are intervals of the form $[a,b)$ and $(a,b]$ that are neither open nor closed. 
+\end{example}
+
+\begin{example}
+	In the cofinite topology on $\N$, the closed sets are either finite sets or all of $\N$. 
+\end{example}
+
+You can also define a topology by specifying the closed sets. In fact, this is probably the better way to define some topologies, like the cofinite topology.
+
+\begin{theorem}
+	Let $X$ be a set. Let $\kappa \subseteq P(X)$ be a collection of subsets of $X$ such that 
+	\begin{enumerate}[(a)]
+		\item $\kappa$ is closed under finite unions: if $K_1, \ldots, K_n \in \kappa$, then $\bigcup_{i=1}^n K_i \in \kappa$. 
+		\item $\kappa$ is closed under arbitrary intersections: if $I$ is a set and $K_i \in \kappa$ for each $i \in I$, then $\bigcap_{i \in I} K_i \in \kappa$. 
+	\end{enumerate}
+	Then
+	\[
+		\tau = \Big\{X \setminus K \ \Big\vert\ K \in \kappa \Big\}. 
+	\]
+	is a topology on $X$. 
+\end{theorem}
+
+\begin{proof}
+	To prove that $\tau$ is a topology on $X$, we must show that $\tau$ is closed under finite intersections and arbitrary unions. 
+	\begin{itemize}
+		\item ($\tau$ is closed under finite intersection) Let $U_1, \ldots, U_n \in \tau$. Because every set in $\tau$ is the complement of a set in $\kappa$, then for each $i = 1, \ldots, n$ there is some $K_i \in \kappa$ such that $U_i = X \setminus K_i$. Then 
+		\[
+			\bigcap_{i=1}^n U_i = \bigcap_{i=1}^n (X \setminus K_i) = X \setminus \left(\bigcup_{i=1}^n K_i\right). 
+		\]
+		Since $\kappa$ is closed under finite union, this shows that the intersection of all the $U_i$s is again a complement of a set in $\kappa$. Hence, $\bigcap_{i=1}^n U_i \in \tau$. 
+		\item ($\tau$ is closed under arbitrary union) Let $I$ be a set and let $U_i \in \tau$ for each $i \in I$. Because every set in $\tau$ is the complement of a set in $\kappa$, then for each $i \in I$, there is some $K_i \in \kappa$ such that $U_i = X \setminus K_i$. Then 
+		\[
+			\bigcup_{i \in I} U_i = \bigcup_{i \in I} (X \setminus K_i) 
+				= X \setminus \left( \bigcap_{i \in I} K_i \right).
+		\]
+		Since $\kappa$ is closed under arbitrary intersection, this shows that the union of all of the $U_i$s is again a complement of a set in $\kappa$. Hence, $\bigcup_{i \in I} K_i \in \tau$. 
+	\end{itemize}
+	This shows that $\tau$ is both closed under finite intersection and arbitrary union, and hence $\tau$ is a topology. 
+\end{proof}
+
+
+
+
+
+
+\lecture{04}{2 September 2026}
 \section{Continuous Functions}
 
 
