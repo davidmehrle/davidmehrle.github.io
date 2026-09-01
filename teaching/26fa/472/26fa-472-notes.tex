@@ -168,6 +168,7 @@ Recall that if $X$ is a set, then $\mathcal P(X)$ is the powerset of $X$: the se
 \end{example}
 
 \begin{example}
+\label{furstenberg}
 	For $a, b \in \Z$ with $a \neq 0$, let $S(a,b) = \big\{an + b \mid n \in \Z\big\}$. This is called an \emph{arithmetic progression}. Then a topological basis on $\Z$ is given by the set of all arithmetic progressions 
 	\[
 		\beta = \Big\{ S(a,b) \ \Big\vert\ a,b \in \Z\Big\}. 
@@ -256,7 +257,7 @@ With the notion of a topological basis, we have axiomatized the idea of open bal
 \end{example}
 
 
-\lecture{03}{August 31, 2026}
+\lecture{03}{31 August 2026}
 \section{Topologies}
 
 Knowing what we know about the open sets in $X$ with respect to a basis $\beta$, we can axiomatize the open sets. 
@@ -403,9 +404,50 @@ You can also define a topology by specifying the closed sets. In fact, this is p
 	This shows that $\tau$ is both closed under finite intersection and arbitrary union, and hence $\tau$ is a topology. 
 \end{proof}
 
+\subsection{Infinitely Many Prime Numbers}
 
+We can return to Example \ref{furstenberg} and use it to prove that there are infinitely many prime numbers. Recall that we can define a topology on $\Z$ by stating that the basic open sets are the arithmetic progressions $S(a,b)$ with $a \neq 0$, where 
+\[
+	S(a, b) = \Big\{an + b \ \Big\vert\ n \in \Z \Big\} 
+\]
+That is, a set $U \subseteq \Z$ is open in this topology if for all $x \in U$, there is some $S(a,b)$ such that $x \in S(a,b)$ and $S(a,b) \subseteq U$. 
 
+\begin{lemma}
+	\label{basic opens are closed}
+	$S(a,b)$ is a closed set. 
+\end{lemma}
 
+\begin{proof}
+	We must write $S(a,b)$ as the complement of an open set to show that it is closed. 
+	\[
+		S(a,b) = \Z \setminus \left(\bigcup_{i = 1}^{a-1} S(a,b+i)\right)
+	\]
+\end{proof}
+
+This is an example of a topology in which there are many sets that are both open and closed! 
+
+\begin{lemma}
+	\label{opens are infinite}
+	Every nonempty open set in this topology is infinite. 
+\end{lemma}
+
+\begin{proof}
+	If $U$ is open and nonempty, then there is some $x \in U$. Since $U$ is open, then there is some $S(a,b)$ such that $x \in S(a,b)$ and $S(a,b)\subseteq U$. Since $S(a,b)$ is an infinite set, then $U$ must be infinite as well. 
+\end{proof}
+
+\begin{theorem}
+	There are infinitely many prime numbers. 
+\end{theorem}
+
+\begin{proof}
+	Proof by contradiction. Assume that there are finitely many prime numbers. 
+
+	By Lemma \ref{opens are infinite}, the set $\{-1,+1\}$ cannot be open. Therefore, $\Z \setminus \{-1, +1\}$ cannot be a closed set. However, we can write
+	\[
+		\Z \setminus \{-1, +1\} = \bigcup_{p \text{ prime}} S(p,0),
+	\]
+	which by Lemma \ref{basic opens are closed} is a finite union of closed sets, and therefore closed. (Remember we are operating under the assumption of finitely many primes.) This contradicts the fact that $\Z \setminus \{-1, +1\}$ cannot be closed, so our assumption must be false and there are infinitely many primes. 
+\end{proof}
 
 
 \lecture{04}{2 September 2026}
