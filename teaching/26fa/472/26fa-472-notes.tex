@@ -349,6 +349,7 @@ Frequently in the previous few sections, we made use of open balls around a poin
 \end{definition}
 
 %%% Closed sets
+\lecture{04}{02 September 2026}
 \section{Closed Sets}
 
 Another important idea in topology is the notion of a closed set. 
@@ -450,8 +451,200 @@ This is an example of a topology in which there are many sets that are both open
 \end{proof}
 
 
-\lecture{04}{2 September 2026}
+\lecture{05}{04 September 2026}
 \section{Continuous Functions}
+
+Topology appears whenever we have a notion of closeness, whether we define it via a metric or a topological basis or a topology. 
+
+\begin{definition}
+	Let $X$ and $Y$ be sets, and let $f \colon X \to Y$ be a function. 
+	\begin{enumerate}[(a)]
+		\item Let $B \subseteq Y$. The \emph{preimage} of $B$ under $f$ is the set 
+		\[	
+			f^{-1}(B) = \Big\{x \in X \ \Big\vert\ f(x) \in B\Big\}. 
+		\]
+		\item Let $A \subseteq X$. The \emph{image} of $A$ under $f$ is the set 
+		\[
+			f(A) = \Big\{f(a) \ \Big\vert\ a \in A\Big\}. 
+		\]
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+\label{def continuous}
+	Let $X$ and $Y$ be topological spaces, and let $f \colon X \to Y$ be a function. The function $f$ is \emph{continuous} if for each open subset $V$ of $Y$, $f^{-1}(V)$ is open. 
+\end{definition}
+
+Let's see how this definition of continuity matches up with the definition of continuity you learned in analysis. 
+
+\begin{proposition}
+	Let $f \colon \R \to \R$ be a continuous function, meaning that for all $x_0 \in \R$ and all $\varepsilon > 0$, there is some $\delta > 0$ such that if $|x - x_0| < \delta$, then $|f(x) - f(x_0)| < \varepsilon$. 
+	
+	Then $f$ is continuous in the sense of topology (\ref{def continuous}). 
+\end{proposition}
+
+\begin{proof}
+	Assume that $f \colon \R \to \R$ is a continuous function. Let $V \subseteq \R$ be an open set. We want to show that $f^{-1}(V)$ is open. 
+	
+	To show that $f^{-1}(V)$ is open, we must pick some point $x_0 \in f^{-1}(V)$ and show that we can fit an open ball around $x_0$ entirely inside $f^{-1}(V)$. 
+	
+	Since $V$ is open, we can fit an open ball around any point inside of $V$. In particular, $f(x_0) \in V$ by the definition of $x_0 \in f^{-1}(V)$. Therefore, there is an open ball $B_\varepsilon(f(x_0)) \subseteq V$. 
+	
+	The analysis definition of continuity shows us that if $x \in B_\delta(x_0)$, then $f(x) \in B_\varepsilon(f(x_0))$. In other words, 
+	\[
+		B_\delta(x_0) \subseteq f^{-1}(B_\varepsilon(f(x))). 
+	\]
+	Since $B_\varepsilon(f(x_0)) \subseteq V$, we see then that $f^{-1}(B_\varepsilon(f(x_0))) \subseteq f^{-1}(V)$. Therefore, 
+	\[
+		B_\delta(x_0) \subseteq f^{-1}(B_\varepsilon(f(x))) \subseteq f^{-1}(V).
+	\]
+	This finds an open set around $x_0$ that is contained in $f^{-1}(V)$. Since our choice of $x_0$ was arbitrary, $f^{-1}(V)$ is open. Therefore, $f$ is continuous in the sense of topology.
+\end{proof}
+
+\begin{exercise}
+	Prove that if $f \colon \R \to \R$ is continuous in the sense of topology (\ref{def continuous}), then $f \colon \R \to \R$ is continuous in the sense of analysis. 
+\end{exercise}
+
+\begin{example}
+	\begin{itemize}
+		\item identity functions are continuous
+		\item every function whose domain is discrete is continuous 
+		\item from $X$ one topology to $X$ with another topology 
+		\item taxicab geometry and regular geometry 
+	\end{itemize}
+\end{example}
+
+\lecture{06}{9 September 2026}
+\subsection{Building Continuous Functions}
+
+How can you go about building continuous functions from one space to another? There are a couple of standard techniques. 
+
+\begin{proposition}
+	Let $X$ and $Y$ be topological spaces and let $y \in Y$. Then the constant function $f \colon X \to Y$ defined by $f(x) = y$ for all $x \in X$ is continuous. 
+\end{proposition}
+
+\begin{proof}
+	Let $V \subseteq Y$ be open. If $y \in V$, then $f^{-1}(V) = X$, which is open. If $y \not \in V$, then $f^{-1}(V) = \emptyset$, which is also open. Therefore, the preimage of any open in $Y$ is open, which means that $f$ is continuous. 
+\end{proof}
+
+\begin{proposition}
+	Let $X$, $Y$, and $Z$ be topological spaces with continuous functions $f \colon X \to Y$ and $g \colon Y \to Z$. Then $g \circ f \colon X \to Z$ is continuous. 
+\end{proposition}
+
+\begin{proof}
+	To show that $g \circ f \colon X \to Z$ is continuous, we need to show that for each open set $W \subseteq Z$, $(g \circ f)^{-1}(W)$ is open in $X$. But notice that 
+	\[
+		(g \circ f)^{-1}(W) = f^{-1}(g^{-1}(W)). 
+	\]
+	Since $g$ is continuous and $W$ is open, then $g^{-1}(W)$ is open. Since $f$ is continuous and $g^{-1}(W)$ is open, then $f^{-1}(g^{-1}(W))$ is open. Therefore, $(g \circ f)^{-1}(W)$ is open, so $g \circ f$ is continuous. 
+\end{proof}
+
+\begin{lemma}
+	Let $X$ be a topological space with a subspace $A$. Let $i \colon A \hookrightarrow X$ be the inclusion function. Then $i \colon A \to X$ is continuous. 
+\end{lemma}
+
+\begin{proof}
+	Let $U \subseteq X$ be open. Then $i^{-1}(U) = U \cap A$, which is open in $A$ by the definition of the subspace topology. 
+\end{proof}
+
+\begin{proposition}
+	Let $f \colon X \to Y$ be a continuous function between topological spaces. Let $A \subseteq X$ be a subspace with the subspace topology. Then if we restrict the domain of $f$ to $A$, it is still continuous. 
+\end{proposition}
+
+\begin{proof}
+	Let $i \colon A \hookrightarrow X$ be the inclusion function. Then restricting the domain of $f$ to $A$ is the same as composing $f \circ i$. Since $f$ is continuous (by assumption) and $i$ is continuous (by previous lemma), then $f \circ i$ is continuous by a previous proposition. 
+\end{proof}
+
+\begin{lemma}
+	Let $X$ be a topological space with subspace $A$. Give $A$ the subspace topology. 
+	\begin{enumerate}[(a)]
+		\item If $A$ is open in $X$ and $U \subseteq A$ is open in $A$, then $U$ is open in $X$. 
+		\item If $A$ is closed in $X$ and $K \subseteq K$ is closed in $A$, then $K$ is closed in $X$. 
+	\end{enumerate}
+\end{lemma}
+
+\begin{theorem}[Pasting]
+	Let $X$ be a topological space such that $X = A \cup B$, where $A$ and $B$ are closed in $X$. Then let $f \colon A \to Y$ and $g \colon B \to Y$ be continuous functions, where $A$ and $B$ are given the subspace topology. If $f(x) = g(x)$ for all $x \in A \cap B$, then $f$ and $g$ can be combined to give a continuous function $h \colon X \to Y$ defined by 
+	\[
+		h(x) = 
+		\begin{cases}
+			f(x) & \text{if\ \ } x \in A \\
+			g(x) & \text{if\ \ } x \in B. 
+		\end{cases}
+	\]
+\end{theorem}
+
+\begin{proof}
+	We will use the formulation of continuity where $f \colon Y \to Z$ is continuous if and only if for each closed subset $K \subseteq Z$, $f^{-1}(K)$ is closed in $Y$. 
+	
+	Let $C$ be a closed set in $Y$. Then $h^{-1}(C) = f^{-1}(C) \cup g^{-1}(C)$. Since $f$ is continuous, $f^{-1}(C)$ is closed in $A$, and therefore closed in $X$ by the previous lemma. Since $g$ is continuous, $g^{-1}(C)$ is closed in $B$, and therefore closed in $X$ by the previous lemma.
+Hence, $h^{-1}(C)$ is the union of two closed sets, and therefore closed. So $h$ sends closed sets to closed sets and is therefore continuous.
+\end{proof}
+
+\begin{example}
+	The function 
+	\[
+		h(x) = 
+		\begin{cases}
+			2x & \text{if \ \ } x \leq 0 \\
+			x/2 & \text{if \ \ } x \geq 0
+		\end{cases}
+	\]
+	is defined by two functions $f \colon (-\infty, 0] \to \R$, $f(x) = 2x$ and $g \colon [0,\infty) \to \R$, $g(x) = x/2$ on two closed sets $A = (-\infty,0]$ and $B = [0,\infty)$. The functions $f$ and $g$ agree on $A \cap B = \{0\}$. The pasting theorem guarantees that $h$ is continuous. 
+\end{example}
+
+\subsection{Homeomorphisms}
+
+\begin{definition}
+	A function $f \colon X \to Y$ between topological spaces is a \emph{homeomorphism} if 
+	\begin{itemize}
+		\item $f$ is continuous
+		\item $f$ is a bijection with inverse function $g$
+		\item the inverse function $g \colon Y \to X$ is continuous
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	If $f \colon X \to Y$ is a homeomorphism, then we say that $X$ and $Y$ are \emph{homeomorphic} and write $X \cong Y$. 
+\end{definition}
+
+It's very important that the inverse function is also continuous! It's not automatic that the inverse is continuous, as the following example shows. 
+
+\begin{example}
+	$[0,1) \to S^1$ given by $t \mapsto e^{2 \pi i t}$ is continuous and a bijection, but no continuous inverse. In particular, $[0,\frac{1}{2})$ is open in the interval $[0,1)$ under the subspace topology but its preimage in the circle $S^1$ is not open in the subspace topology on $\C$; it includes $z = 1$ along the real axis.
+\end{example}
+
+There's another useful characterization of homeomorphisms. 
+
+\begin{proposition}
+	Let $f \colon X \to Y$ be a function between topological spaces. Then the following are equivalent: 
+	\begin{enumerate}[(a)]
+		\item $f \colon X \to Y$ is a homeomorphism
+		\item $f \colon X \to Y$ is a bijection and $V$ is open in $Y$ if and only if $f^{-1}(V)$ is open in $X$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	$(\Longrightarrow)$. Let $f \colon X \to Y$ be a homeomorphism, and let $U$ be an open set in $Y$. Since $f$ is continuous, then $f^{-1}(V)$ is open in $X$. 
+	
+	Since $f$ is a homeomorphism, it has an inverse $g \colon Y \to X$, and $g$ is continuous. So if $f^{-1}(V)$ is open in $X$, then $g^{-1}(f^{-1}(V))$ is open in $Y$. But $g^{-1}(f^{-1}(V)) = (f \circ g)^{-1}(V) = V$, so $V$ is open in $Y$. 
+	
+	$(\Longleftarrow)$. Since $f \colon X \to Y$ is a bijection, we just need to show that $f$ and its inverse $g \colon Y \to X$ are both continuous. 
+	
+	We assume that $V$ is open in $Y$ if and only if $f^{-1}(V)$ is open in $X$. In particular, this shows that $f$ is continuous. 
+	
+	Let $U \subseteq X$ be open. Then $g^{-1}(U)$ is the same thing as $f(U)$, because $f$ and $g$ are inverses. Then $f^{-1}(f(U)) = U$ is open in $X$, so $f(U)$ must be open in $Y$. But $f(U) = g^{-1}(U)$, so $g^{-1}(U)$ is open in $Y$, and therefore $g$ is continuous. 
+	
+	Hence, $f$ is a homeomorphism. 
+\end{proof}
+
+This shows that a homeomorphism $f \colon X \to Y$ not only sends points in $X$ bijectively to points in $Y$, but also open sets in $X$ bijectively to open sets in $Y$. For that reason, whenever there is any property of $X$ that can be expressed entirely in terms of the topology of $X$ (that is, entirely in terms of the open sets of $X$), then that property applies to $Y$ as well. Such a property of $X$ is called a \emph{topological property}. 
+
+\begin{definition}
+	A \emph{topological property} $P$ is a property of topological spaces such that a space $X$ has property $P$ and $X \cong Y$ implies that $Y$ has property $P$ as well. 
+\end{definition}
+
+In other words, a topological property is a property that is \emph{homeomorphism invariant}. 
 
 
 
