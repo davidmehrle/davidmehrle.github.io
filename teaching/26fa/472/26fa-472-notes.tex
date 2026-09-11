@@ -593,6 +593,7 @@ Hence, $h^{-1}(C)$ is the union of two closed sets, and therefore closed. So $h$
 	is defined by two functions $f \colon (-\infty, 0] \to \R$, $f(x) = 2x$ and $g \colon [0,\infty) \to \R$, $g(x) = x/2$ on two closed sets $A = (-\infty,0]$ and $B = [0,\infty)$. The functions $f$ and $g$ agree on $A \cap B = \{0\}$. The pasting theorem guarantees that $h$ is continuous. 
 \end{example}
 
+\lecture{07}{11 September 2026}
 \subsection{Homeomorphisms}
 
 \begin{definition}
@@ -608,34 +609,90 @@ Hence, $h^{-1}(C)$ is the union of two closed sets, and therefore closed. So $h$
 	If $f \colon X \to Y$ is a homeomorphism, then we say that $X$ and $Y$ are \emph{homeomorphic} and write $X \cong Y$. 
 \end{definition}
 
+\begin{example}
+	The open interval $(0,1)$ is homeomorphic to any other open interval $(a,b)$ via 
+	\[
+		f(x) = xb + (1-x)a = a + x(b-a). 
+	\]
+	The inverse is 
+	\[
+		g(x) = \frac{x-a}{b-a}.
+	\]
+\end{example}
+
+\begin{example}
+	The closed interval $[0,1]$ is homeomorphic to $[a,b]$ via the same formulas above.
+\end{example}
+
+\begin{example}
+	The open interval $(0,1)$ is homeomorphic to $\R$ via 
+	\[
+		f(x) = \frac{1}{x(x-1)}. 
+	\]
+\end{example}
+
+\begin{example}
+	Stereographic projection. The unit sphere $S^2$ is the set of points a distance of $1$ from the origin in $\R^3$. 
+	\[
+		S^2 = \Big\{ (x,y,z) \in \R^3 \ \Big\vert\ x^2 + y^2 + z^2 = 1\Big\}. 
+	\]
+	Let $N = (0,0,1)$ be the north pole of $S^2$. Then $S^2 \setminus \{N\}$ is homeomorphic to $\R^2$ via the functions $f \colon S^2 \setminus \{N\} \to \R^2$  
+	\[
+		f(x,y,z) = \left(\frac{x}{1-z}, \frac{y}{1-z}\right),
+	\]
+	and $g \colon \R^2 \to S^2 \setminus \{N\}$ 
+	\[
+		g(x,y) = \left(\frac{2x}{1 + x^2 + y^2}, \frac{2y}{1 + x^2 + y^2}, \frac{-1 + x^2 + y^2}{1 + x^2 + y^2} \right).
+	\]
+	You can check that these are inverse functions and are continuous. There's also a nice geometric description of this process: for a point $P = (x,y,z)$ on $S^2 \setminus \{N\}$, draw the straight line in $\R^3$ through $N$ and $P$. This will intersect the plane $(z = 0)$ in one point, which is the point $f(P)$ in $\R^2$. Conversely, given a point in the plane $(z = 0)$, you can draw a line through it and $N$ to find a unique point on the sphere. 
+\end{example}
+
 It's very important that the inverse function is also continuous! It's not automatic that the inverse is continuous, as the following example shows. 
 
 \begin{example}
 	$[0,1) \to S^1$ given by $t \mapsto e^{2 \pi i t}$ is continuous and a bijection, but no continuous inverse. In particular, $[0,\frac{1}{2})$ is open in the interval $[0,1)$ under the subspace topology but its preimage in the circle $S^1$ is not open in the subspace topology on $\C$; it includes $z = 1$ along the real axis.
 \end{example}
 
+\begin{definition}
+	Let $f \colon X \to Y$ be a function between topological spaces. Then we say that $f$ is 
+	\begin{itemize}
+		\item \emph{open} if for each open $U \subseteq X$, $f(U)$ is open in $Y$. 
+		\item \emph{closed} if for each closed $K \subseteq X$, $f(K)$ is closed in $Y$.
+	\end{itemize}
+\end{definition}
+
 There's another useful characterization of homeomorphisms. 
 
+\begin{lemma}
+	Let $f \colon X \to Y$ be a bijection with inverse $g \colon Y \to X$, and let $A \subseteq X$ be any subset. Then 
+	\[
+		g^{-1}(A) = f(A). 
+	\]
+\end{lemma}
+
+\begin{proof}
+	\[
+		g^{-1}(A) = \{y \in Y \mid g(y) \in A\} 
+			= \{f(g(y)) \in Y \mid g(y) \in A\} 
+			= \{f(x) \in Y \mid x \in A\}
+			= f(A).
+	\]
+\end{proof}
+
 \begin{proposition}
-	Let $f \colon X \to Y$ be a function between topological spaces. Then the following are equivalent: 
+	Let $f \colon X \to Y$ be a continuous function between topological spaces. Then the following are equivalent: 
 	\begin{enumerate}[(a)]
 		\item $f \colon X \to Y$ is a homeomorphism
-		\item $f \colon X \to Y$ is a bijection and $V$ is open in $Y$ if and only if $f^{-1}(V)$ is open in $X$
+		\item $f \colon X \to Y$ is an open bijection
 	\end{enumerate}
 \end{proposition}
 
 \begin{proof}
-	$(\Longrightarrow)$. Let $f \colon X \to Y$ be a homeomorphism, and let $U$ be an open set in $Y$. Since $f$ is continuous, then $f^{-1}(V)$ is open in $X$. 
+	$(\Longleftarrow)$. Assume that $f \colon X \to Y$ is an open bijection. Let $g \colon Y \to X$ be the inverse function of $f$. To show that $f$ is a homeomorphism, we must show that $g \colon Y \to X$ is continuous. 
 	
-	Since $f$ is a homeomorphism, it has an inverse $g \colon Y \to X$, and $g$ is continuous. So if $f^{-1}(V)$ is open in $X$, then $g^{-1}(f^{-1}(V))$ is open in $Y$. But $g^{-1}(f^{-1}(V)) = (f \circ g)^{-1}(V) = V$, so $V$ is open in $Y$. 
+	To do so, let $U \subseteq X$ be open. We want to show that $g^{-1}(U)$ is open in $Y$. But notice that by the lemma, $g^{-1}(U) = f(U)$, which is open because $f$ is an open function.
 	
-	$(\Longleftarrow)$. Since $f \colon X \to Y$ is a bijection, we just need to show that $f$ and its inverse $g \colon Y \to X$ are both continuous. 
-	
-	We assume that $V$ is open in $Y$ if and only if $f^{-1}(V)$ is open in $X$. In particular, this shows that $f$ is continuous. 
-	
-	Let $U \subseteq X$ be open. Then $g^{-1}(U)$ is the same thing as $f(U)$, because $f$ and $g$ are inverses. Then $f^{-1}(f(U)) = U$ is open in $X$, so $f(U)$ must be open in $Y$. But $f(U) = g^{-1}(U)$, so $g^{-1}(U)$ is open in $Y$, and therefore $g$ is continuous. 
-	
-	Hence, $f$ is a homeomorphism. 
+	$(\Longrightarrow)$. Assume that $f \colon X \to Y$ is a homeomorphism, and let $g \colon Y \to X$ be the inverse function to $f$. To show that $f$ is an open function, we must show that for any $U \subseteq X$, $f(U)$ is open. But by the lemma, $f(U) = g^{-1}(U)$, which is open because $g$ is continuous.
 \end{proof}
 
 This shows that a homeomorphism $f \colon X \to Y$ not only sends points in $X$ bijectively to points in $Y$, but also open sets in $X$ bijectively to open sets in $Y$. For that reason, whenever there is any property of $X$ that can be expressed entirely in terms of the topology of $X$ (that is, entirely in terms of the open sets of $X$), then that property applies to $Y$ as well. Such a property of $X$ is called a \emph{topological property}. 
