@@ -528,6 +528,7 @@ How can you go about building continuous functions from one space to another? Th
 \end{proof}
 
 \begin{proposition}
+\label{composition of continuous is continuous}
 	Let $X$, $Y$, and $Z$ be topological spaces with continuous functions $f \colon X \to Y$ and $g \colon Y \to Z$. Then $g \circ f \colon X \to Z$ is continuous. 
 \end{proposition}
 
@@ -702,6 +703,138 @@ This shows that a homeomorphism $f \colon X \to Y$ not only sends points in $X$ 
 \end{definition}
 
 In other words, a topological property is a property that is \emph{homeomorphism invariant}. 
+
+
+
+
+\lecture{08}{14 September 2026}
+\section{Comparing Topologies}
+
+This is a good time to bring up some vocabulary that comes up when comparing topologies on the same set. 
+
+\begin{definition}
+	Suppose that $X$ is a set and that $\tau, \tau'$ are two topologies on $X$. 
+	\begin{enumerate}[(a)]
+		\item We say that $\tau'$ is \emph{finer} than $\tau$ if $\tau' \supseteq \tau$. 
+		\item We say that $\tau'$ is \emph{coarser} than $\tau$ if $\tau' \subseteq \tau$. 
+	\end{enumerate}
+\end{definition}
+
+This vocabulary is meant to convey the analogy of gravel or dirt. If you think of the open sets of a topology as pebbles, and you smash them into bits, then the collection of open sets has been enlarged and the topology is said to have been made finer. So even though the term \emph{finer} suggests some idea of ``smaller-than," the \emph{larger} topology $\tau'$ is the finer one (because it has smaller open sets). 
+
+To be clear: 
+\begin{itemize}
+	\item If $\tau'$ is finer than $\tau$, then every set that is open in $\tau$ is open in $\tau'$. 
+	\item If $\tau'$ is coarser than $\tau$, then every set that is open in $\tau'$ is open in $\tau$. 
+\end{itemize}
+
+\begin{example}
+	The discrete topology on a set $X$ is finer than any other topology on $X$; it is the finest topology. 
+\end{example}
+
+\begin{example}
+	The indiscrete topology on a set $X$ is coarser than any other topology on $X$; it is the coarsest topology. 
+\end{example}
+
+\begin{example}
+	The \emph{lower limit topology} on $\R$ is the topology on $\R$ with a basis of open sets given by $[a,b)$. Let $\R_\ell$ denote the topological space that is the set $\R$ equipped with the lower limit topology, and let $\R_s$ denote $\R$ with the standard topology.  
+
+	In $\R_\ell$, $(a,b)$ is open because 
+		\[
+			(a,b) = \bigcup_{n=1}^\infty \left[a+\tfrac{1}{n},b\right).
+		\]
+	But $[a,b)$ is not open in $\R_s$. Therefore, $\R_\ell$ has more open sets, so it is finer than $\R_s$. 
+\end{example}
+
+\section{The Product Topology}
+
+How is the topology on $\R$ related to the topology on $\R^2$? One answer is that we can think of $\R$ as a subset of $\R^2$ (as the $x$-axis, say, or as any line), and that the subspace topology on this line gives the usual topology on $\R$. Another answer is that we can build the standard topology on $\R^2$ using the topology on $\R$ as a product topology. 
+
+\begin{definition}
+	Let $X$ and $Y$ be topological spaces. The \emph{product topology} on $X \times Y$ is the topology with basis $U \times V$, where $U$ is open in $X$ and $V$ is open in $Y$. 
+\end{definition} 
+
+We also apply this definition to products of finitely many spaces. 
+
+\begin{definition}
+	Let $X_1, \ldots, X_n$ be topological spaces. The \emph{product topology} on $X_1 \times X_2 \times \cdots \times X_n$ is the topology with basis given by sets of the form $U_1 \times U_2 \times \cdots \times U_n$, where $U_i$ is open in $X_i$ for each $i = 1,2, \ldots, n$. 
+\end{definition}
+
+\begin{example}
+	Consider the product topology on $\R \times \R$, where $\R$ has the standard topology. A basic open set in the product topology is an open box of the form $(a,b) \times (c,d)$, and a set $U$ is open in this topology if and only if for all $x \in U$, there is some open box $B$ such that $x \in B$ and $B \subseteq U$. 
+	
+	This space is homeomorphic to $\R^2$ with the standard topology (wherein the basic open sets are open balls). 
+\end{example}
+
+There are two important functions for any product $X \times Y$. 
+
+\begin{definition}
+	Let $X$ and $Y$ be sets (or spaces). The \emph{projection functions} are the functions $p_1 \colon X \times Y \to X$ and $p_2 \colon X \times Y \to Y$ defined by 
+	\begin{align*}
+		p_1(x,y) &= x	\\
+		p_2(x,y) &= y. 
+	\end{align*}
+\end{definition}
+
+When $X$ and $Y$ are topological spaces, these functions have nice topological properties. 
+
+\begin{proposition}
+	Let $X$ and $Y$ be spaces and give $X \times Y$ the product topology. Then the projections $p_1$ and $p_2$ are continuous and open. 
+\end{proposition}
+
+\begin{proof}
+	We will prove this for $p_1$; the case for $p_2$ is basically the same. 
+	
+	To show that $p_1 \colon X \times Y \to X$ is continuous, we want to show that for any $U \subseteq X$ open, $p_1^{-1}(U)$ is open in $X \times Y$. But $p_1^{-1}(U) = U \times Y$, which is open in $X \times Y$ since $U$ and $Y$ are both open in $X$ and $Y$, respectively. Hence, $p_1$ is continuous. 
+	
+	To show that $p_1 \colon X \times Y \to X$ is open, we must show that for any open set $W \subseteq X \times Y$, $p_1(W)$ is open in $X$. It suffices to show this when $W$ is a basic open set (exercise). If $W$ is a basic open set, then $W = U \times V$ where $U$ is open in $X$ and $V$ is open in $Y$. Then 
+	\[
+		p_1(W) = p_1(U \times V) = U, 
+	\]
+	which is open in $X$. 
+\end{proof}
+
+The projection functions help us find continuous functions into the product. 
+
+\begin{proposition}
+	Let $X, Y$, and $Z$ be topological spaces. A function $f \colon Z \to X \times Y$ is continuous if and only if both $p_1 \circ f$ and $p_2 \circ f$ are continuous. 
+\end{proposition}
+
+\begin{proof}
+	$(\Longrightarrow)$. If $f$ is continuous, then $p_1 \circ f$ and $p_2 \circ f$ are both continuous by \ref{composition of continuous is continuous}.
+	
+	$(\Longleftarrow)$. To show that $f$ is continuous, we must show that $f^{-1}(U \times V)$ is open in $Z$ for each basic open set $U \times V$ of $X \times Y$ by a homework problem. 
+	\[
+		f^{-1}(U \times V) = (p_1 \circ f)^{-1}(U) \cap (p_2 \circ f)^{-1}(V), 
+	\]
+	and since $p_1 \circ f$ and $p_2 \circ f$ are both continuous, then the right hand side is open. Therefore, $f^{-1}(U \times V)$ is open in $Z$. 
+\end{proof}
+
+There is a neat characterization of the product topology in terms of the projections. 
+
+\begin{proposition}
+	The product topology on $X \times Y$ is the coarsest topology on $X \times Y$ for which both $p_1$ and $p_2$ are continuous. 
+\end{proposition}
+
+\begin{proof}
+	Suppose that $\tau$ is any topology on $X \times Y$ topology such that both projections are continuous with respect to $\tau$. Then for open sets $U \subseteq X$ and $V \subseteq Y$, $p_1^{-1}(U) \cap p_2^{-1}(Y)$ must be open in $X \times Y$. But 
+	\[
+		p_1^{-1}(U) \cap p_2^{-1}(Y) = U \times V. 
+	\]	
+	Therefore, in \emph{any} topology such that both projections are continuous, $U \times V$ must be open for any open $U \subseteq X$ and $V \subseteq Y$. So any such topology contains the basic open sets of the product topology, and so $\tau$ must be finer than the product topology. In other words, the product topology is coarser than $\tau$. 
+\end{proof}
+
+We can combine the previous two propositions into the following.  
+
+\begin{theorem}[Universal Property of the Product]
+	Let $X$ and $Y$ be spaces. The product $X \times Y$ is the topological space with two functions $p_1 \colon X \times Y \to X$ and $p_2 \colon X \times Y \to Y$ such that for any other topological space $Z$ and continuous functions $f \colon Z \to X$ and $g \colon Z \to Y$, there is a unique continuous function $h \colon Z \to X \times Y$ such that $p_1 \circ h = f$ and $p_2 \circ h = g$. 
+	\[
+		\begin{tikzcd}
+			& Z \ar[d, dashed, "\exists ! h"] \ar[dl, "f"'] \ar[dr, "g"] \\
+			X & X \times Y \ar[l, "p_1"] \ar[r, "p_2"'] & Y
+		\end{tikzcd}
+	\]
+\end{theorem}
 
 
 
