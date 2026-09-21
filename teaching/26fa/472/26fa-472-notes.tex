@@ -154,8 +154,8 @@ Recall that if $X$ is a set, then $\mathcal P(X)$ is the powerset of $X$: the se
 \begin{definition}
 	Let $X$ be a set. A (topological) basis for $X$ is a collection $\beta \subseteq \mathcal P(X)$ of subsets of $X$ satisfying the following properties: 
 	\begin{itemize}
-		\item (covering) For each $x \in X$, there exists some $B \in \beta$ such that $x \in B$. 
-		\item (filtered) For all $B_1, B_2 \in \beta$ and all $x \in B_1 \cap B_2$, there exists $B_3 \in \beta$ such that $x \in B_3$ and $B_3 \subseteq B_1 \cap B_2$. 
+		\item \emph{Covering.} For each $x \in X$, there exists some $B \in \beta$ such that $x \in B$. 
+		\item \emph{Filtered.} For all $B_1, B_2 \in \beta$ and all $x \in B_1 \cap B_2$, there exists $B_3 \in \beta$ such that $x \in B_3$ and $B_3 \subseteq B_1 \cap B_2$. 
 	\end{itemize}
 \end{definition}
 \noindent Another way to say the covering property is that the union of all sets in $\beta$ is $X$. In symbols: 
@@ -836,11 +836,150 @@ We can combine the previous two propositions into the following.
 	\]
 \end{theorem}
 
+\chapter{Topological Properties}
+
+
+
+\section{Categories}
+
+Category theory was introduced by Samuel Eilenberg and Saunders Mac Lane in the mid 1900s to put their work on algebraic topology on solid ground. Although it was originally motivated by topological considerations, category theory has become an incredibly useful tool in many areas of mathematics. 
+
+Category theory builds on and formalizes a philosophical shift that occurred in mathematics in the 1900s, namely that we should think not only about mathematical objects themselves, but also about the relations between them. These relations take many forms, but often they take the form of functions between sets with some kind of special property. Once we have the language of category theory, we can prove theorems about the categories themselves and apply them to different areas of mathematics systematically. In fact, many seemingly different ideas in different branches of math turn out to come from the same categorial constructions. In other words, category theory becomes a meta-mathematical tool that we can use to translate results from one area of mathematics to another. 
+
+We begin with a motivating example. 
+
+\begin{example}
+	One kind of mathematical object that shows up everywhere is sets. Sets are related by functions. Any function $f \colon A \to B$ has a domain $A$ (also called the source) and a codomain $B$ (also called the target). You can also compose functions: given $f \colon A \to B$ and $g \colon B \to C$, there is a new function called $g \circ f \colon A \to C$ given by $a \mapsto g(f(a))$ for all $a \in A$. Composition of functions is associative: if we have a third function $h \colon C \to D$, we have 
+	\[
+		(h \circ g) \circ f = h \circ (g \circ f). 
+	\]
+	For every set $A$, there is an identity function $\id_A \colon A \to A$ given by $\id_A(a) = a$. The special thing about the identity function is that for any function $f \colon A \to B$, 
+	\[
+		f \circ \id_A = f, 
+	\]
+	and for any function $k \colon E \to A$, 
+	\[
+		\id_A \circ k = k. 
+	\]
+	It is this kind of thing that the definition of a category seeks to generalize. 
+\end{example}
+
+\begin{definition}
+	A \emph{category} $\cat C$ is the following data:
+	\begin{itemize}
+		\item A collection\footnotemark\footnotetext{We say a \emph{collection} instead of \emph{set} because we will consider things like the category of all sets. But there is no set of all sets because that creates paradoxes (does the set of all sets contain itself?). So we say that we're allowed to have a collection of all sets, and that a collection is not a set, to sidestep this issue. For the most part, you never need to worry about this and you can just leave it to the logicians to sort it out.} of \emph{objects} $\Ob(\cat C)$.
+		\item A collection of \emph{morphisms} $\Mor(\cat C)$ such that each morphism $f \in \Mor(\cat C)$ has both a domain object and a codomain object. If $X, Y \in \Ob(\cat C)$, we write ${\cat C}(X,Y)$\footnotemark\footnotetext{You may have seen $\Hom_{\cat C}(X,Y)$ in other classes for the same thing.} for the collection of morphisms with domain $X$ and codomain $Y$. If $f \in \cat C(X,Y)$, we will also write $f \colon X \to Y$. 
+		\item For each $X \in \Ob(\cat C)$, there is an \emph{identity morphism} $\id_X \colon X \to X$. 
+		\item For any three objects $X,Y,Z \in \Ob(\cat C)$, there is a composition operation 
+		\[
+			\circ \colon \cat C(Y,Z) \times \cat C(X,Y) \to \cat C(X,Z),
+		\]
+		that composes morphisms $g \colon Y \to Z$ and $f \colon X \to Y$ to form a new morphism $g \circ f \colon X \to Z$. 
+	\end{itemize} 
+	These data must satisfy the following properties: 
+	\begin{itemize}
+		\item \emph{Associativity}. Composition is associative. In more detail, given $f \colon X \to Y$, $g \colon Y \to Z$, and $h \colon Z \to W$, 
+		\[
+			h \circ (g \circ f) = (h \circ g) \circ f. 
+		\]
+		\item \emph{Identity}. For any $f \colon X \to Y$, we have 
+		\[
+			f \circ \id_X = f 
+			\hspace*{1cm}
+			\text{and}
+			\hspace*{1cm}
+			\id_Y \circ f = f.
+		\]
+	\end{itemize}
+\end{definition}
+
+While it looks like a lot to write down, the thing to remember about categories is this: there's objects and morphisms and composition of morphisms, and the composition works exactly like you'd expect if it were composition of functions. You've been working with categories for your whole career as mathematicians, without realizing it.  
+
+\begin{example}
+	We've already mentioned that there is a category $\Set$ of sets and functions. Similarly, there is also a category $\cat{Fin}$, where the objects are finite sets and the morphisms are functions. 
+\end{example}
+
+\begin{example}
+	The category $\cat{Vect}_\R$ has objects $\R$-vector spaces and morphisms linear transformations. Since linear transformations compose to give new linear transformations, and the identity functions $\id_V \colon V \to V$ are linear transformations, this is well-defined as a category. There is also a category $\cat{Vect}_{\C}$ of $\C$-vector spaces. 
+\end{example}
+
+We've been working in one particular category this entire class. 
+
+\begin{example}
+	The objects of the category $\cat{Top}$ are topological spaces. The morphisms in this category are continuous functions. This category is well-defined because composing two continuous functions gives another continuous function, and identity functions are continuous. 
+\end{example}
+
+There are also examples that are less familiar. 
+
+\begin{example}
+	The empty category $\emptyset$ has no objects (i.e. $\Ob(\emptyset) = \emptyset)$ and no morphisms ($\Mor(\emptyset) = \emptyset$). Composition is the empty function $\emptyset \to \emptyset$ and all properties are satisfied vacuously. 
+\end{example}
+
+\begin{example}
+	The trivial category $\mathbold{1}$ has only one object $\Ob(\mathbold{1}) = \{\ast\}$, and a single morphism $\id_\ast \colon \ast \to \ast$. The only composition to define is $\id \circ \id = \id$, and this gives the associative property and identity property too. 
+\end{example}
+
+
+
+\subsection{Commutative Diagrams}
+
+It is useful to draw morphisms in a category $\cat C$ diagrammatically. We may write $f \colon X \to Y$ to mean $f \in \cat C(X,Y)$, but we may also draw 
+\[
+	X \xto f Y
+\] 
+to mean the same information. Now suppose we have another morphism 
+\[
+	Y \xto g Z.
+\]
+Then we can compose these to get a morphism 
+\[
+	X \xto{g \circ f} Z.
+\]
+We can put all of this information into a single \emph{commutative diagram}
+\[
+	\begin{tikzcd}
+		X \ar[r, "f"]\ar[rr, bend right=30, "g \circ f"']  & Y \ar[r, "g"] & Z 
+	\end{tikzcd}
+\]
+The exact geometry of the diagram doesn't matter. It could equally well be drawn as a triangle
+\[
+	\begin{tikzcd}
+		& Y \ar[dr, "g"] \\
+		X \ar[ur, "f"] \ar[rr, "g \circ f"'] & & Z
+	\end{tikzcd}
+\]
+and it would convey the same information. 
+
+We can use commutative diagrams to communicate the axioms of a category. For example, associativity is the diagram 
+\[
+	\begin{tikzcd}
+		& Y \ar[dr, "g"] \ar[rr, "h \circ g"] & & W \\
+		X \ar[rr, "g \circ f"'] \ar[ur, "f"] & & Z, \ar[ur, "h"] 
+	\end{tikzcd}
+\]
+which says that we can paste together commutative diagrams to get commutative quadrilaterals. The identity axiom becomes 
+\[
+	\begin{tikzcd}
+		X \ar[r, "\id_X"]\ar[dr, "f"']  & X \ar[d, "f"] \\
+		& X 
+	\end{tikzcd}
+	\hspace{1cm}
+	\text{and}
+	\hspace{1cm}
+	\begin{tikzcd}
+		X \ar[r, "f"] \ar[dr, "f"'] & Y \ar[d, "\id_Y"] \\
+		& Y.
+	\end{tikzcd}
+\]
+
+
+
+
 
 
 \nocite{*}
 \bibliographystyle{alpha}
-\bibliography{../references/references.bib}
+\bibliography{/Users/davidmehrle/Documents/work/csu/teaching/26fa/472/references/references.bib}
 
 
 \end{document}
