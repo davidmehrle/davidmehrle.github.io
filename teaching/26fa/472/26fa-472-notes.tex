@@ -827,6 +827,7 @@ There is a neat characterization of the product topology in terms of the project
 We can combine the previous two propositions into the following.  
 
 \begin{theorem}[Universal Property of the Product]
+\label{universal property of the product}
 	Let $X$ and $Y$ be spaces. The product $X \times Y$ is the topological space with two functions $p_1 \colon X \times Y \to X$ and $p_2 \colon X \times Y \to Y$ such that for any other topological space $Z$ and continuous functions $f \colon Z \to X$ and $g \colon Z \to Y$, there is a unique continuous function $h \colon Z \to X \times Y$ such that $p_1 \circ h = f$ and $p_2 \circ h = g$. 
 	\[
 		\begin{tikzcd}
@@ -840,6 +841,7 @@ We can combine the previous two propositions into the following.
 
 
 
+\lecture{09}{21 September 2026}
 \section{Categories}
 
 Category theory was introduced by Samuel Eilenberg and Saunders Mac Lane in the mid 1900s to put their work on algebraic topology on solid ground. Although it was originally motivated by topological considerations, category theory has become an incredibly useful tool in many areas of mathematics. 
@@ -920,7 +922,6 @@ There are also examples that are less familiar.
 \end{example}
 
 
-
 \subsection{Commutative Diagrams}
 
 It is useful to draw morphisms in a category $\cat C$ diagrammatically. We may write $f \colon X \to Y$ to mean $f \in \cat C(X,Y)$, but we may also draw 
@@ -972,6 +973,176 @@ which says that we can paste together commutative diagrams to get commutative qu
 	\end{tikzcd}
 \]
 
+
+\lecture{10}{23 September 2021}
+\subsection{Isomorphisms}
+
+\begin{definition}
+	Let $\cat C$ be a category. A morphism $f \colon X \to Y$ in $\Mor(\cat C)$ is an \emph{isomorphism} if there exists a morphism $g \colon Y \to X$ in $\Mor(\cat C)$ such that the following diagrams commute: 
+	\[
+	\begin{tikzcd}
+		X \ar[r, "f"]\ar[dr, "\id_X"']  & Y \ar[d, "g"] \\
+		& X 
+	\end{tikzcd}
+	\hspace{1cm}
+	\text{and}
+	\hspace{1cm}
+	\begin{tikzcd}
+		Y \ar[r, "g"] \ar[dr, "\id_Y"'] & X \ar[d, "f"] \\
+		& Y.
+	\end{tikzcd}
+	\]
+	In equations, these diagrams are $f \circ g = \id_X$ and $g \circ f = \id_Y$. In other words, $f \colon X \to Y$ is an isomorphism if it has a two-sided inverse $g \colon Y \to X$. If there is an isomorphism $f \colon X \to Y$, then we say that $X$ and $Y$ are \emph{isomorphic} and write $X \cong Y$. 
+\end{definition}
+
+\begin{example}
+	In the category $\cat{Set}$, a morphism $f \colon X \to Y$ is an isomorphism if and only if it is a bijection. 
+\end{example}
+
+\begin{example}
+	In the category $\cat{Vect_\R}$, a linear transformation $T \colon V \to W$ is an isomorphism if and only if it is a bijective linear transformation. 
+\end{example}
+
+It might be tempting to say that the isomorphism in $\Top$ are continuous bijections, but we've already seen counterexamples to that. 
+
+\begin{example}
+	In the category $\Top$, a morphism $f \colon X \to Y$ is an isomorphism if and only if it is a homeomorphism. 
+\end{example}
+
+This explains why we insist that homeomorphisms have a continuous inverse. By the definition of an isomorphism, the inverse function must live in the same category as the function itself! 
+
+\subsection{Products}
+
+Given objects $X$ and $Y$ in a category $\cat C$, we can consider the collection of all diagrams 
+\[
+	\begin{tikzcd}
+		X & Z \ar[l] \ar[r] & Y 
+	\end{tikzcd}
+\]
+in $\cat C$. In other words, we are considering objects $Z \in \Ob(\cat C)$ which admit two morphisms with codomains $X$ and $Y$. A typical category theory question is whether or not there is a ``universal" object mapping to both $X$ and $Y$. Such a universal object is referred to as the product of $X$ and $Y$ in $\cat C$. 
+
+\begin{definition}
+	Let $P \in \Ob(\cat C)$, and suppose there are morphisms $p_X \in \cat C(P,X)$ and $p_Y \in \cat C(P,Y)$ such that for any $f \in \cat C(Z,X)$ and $g \in \cat C(Z,Y)$, there is a unique morphism $h \in \cat C(Z,P)$ such that $p_X \circ h = f$ and $p_Y \circ h = g$. The data of $P$ together with the morphisms $p_X$ and $p_Y$ is called the \emph{product} of $X$ and $Y$ in $\cat C$. We often denote the object $P$ by $X \times Y$. 
+\end{definition}
+
+Frequently, we will abuse notation and say that $P = X \times Y$ is the product of $X$ and $Y$, and leave the morphisms $p_X$ and $p_Y$ implicit. 
+
+We can summarize the definition in one commutative diagram (which doesn't tell you everything about the product, but is convenient visually): 
+\[
+\begin{tikzcd}[row sep=large]
+	& Z \ar[d, dashed, "\exists ! h" description] \ar[dl, "f"'] \ar[dr, "g"] \\
+	X & P \ar[l, "p_X"] \ar[r, "p_Y"'] & Y 	
+\end{tikzcd}
+\]
+The arrow $h$ labelled $\exists!$ means that there exists ($\exists$) a unique (!) morphism which makes the diagram commute. 
+
+\begin{question}\ 
+	\begin{enumerate}[(a)]
+		\item Does the product of $X$ and $Y$ exist?
+		\item If it does exist, is it unique? 
+	\end{enumerate}
+\end{question}
+
+To answer (a), notice that this definition isn't constructive. It tells you about a property that an object should have. This raises the question of whether or not the product always exists. The answer to this question is no, and there are examples to that effect. 
+
+\begin{example}
+	Let $\Sigma$ be the category with objects $[n] := \{1, 2, \ldots, n\}$, and $\Sigma([n],[m])$ is the set of bijections from $[n]$ to $[m]$. Note that when $n \neq m$, $\Sigma([n],[m]) = \emptyset$. In order for the product to exist in a category $\cat C$, we must have morphisms $X \from X \times Y$ and $X \times Y \to Y$. In the category $\Sigma$, this will not happen unless $X = X \times Y$! 
+\end{example}
+
+The answer to (b), however, is yes. Namely, when it exists, $X \times Y$ is \emph{unique up to unique isomorphism}, meaning that if there are two products $X \xfrom{p_X} P \xto{p_Y} Y$ and $X \xfrom{q_X} Q \xto{q_Y} Y$ in $\cat C$ both satisyfing the definition of the product, then there is a unique isomorphism $P \to Q$ such that the diagram below commutes: 
+\[
+	\begin{tikzcd}
+		& P \ar[dd, "\exists !" description, dashed] \ar[dl, "p_X"'] \ar[dr, "p_Y"] \\
+		X & & Y \\
+		& Q \ar[ul, "q_X"] \ar[ur, "q_Y"'] 
+	\end{tikzcd}
+\]
+
+\begin{proposition}
+	If the product $X \times Y$ exists in $\cat C$, then it is unique up to unique isomorphism in the sense above. 
+\end{proposition}
+
+\begin{proof}
+	Suppose that $X \xfrom{p_X} P \xto{p_Y} Y$ and $X \xfrom{q_X} Q \xto{q_Y} Y$ both satisfy the definition of a product in $\cat C$. Then the diagram 
+	\[
+	\begin{tikzcd}
+		& P \ar[dl, "p_X"'] \ar[dr, "p_Y"] \\
+		X & Q \ar[l, "q_X"] \ar[r, "q_Y"'] & Y
+	\end{tikzcd}
+	\]
+	and the universal property of $Q$ tell us that there is a unique morphism $f \colon P \to Q$ such that the following diagram commutes: 
+	\[
+	\begin{tikzcd}
+		& P \ar[dl, "p_X"'] \ar[dr, "p_Y"] \ar[d, "f"] \\
+		X & Q \ar[l, "q_X"] \ar[r, "q_Y"'] & Y.
+	\end{tikzcd}
+	\]
+	We must show that $f$ is an isomorphism. To that end, consider the diagram 
+	\[
+	\begin{tikzcd}
+		& Q \ar[dl, "q_X"'] \ar[dr, "q_Y"] \\
+		X & P \ar[l, "p_X"] \ar[r, "p_Y"'] & Y
+	\end{tikzcd}
+	\]
+	and use the definition of the product for $P$ to produce a unique morphism $g \colon Q \to P$ such that the following diagram commutes:
+	\[
+	\begin{tikzcd}
+		& Q \ar[dl, "q_X"'] \ar[dr, "q_Y"] \ar[d, "g"]  \\
+		X & P \ar[l, "p_X"] \ar[r, "p_Y"'] & Y.
+	\end{tikzcd}
+	\]
+	Putting these commutative diagrams together, we get 
+	\[
+	\begin{tikzcd}
+		& P \ar[dl, "p_X"'] \ar[dr, "p_Y"] \ar[d, "f"] \\
+		X & Q \ar[l, "q_X"] \ar[r, "q_Y"'] \ar[d, "g"] & Y \\
+		& P \ar[ul, "p_X"] \ar[ur, "p_Y"'] & 
+	\end{tikzcd}
+	\]
+	In particular, erasing the $Q$ from this diagram shows us that the following commutes: 
+	\[
+	\begin{tikzcd}
+		& P \ar[dl, "p_X"'] \ar[dr, "p_Y"] \ar[d, "g \circ f" description]  \\
+		X & P \ar[l, "p_X"] \ar[r, "p_Y"'] & Y.
+	\end{tikzcd}
+	\]
+	But note that putting $1_P \colon P \to P$ in place of $g \circ f$ in the diagram above also makes this diagram commute. Since the definition of the product for $P$ insists that the morphism that fits into the diagram is unique, this means that $1_P = g \circ f$. 
+	
+	We can also work out a similar argument to show that $f \circ g = 1_Q$. Therefore, $P \cong Q$, and we have proven that the product is unique up to unique isomorphism. 
+\end{proof}
+
+We now see if our definition of product matches up with our ideas about products in various categories. 
+
+\begin{proposition}
+	In the category $\cat{Set}$, the cartesian product 
+	\[
+		A \times B = \Big\{ (a,b) \ \Big\vert\ a \in A, b \in B \Big\}
+	\]
+	along with the projections $p_A \colon A \times B \to A$, $p_A(a,b) = a$ and $p_B \colon A \times B \to B$, $p_B(a,b) = b$ is the categorical product of $A$ and $B$. 
+\end{proposition}
+
+\begin{proof}
+	Given any set $C$ with functions $A \xfrom f C \xto g B$, we define $h \colon C \to A \times B$ by 
+	\[
+		h(c) = \Big(f(c), g(c) \Big).
+	\]
+	It is an exercise to check that the diagram 
+	\[
+		\begin{tikzcd}
+			& C \ar[d, "h"] \ar[dl, "f"'] \ar[dr, "g"] \\
+			A & \ar[l, "p_A"] A \times B \ar[r, "p_B"'] & B
+		\end{tikzcd}
+	\]
+	commutes and that $h$ is the only function that would make this diagram commute. Therefore, $A \times B$ is indeed the categorical product of $A$ and $B$. 
+\end{proof}
+
+\begin{proposition}
+	Let $X$ and $Y$ be topological spaces, and let $\tau$ be the topology on $X \times Y$ generated by the basis of open sets $U \times V$ with $U$ open in $X$ and $V$ open in $Y$. Then $(X \times Y, \tau)$ equipped with the standard projection maps is the categorical product of $X$ and $Y$. 
+\end{proposition}
+
+\begin{proof}
+	We already saw this when we discussed the product topology in \ref{universal property of the product}, but we didn't know it by this language yet. 
+\end{proof}
 
 
 
