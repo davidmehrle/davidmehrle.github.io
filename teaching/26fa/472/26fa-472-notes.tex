@@ -974,7 +974,7 @@ which says that we can paste together commutative diagrams to get commutative qu
 \]
 
 
-\lecture{10}{23 September 2021}
+\lecture{10}{23 September 2026}
 \subsection{Isomorphisms}
 
 \begin{definition}
@@ -1012,6 +1012,16 @@ It might be tempting to say that the isomorphism in $\Top$ are continuous biject
 This explains why we insist that homeomorphisms have a continuous inverse. By the definition of an isomorphism, the inverse function must live in the same category as the function itself! 
 
 \section{Universal Properties}
+
+Universal properties are a way to understand constructions in a category in terms of the morphisms into or out of that construction. Because the particular construction depends on the category that you work in, the universal properties prefer an ``external" description in terms of morphisms. In other words, the universal property specifies an object by some properties that it should have.   
+
+When we study objects by universal properties, we will follow a consistent blueprint: 
+\begin{enumerate}[(1)]
+	\item Universal property. Say what we want the object to do in terms that apply to many different categories. 
+	\item Construction. Provide a concrete description of the object in our category of choice, and verify that it satisfies the universal property. 
+	\item Examples. Get familiar with the construction and universal property by studying instances of it in a category of our choice.
+	\item Other contexts. Once we are familiar with our object and its universal property in one category (usually $\cat{Top}$, we can apply it in another category to build bridges between different areas of math. 
+\end{enumerate}
 
 \subsection{Products}
 
@@ -1164,13 +1174,164 @@ must be open in $X \times Y$ as well. Since the universal property of a product 
 	Since both $f$ and $g$ are continuous and finite intersections of open sets are open, we see that $h^{-1}(U \times V)$ is open, and therefore continuous.  
 \end{proof}
 
-\subsection{Subspace Topology}
+%\subsection{Subspace Topology}
+%
+%Given a topological space $X$ and a subset $A \subseteq X$, the subspace topology on $A$ has open sets of the form $A \cap U$ when $U \subseteq X$ is open. 
 
-'
-
+\lecture{11}{25 September 2026}
 \subsection{Quotient Topology}
 
+Quotients are ubiquitous in mathematics. You may be familiar with the example of modular arithmetic, which studies not $\Z$, but the quotient $\Z / n\Z$. To form this quotient, we identify two integers $x, y \in \Z$ if and only if $x - y = n$.  
 
+In topology, we are interested in taking topological spaces and gluing pieces together to form new spaces. For example, consider a closed unit square in $\R^2$ with the subspace topology. If we take the two vertical edges of the square and identify them with each other only after reversing one, and then we glue them together, we end up with a M\"obius strip. 
+\[
+	\begin{tikzpicture}
+		\draw[thick] (0,0) -- (0,1) -- (1,1) -- (1,0) -- cycle;
+		\draw[thick,->] (0,0) -- (0,0.6);
+		\draw[thick,->] (1,1) -- (1,0.4);
+	\end{tikzpicture}
+\]
+This is the kind of construction that the quotient topology is supposed to describe. We will study it first via the universal property, and then give a construction, and then do many examples. 
+
+\begin{definition}
+	Let $X$ be a set with an equivalence relation\footnotemark\footnotetext{Recall that an equivalence relation is a reflexive ($\forall x \in X, x \sim x$), symmetric ($\forall x,y \in X,\ x \sim y \implies y \sim x$), and transitive ($\forall x,y,z \in X,\ x \sim y \text{ and } y \sim z \implies x \sim z$) relation.} $\sim$. Given the data of 
+	\begin{itemize}
+		\item a set $Q$, and 
+		\item a morphism $q \colon X \to Q$ such that $q(x) = q(x')$ if and only if $x \sim x'$,
+	\end{itemize}
+	we say that these data form a \emph{quotient} of $X$ by $\sim$ if they satisfy the following universal property: for all functions $f \colon X \to Y$ such that $f(x) = f(x')$ if $x \sim x'$, there is a unique function $g \colon Q \to Y$ such that the following diagram commutes: 
+	\[
+		\begin{tikzcd}
+			X \ar[r, "f"] \ar[d, "q"'] & Y \\
+			Q \ar[ur, dashed, "\exists! g"'] 
+		\end{tikzcd}
+	\]
+\end{definition}	
+
+One way to say this is that the quotient morphism $q$ is \emph{universal} or \emph{initial} among all morphisms that respect the equivalence relation $\sim$. As with products, the quotient is unique. 
+
+\begin{proposition}
+	If $q \colon X \to Q$ and $r \colon X \to R$ are two quotients of $X$ by $\sim$, then they are isomorphic. 
+\end{proposition}
+
+\begin{proof}
+	Since $r$ respects the equivalence relation, we get from the universal property of $Q$ a morphism 
+	\[
+		\begin{tikzcd}
+			X \ar[r, "r"] \ar[d, "q"'] & R \\
+			Q \ar[ur, dashed, "\exists! f"'] 
+		\end{tikzcd}
+	\]
+	Similarly, since $q$ respects the equivalence relation, we get from the universal property of $R$ a morphism 
+	\[
+		\begin{tikzcd}
+			X \ar[r, "q"] \ar[d, "r"'] & Q \\
+			R \ar[ur, dashed, "\exists! g"'] 
+		\end{tikzcd}
+	\]
+	Then $g \circ f$ fills in the diagram 
+	\[
+		\begin{tikzcd}
+			X \ar[r, "q"] \ar[d, "q"'] & Q \\
+			Q \ar[ur, dashed, "g \circ f"'] 
+		\end{tikzcd}
+	\]
+	but so does the identity function $\id_Q$, so by uniqueness in the universal property of $Q$, we see that $g \circ f = \id_Q$. A similar argument shows that $f \circ g = \id_R$, and therefore $Q \cong R$. 
+\end{proof}
+
+Given a set $X$ with an equivalence relation $\sim$, we can now construct the set $Q$. This is also often written $X /\!\!\sim$. 
+
+\begin{definition}
+	Let $X$ be a set with an equivalence relation. The set $X /\!\!\sim$ is the set whose elements are equivalence classes of $\sim$. More precisely, for each $x \in X$, let $[x]$ be the set 
+	\[
+		[x] := \Big\{ x' \in X \ \Big\vert\ x' \sim x \Big\}.
+	\]
+	This is called the \emph{equivalence class of $x$ under $\sim$}. Then 
+	\[
+		X/\!\!\sim\  := \Big\{ [x] \ \Big\vert\ x \in X\Big\}.
+	\]
+\end{definition}
+
+\begin{proposition}
+	The set $X/\!\!\sim$, together with the map $q \colon X \to X/\!\!\sim$ given by $q(x) = [x]$, is a quotient of $X$ by the equivalence relation $\sim$. 
+\end{proposition}
+
+\begin{proof}
+	We check that it satisfies the universal property of a quotient. Let $f \colon X \to Y$ be any other function such that $f(x) = f(x')$ when $x \sim x'$. Then we can define a function $g \colon X/\!\!\sim \to Y$ by $g([x]) = f(x)$. This is well-defined because for any $x' \in [x]$, $x' \sim x$, and therefore $f(x) = f(x')$. This also makes the diagram commute
+	\[
+		\begin{tikzcd}
+			X \ar[r, "f"] \ar[d, "q"'] & Y \\
+			X/\!\!\sim \ar[ur, dashed, "g"'] 
+		\end{tikzcd}
+	\]
+	and $g$ is the only possible function that could do so, because to make the diagram commute we must have $g(q(x)) = f(x)$, and $q(x) = [x]$, so $g$ cannot have any other definition. Hence $g$ is unique, so there exists a unique $g$ that makes the diagram commute, and $X/\!\!\sim$ is a quotient of $X$ by $\sim$. 
+\end{proof}	
+
+\begin{example}
+	Let $n \in \Z$. Define an equivalence relation on $\Z$ by $x \sim y$ if and only if $x - y$ is a multiple of $n$. Then the equivalence classes of this relation are the residue classes mod $n$; there are $n$ of them. These are often written as (for example)
+	\[
+		k + n \Z := \Big\{ x \in \Z \ \Big\vert\ x \equiv k \pmod n\Big\}
+	\]
+	In this example, $\Z /\!\!\sim$ is $\Z/n\Z$. 
+\end{example}
+
+\begin{example}
+	Define an equivalence relation on $\R$ by $x \sim y$ if and only if $x - y \in \Z$. We write the quotient of $\R$ by this equivalence relation as $\R /\Z$. There is one equivalence class for each real number in $[0,1)$, and the class of $0$ is the same as the class of $1$. So as a set, this is equivalent to a unit circle $S^1$. We'll see a topology on this shortly. 
+\end{example}
+
+\begin{example}
+	Let's return to the M\"obius strip example. Define a relation on $X = [0,1] \times [0,1]$ by $(0,t) \sim (0,1-t)$ for each $t \in [0,1]$. This identifies the left side of the square with the right side, but only after a flip. The resulting set $X/\!\!\sim$ is a M\"obius strip. We'll see how to topologize this in a second. 
+\end{example}
+
+How do we put a topology on any of these examples? We will have to construct quotients in $\cat{Top}$.
+
+\begin{definition}
+	Let $X$ be a topological space equipped with an equivalence relation $\sim$. Let $Q$ be the quotient of $X$ by $\sim$. Then the \emph{quotient topology} on $Q$ is given by the following: a set $U \subseteq Q$ is open in $Q$ if and only if $q^{-1}(U)$ is open in $X$, where $q \colon X \to Q$ is the quotient map. 
+\end{definition}
+
+\begin{exercise}
+	Check that the topology defined above is actually a topology (check that arbitrary unions and finite intersections of open sets are open). 
+\end{exercise}
+
+\begin{example}
+	The topology on $\R/\Z$ is equivalent to the subspace topology on $S^1$ as a subspace of $\R^2$. 
+\end{example}
+
+\begin{example}
+	The topology on the M\"obius strip is exactly what you'd expect: on the surface of the M\"obius strip, the basis of open sets is the open balls, and the partial open balls that spill over the edges. If these do not overlap the ``cut" in the M\"obius strip, then the preimage of these is a single open ball (or partial open ball spilling over the top or bottom). If an open ball overlaps the cut on the M\"obius strip, then it is two pieces in the unit square, which is the union of two open sets as a subspace of $\R^2$. 
+\end{example}
+
+\begin{proposition}
+	Let $X$ and $Y$ be topological spaces. Let $q \colon X \to Y$ be a surjective continuous map with the property that $U \subseteq Y$ is open if and only if $q^{-1}(Y)$ is open. Then $Y$ is a quotient of $X$ by some equivalence relation $\sim$. 
+\end{proposition}
+
+\begin{proof}
+	There are two ways we could handle this proof. Either we could construct the equivalence relation $\sim$ and show that $Y \cong X/\!\!\sim$, which we know has the universal property of a quotient or we could check the universal property directly. We will do the latter. 
+	
+	Define the equivalence relation $\sim$ by $x \sim x'$ if and only if $q(x) = q(x')$. Then let $f \colon X \to Z$ be any continuous function such that $f(x) = f(x')$ when $x \sim x'$. Then we may define a function $g \colon Y \to Z$ by $g(y) = f(x)$ for any $x \in q^{-1}(y)$. 
+	
+	Note that $g$ is well-defined: if $x, x' \in q^{-1}(y)$, then $q(x) = q(x')$ and so $x \sim x'$ and therefore $f(x) = f(x')$. So it doesn't matter which $x \in q^{-1}(y)$ we pick. 
+
+	Also note that $g$ makes the diagram below commute, by construction. 
+	\[
+		\begin{tikzcd}
+			X \ar[r, "f"] \ar[d, "q"'] & Z \\
+			Y \ar[ur, dashed, "g"'] 
+		\end{tikzcd}
+	\]
+	
+	Finally, $g$ is continuous. Let $W \subseteq Z$ be open. Then we want to show that $g^{-1}(W)$ is open in $Y$. But since $V \subseteq Y$ is open if and only if $q^{-1}(V)$ is open in $X$, it suffices to show that $q^{-1}(g^{-1}(W))$ is open in $X$. But $g \circ q = f$, so 
+	\[
+		q^{-1}(g^{-1}(W)) = f^{-1}(W)
+	\]
+	and $f$ is continuous so this is open. Hence $g$ is a unique continuous function that makes the diagram commute, and therefore $Y$ satisfies the universal property of the quotient. 
+\end{proof}
+
+\begin{remark}
+	It is not true that any surjective continuous map $q \colon X \to Y$ is a quotient map in $\cat{Top}$, in contrast to the situation in $\cat{Set}$ where surjectivity is the only condition necessary to find a quotient map. The difference is that the topology on the target $Y$ must be the finest topology such that $q$ is continuous, and this only happens when $U \subseteq Y$ is open if and only if $q^{-1}(U)$ is open. 
+	
+	It is also not true that a quotient map must be an open map. 
+\end{remark}
 
 
 \nocite{*}
