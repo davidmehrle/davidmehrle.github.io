@@ -7,18 +7,23 @@
 \usepackage{booktabs}
 \usepackage[symbol]{footmisc}
 
+\newcommand{\RP}{\mathbb{RP}}
+
 %%%%%%%%%%%%%%
 %%% MACROS %%%
 %%%%%%%%%%%%%%
 \DeclareMathOperator{\lcm}{lcm}
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% DOCUMENT BEGINS %%%
+%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \title{Math 472: Introduction to Topology}
 \author{David Mehrle} 
 \contact{\email{david.mehrle@colostate.edu}}
 \place{Colorado State University}
 \date{Fall 2026} 
-%\online{The latest version is online \link{here}{http://www.math.cornell.edu/~dmehrle/notes}.}
+\online{The latest version is online \link{here}{https://www.davidmehrle.com/teaching/26fa/472/26fa-472-notes.pdf}.}
 \maketitle
 
 {\pagestyle{plain}
@@ -1333,6 +1338,159 @@ How do we put a topology on any of these examples? We will have to construct quo
 	It is also not true that a quotient map must be an open map. 
 \end{remark}
 
+\subsection{Gluing} 
+
+With the quotient topology, we've learned how to build new topological spaces by identifying parts of them together. But what if we have two different topological spaces, and we want to stick one to another? That's where gluing comes in. The category-theory word for this construction is a pushout. 
+
+\begin{definition}
+	In any category $\cat C$, the \emph{pushout} of a diagram 
+	\[
+		\begin{tikzcd}
+			A \ar[r, "f"] \ar[d, "g"'] & X\\
+			Y
+		\end{tikzcd}
+	\]
+	is an object $P \in \Ob(\cat C)$ together with morphisms $i_X \colon X \to P$ and $i_Y \colon Y \to P$ such that the square 
+	\[
+		\begin{tikzcd}
+			A \ar[r, "f"] \ar[d, "g"'] & X \ar[d, "i_X"] \\
+			Y \ar[r, "i_Y"'] & P
+		\end{tikzcd}	
+	\]
+	commutes in $\cat C$ and for any other $W \in \Ob(\cat C)$ with morphisms $k \colon X \to P$ and $h \colon Y \to P$ that make the square 
+	\[
+		\begin{tikzcd}
+			A \ar[r, "f"] \ar[d, "g"'] & X \ar[d, "k"] \\
+			Y \ar[r, "h"'] & W
+		\end{tikzcd}	
+	\]
+	commute, there is a unique morphism $P \to W$ such that the diagram 
+	\[
+		\begin{tikzcd}
+			A \ar[r, "f"] \ar[d, "g"'] & X \ar[d, "i_X"] \ar[ddr, "k", bend left=30]\\
+			Y \ar[r, "i_Y"']\ar[drr, "h"', bend right=30] & P \ar[dr, dashed, "\exists !" description] \\
+			& & W
+		\end{tikzcd}	
+	\]
+	commutes in $\cat C$.
+\end{definition}	
+
+The notation for the pushout of a diagram $X \from A \to Y$ is $X \cup_A Y$. As usual, pushouts are unique up to isomorphism. The proof is much the same as the uniqueness of quotients and the uniqueness of products. We leave the proof as an exercise. 
+
+\begin{proposition}
+	If $P$ and $Q$ are two pushouts of $Y \xfrom g A \xto f X$, then $P \cong Q$. 
+\end{proposition}
+
+\begin{example}
+	For sets $A$ and $B$, the pushout of $A \from \emptyset \to B$ is the \emph{disjoint union} of $A$ and $B$. Recall that the disjoint union of two sets $A$ and $B$ is the set $(A \times \{0\}) \cup (B \times \{1\})$, where we add the labels $0$ and $1$ to separate $A$ and $B$, ensuring that the sets have an empty intersection. The notation for a disjoint union is $A \sqcup B$ or $A \amalg B$. 
+\end{example}
+
+\begin{example}
+	For sets $A$ and $B$, the pushout of $A \hookleftarrow A \cap B \hookrightarrow B$ is $A \cup B$. This is the sense in which we think about the pushout as ``gluing" $A$ and $B$ together along their intersection. 
+\end{example}
+
+We are now ready to construct the pushout in $\cat{Set}$. 
+
+\begin{proposition}
+	Let $X \xfrom f A \xto g Y$ be a diagram of sets and functions. Generate an equivalence relation on the disjoint union $X \amalg Y$ by $f(a) \sim g(a)$ for all $a \in A$. Let  
+	\[
+		X \cup_A Y := (X \sqcup Y) /\!\!\sim, 
+	\]
+	equipped with functions $i_X \colon X \to X \cup_A Y$ and $i_Y \colon Y \to X \cup_A Y$ given by $i_X(x) = [x]$ and $i_Y(y) = [y]$. Then $X \cup_A Y$ is the pushout of the diagram $X \xfrom f A \xto g Y$. 
+\end{proposition}
+
+\begin{proof}
+	To show that this has the universal property, let $W$ be any set with morphisms $k \colon X \to P$ and $h \colon Y \to P$ that make the square 
+	\[
+		\begin{tikzcd}
+			A \ar[r, "f"] \ar[d, "g"'] & X \ar[d, "k"] \\
+			Y \ar[r, "h"'] & W
+		\end{tikzcd}	
+	\]
+	commute. To get a function $X \cup_A Y \to W$, we define 
+	\[
+		\ell(z) = 
+		\begin{cases}
+			k(z) & z \in X, \\
+			h(z) & z \in Y. 
+		\end{cases}
+	\]
+	This is well-defined because if $z = f(a)$ for some $a \in A$, then $\ell(z) = k(f(a))$, and if $z = g(a)$, then $\ell(z) = h(g(a))$, but the square commutes so $k \circ f = h \circ g$, and therefore when we identify $g(a)$ with $f(a)$ in $X \cup_A Y$, we get a the same result applying $\ell$ to either $f(a)$ or $g(a)$. 
+	
+	Then by construction, $\ell \circ i_X = k$, and $\ell \circ i_Y = h$, so the diagram 
+	\[
+		\begin{tikzcd}
+			A \ar[r, "f"] \ar[d, "g"'] & X \ar[d, "i_X"] \ar[ddr, "k", bend left=30]\\
+			Y \ar[r, "i_Y"']\ar[drr, "h"', bend right=30] & X \cup_A Y \ar[dr, "\ell" description] \\
+			& & W
+		\end{tikzcd}	
+	\]
+	commutes. 
+	
+	Finally, $\ell$ is unique because we must have $\ell \circ i_X = k$ and $\ell \circ i_Y = h$ for the diagram to commute, so there was no other option for defining $\ell$ in the first place. 
+\end{proof}
+
+We can also give this a topology. 
+
+\begin{proposition}
+	Let $X \xfrom f A \xto g Y$ be a diagram of topological spaces and continuous functions. The pushout of this diagram in $\cat{Top}$ is the set $X \cup_A Y$ from the previous proposition, with the topology given by $U \subseteq X \cup_A Y$ is open if and only if $i_X^{-1}(U) \subseteq X$ and $i_Y^{-1}(U) \subseteq Y$ are open. 
+\end{proposition}
+
+\begin{proof}
+	We check the universal property. The form of the underlying set is already guaranteed by the previous proposition. It is an exercise to prove that the open sets of the form above actually define a topology. Observe that by construction of this topology, $i_X$ and $i_Y$ are guaranteed to be continuous. 
+	
+	Let $Z$ be another topological space and let $k \colon X \to Z$ and $h \colon Y \to Z$ be continuous functions such that the square 
+	\[
+		\begin{tikzcd}
+			A \ar[r, "f"] \ar[d, "g"'] & X \ar[d, "k"] \\
+			Y \ar[r, "h"'] & Z
+		\end{tikzcd}	
+	\]
+	commutes. Since $X \cup_A Y$ is the pushout \emph{as sets}, there is a unique function $\ell \colon X \cup_A Y \to W$ that makes the diagram below commute. 
+	\[
+		\begin{tikzcd}
+			A \ar[r, "f"] \ar[d, "g"'] & X \ar[d, "i_X"] \ar[ddr, "k", bend left=30]\\
+			Y \ar[r, "i_Y"']\ar[drr, "h"', bend right=30] & X \cup_A Y \ar[dr, "\ell" description] \\
+			& & Z.
+		\end{tikzcd}	
+	\]
+	It remains to show that $\ell$ is continuous. Let $V \subseteq Z$ be open. Then we want to show that $\ell^{-1}(V)$ is open in $X \cup_A Y$. This happens if and only if $i_X^{-1}(\ell^{-1}(V))$ and $i_Y^{-1}(\ell^{-1}(V))$ are open, by the definition of the topology on $X \cup_A Y$. But 
+	\begin{align*}
+		i_X^{-1}(\ell^{-1}(V)) &= (h \circ i_X)^{-1}(V) = k^{-1}(V) \\
+		i_Y^{-1}(\ell^{-1}(V)) &= (h \circ i_Y)^{-1}(V) = h^{-1}(V), \\
+	\end{align*}
+	which are both open because $k$ and $h$ are continuous. So by the definition of the topology on $X \cup_A Y$, $\ell^{-1}(V)$ is open, so $\ell$ is continuous. Uniqueness of $\ell$ as a continuous function follows from uniqueness of $\ell$ from the previous proposition. 
+\end{proof}
+
+\begin{example}
+	The sphere $S^2$ is the pushout of two disks $D^2$ along the boundary circle $S^1$. Similarly, we can make a $3$-sphere sphere $S^3$ as the pushout of two balls $D^3$ along their boundary circle $S^2$ (this is really hard to visualize). 
+\end{example}
+
+\begin{example}
+	Real projective space $\RP^n$ is the space of all lines through the origin in $\R^{n+1}$. More precisely, define an equivalence relation on $\R^{n+1} \setminus \{0\}$ by $\vec{x} \sim \vec{y}$ if and only if $\vec{x} = \lambda \vec{y}$ for some $\lambda \in \R$. Then real projective $n$-space is the quotient
+	\[
+		\RP^n := (\R^{n+1} \setminus \big\{\vec{0}\big\})/\!\!\sim,
+	\]
+	with the quotient topology. 
+	
+	There's another way to build this space as a pushout. Let's do the $n = 2$ example. $\RP^2$ is the space of lines through the origin in $\R^3$. Any line that is not contained in the $z = 0$ hyperplane passes through a unique point in the upper hemisphere $S^2_+$ of $S^2$, 
+	\[
+		S^2_+ "= \{(x,y,z) \in S^2 \mid z > 0\}. 
+	\]
+	This space is homeomorphic to $\R^2$. The rest of the lines, those lines in the $z = 0$ hyperplane, form a copy of $\RP^1$, or the lines through the origin in $\R^2$. Hence, 
+	\[
+		\RP^2 \cong \R^2 \cup_{S^1} \RP^1,
+	\]
+	glued together along the equatorial circle $S^1$ of $S^2$ by identifying antipodal points. We can recurse to see that $\RP^1 \cong \R^1 \cup \RP^0 \cong \R^1 \cup \R^0$, where $\R^0$ is glued onto $\R^1$ ``at infinity." More generally, 
+	\[
+		\RP^n \cong \R^n \cup \R^{n-1} \cup \cdots \cup \R^1 \cup \R^0. 
+	\]
+	It is an exercise to figure out exactly how these are glued together. 
+\end{example}
+
+%\section{Hausdorff Spaces}
+%
+%\section{Compact Spaces}
 
 \nocite{*}
 \bibliographystyle{alpha}
