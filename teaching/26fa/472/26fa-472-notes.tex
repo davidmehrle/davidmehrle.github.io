@@ -1280,6 +1280,7 @@ Given a set $X$ with an equivalence relation $\sim$, we can now construct the se
 	In this example, $\Z /\!\!\sim$ is $\Z/n\Z$. 
 \end{example}
 
+\lecture{12}{28 September 2026}
 \begin{example}
 	Define an equivalence relation on $\R$ by $x \sim y$ if and only if $x - y \in \Z$. We write the quotient of $\R$ by this equivalence relation as $\R /\Z$. There is one equivalence class for each real number in $[0,1)$, and the class of $0$ is the same as the class of $1$. So as a set, this is equivalent to a unit circle $S^1$. We'll see a topology on this shortly. 
 \end{example}
@@ -1338,6 +1339,7 @@ How do we put a topology on any of these examples? We will have to construct quo
 	It is also not true that a quotient map must be an open map. 
 \end{remark}
 
+\lecture{13}{30 September 2026}
 \subsection{Gluing} 
 
 With the quotient topology, we've learned how to build new topological spaces by identifying parts of them together. But what if we have two different topological spaces, and we want to stick one to another? That's where gluing comes in. The category-theory word for this construction is a pushout. 
@@ -1488,8 +1490,84 @@ We can also give this a topology.
 	It is an exercise to figure out exactly how these are glued together. 
 \end{example}
 
-%\section{Hausdorff Spaces}
-%
+
+\lecture{14}{2 October 2026}
+\section{Hausdorff Spaces/Separating Points}
+
+Thus far, we've thought mostly about building spaces from ones that we already know. But this can lead to some pretty wacky and hard-to-understand pictures (imagine doing this in 4D, or 5D, or \ldots). How do we know if two constructions produce homeomorphic spaces? 
+
+Recall the notion of topological properties: 
+
+\begin{definition}
+	A \emph{topological property} is a property that is preserved by homeomorphism. More precisely, $P$ is a topological property if:
+	\begin{center}
+		$X$ has property $P$ and $X \cong Y$ $\implies$ $Y$ has property $P$.
+	\end{center}
+\end{definition}
+
+\begin{remark}
+	This is a categorical notion, specific to the category $\cat{Top}$ of topological spaces and continuous functions. In any category $\cat{C}$, we can say that a property is specific to $\cat{C}$ whenever it is preserved by isomorphisms in $\cat{C}$. In $\cat{Set}$, we have set-theoretic properties. In algebraic categories like $\cat{Ab}$, we have algebraic properties. 
+\end{remark}
+
+This also lets us distinguish spaces that are not homeomorphic by using the converse. If $P$ is a topological property and $X$ has property $P$ but $Y$ does not, then $X$ cannot be homeomorphic to $Y$. 
+
+\begin{example}
+	Cardinality is a topological property, because homeomorphisms are bijections. Therefore, if two spaces have different cardinalities, they cannot be homeomorphic. In particular, a point $\{*\}$ and $\R$ are not homeomorphic. 
+\end{example}
+
+The topological property we study in this section is called Hausdorff, named after Felix Hausdorff who included this as an axiom in his definition of a topological space (the modern definition does not include this axiom). 
+
+\begin{definition}
+	A topological space $X$ \emph{separates points} (or is a \emph{Hausdorff space}) if for every $x, y \in X$, there exists open subsets $U \ni x$ and $V \ni y$ such that $U$ and $V$ are disjoint. 
+\end{definition}
+
+The idea is that in a Hausdorff space, you should be able to zoom in far enough on $x$ or $y$ such that you can't see the other. This is certainly true in Euclidean space, but it's not true in all other spaces. Another reason to think about Hausdorff spaces is that limits of sequences in Hausdorff spaces converge to only one point (yes, it's possible that sequences in non-Hausdorff spaces can have multiple different limits, which is very distressing).
+
+\begin{example}
+	Any metric space separates points. Given a metric space $(X,d)$ and two points $x, y \in X$, then we can build open balls around $x$ and $y$ of radius $d(x,y)/2$ that do not intersect each other. 
+\end{example}
+
+\begin{example}
+	If $X$ is any set, we can give $X$ the indiscrete topology where the only open sets are $\emptyset$ and $X$ itself. This space is not Hausdorff; any open neighborhood of $x$ is the whole of $X$ itself, so you can't have disjoint neighborhoods of two points.  
+\end{example}
+
+\begin{example}
+	Let $L$ be the pushout of $\R \hookleftarrow \R \setminus \{0\} \hookrightarrow \R$, in which both maps are inclusions of $\R \setminus\{0\}$ into $\R$; this is the \emph{line with two origins}. More specifically, this space $L$ is constructed as the quotient of $\R \sqcup \R$ by $(x,0) \sim (x,1)$ for all $x \neq 0$, but $(0,0)$ and $(0,1)$ remain distinct -- these are the two origins.
+	
+	You'll prove on your homework that this space does not separate points. 
+\end{example}
+
+This last example shows that the Hausdorff property is not preserved by taking pushouts. All three pieces of the diagram $\R \hookleftarrow \R \setminus \{0\} \hookrightarrow \R$ are Hausdorff, but the pushout $L$ is not. Fortunately, many constructions do preserve the Hausdorff property. 
+
+\begin{lemma}
+	The Hausdorff property is preserved by subspaces, products, and coproducts (but not quotients). To be precise:
+	\begin{enumerate}[(a)]
+		\item If $X$ separates points and $A$ is a subspace of $X$, then $A$ also separates points.
+		\item If $X$ and $Y$ separate points, then so does $X \times Y$. 
+		\item If $X$ and $Y$ separate points, then so does $X \sqcup Y$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\begin{enumerate}[(a)]
+		\item Let $a, b \in A$. Then in $X$, there are disjoint open sets $U \ni a$ and $V \ni b$. Intersecting these with $A$, we get disjoint open neighborhoods $A \cap U \ni a$ and $A \cap V \ni b$ in $A$. Hence, $A$ separates points. 
+		\item Let $(x,y)$ and $(x',y')$ be points in $X \times Y$. Then because $X$ separates points, there are disjoint neighborhoods $U \ni x$ and $U' \ni x'$. Similarly, because $Y$ separates points, there are disjoint neighborhoods $V \ni y$ and $V' \ni y'$. Then $U \times V \ni (x,y)$ and $U' \times V' \ni (x',y')$ are disjoint neighborhoods in the product. 
+		\item Let $a, b \in X \sqcup Y$. If both $a, b \in X$ or both $a,b \in Y$, then we are done because $X$ and $Y$ both separate points. Otherwise, assume (without loss of generality) that $a\in X$ and $b \in Y$. Take any neighborhoods $U \ni a$ in $X$ and $V \ni b \in Y$ Because this is the disjoint union, we've removed any possibility of intersection between $X$ and $Y$, so $U$ and $V$ are disjoint because $U \subseteq X$ and $V \subseteq Y$. 
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}
+	If $X$ is a Hausdorff space, then any finite subset of $X$ is closed. 
+\end{proposition}
+
+\begin{proof}
+	Because finite unions of closed sets are closed, it suffices to prove that for any $x \in X$, $\{x\}$ is closed. To do so is equivalent to proving that $X \setminus \{x\}$ is open. So let $y \in X \setminus \{x\}$. Because $X$ separates points, there are disjoint open sets $U \ni x$ and $V \ni y$. Since $U \cap V = \emptyset$ and $x \in U$, then $V \subseteq X \setminus \{x\}$. Since $y$ was arbitrary, this shows that any point $y \in X \setminus \{x\}$ has an open neighborhood $V_y$ contained in $X \setminus \{x\}$, so we may write 
+	\[
+		X \setminus \{x\} = \bigcup_{y \in X \setminus \{x\}} V_y, 
+	\]
+	which is a union of open sets. Hence, $X \setminus \{x\}$ is open and so $\{x\}$ is closed. 
+\end{proof}
+
 %\section{Compact Spaces}
 
 \nocite{*}
