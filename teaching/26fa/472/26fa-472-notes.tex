@@ -1568,7 +1568,165 @@ This last example shows that the Hausdorff property is not preserved by taking p
 	which is a union of open sets. Hence, $X \setminus \{x\}$ is open and so $\{x\}$ is closed. 
 \end{proof}
 
-%\section{Compact Spaces}
+\lecture{15}{5 October 2026}
+\section{Compact Spaces}
+
+We continue our study of topological properties with the notion of compact spaces. In analysis, you may have learned that the compact subspaces of $\R^n$ are the closed and bounded ones. Compact spaces are important because of the extreme value theorem: that a continuous function with a compact domain attains a maximum and a minimum on its domain, but not all spaces are subspaces of $\R^n$. So we need to think of another definition that we can use for a general topological space. 
+
+\begin{definition}
+	Let $X$ be a space. An \emph{open cover} of $X$ is a collection $\mathcal{U}$ of open sets 
+	\[
+		\mathcal U = \Big\{U_i \subseteq X\ \Big\vert\ U_i \text{ is open }, i \in I\Big\}
+	\]
+	whose union is all of $X$: 
+	\[
+		\bigcup_{i \in I} U_i = X. 
+	\]
+	We also make two auxiliary definitions:
+	\begin{itemize}
+		\item If $J \subseteq I$, then we say that $\{U_j \mid j \in J\}$ is a \emph{subcover} of $\mathcal{U}$. 
+		\item If $I$ is finite, then $\{U_i \mid i \in I\}$ is a \emph{finite cover}. 
+	\end{itemize}
+\end{definition}
+
+\begin{remark}
+	If $A$ is a subspace of $X$, and $\mathcal{U} = \{U_i \mid i \in I\}$ is a collection of open subsets of $X$ such that $A \subseteq \bigcup_{i \in I} U_i$, then we say that $\mathcal{U}$ is an \emph{open cover} of $A$, even though technically the collection $\{U_i \cap A \mid i \in I\}$ is the collection of open sets of $A$ that strictly fits the definition above. 
+\end{remark}
+
+\begin{example}
+	Let $X = \R^2$ with the standard topology. This has an open cover by balls of radius $1$ whose centers have integer coordinates. But if we remove any one of these balls $B((a,b),1)$, then it is no longer an open cover, because it no longer covers the point $(a,b)$. 
+\end{example}
+
+\begin{example}
+	The interval $[0,1]$ has an open cover by sets $\big(\frac{1}{n+2},\frac{1}{n}\big)$ for $n \in \N$, together with $(-0.1,0.1)$ and $(0.9,1.1)$. This open cover actually has a finite subcover, consisting of the sets 
+	\[
+		(-0.1,0.1), \big(\tfrac{1}{11},\tfrac{1}{9}\big), \big(\tfrac{1}{10},\tfrac{1}{8}\big), \ldots, \big(\tfrac{1}{3},1\big), (0.9,1.1).
+	\]
+\end{example}
+
+It turns out that this property of having a finite subcover will characterize compactness. 
+	
+\begin{definition}
+	A topological space $X$ is \emph{compact} if every open cover has a finite subcover. 
+\end{definition}
+
+\begin{example}
+	By this definition, $\R^2$ is not compact, because we exhibited an example of an open cover with no finite subcover. 
+\end{example}
+
+\subsection{The Heine-Borel Theorem}
+
+It takes a lot more work to prove that our second example $[0,1]$ is compact. 
+
+\begin{lemma}[Topological Induction]
+	Let $C$ be a subspace of $[0,1]$. Assume that:
+	\begin{enumerate}[(a)]
+		\item $0 \in C$
+		\item If $b \in C$ and $0 \leq a \leq b$, then $a \in C$. 
+		\item If $b \in C$ and $b < 1$, then there exists some $\varepsilon > 0$ such that $b + \varepsilon \in C$
+		\item The supremum\footnotemark\footnotetext{The \emph{supremum} of $X \subseteq \R$ is the least upper bound of $X$. We say that $L \in \R$ is an \emph{upper bound} for $X$ if $x \leq L$ for all $x \in X$. Then $\sup(X) \in \R$ is the \emph{supremum} of $X$ if $\sup(X)$ is an upper bound for $X$ and for all other upper bounds $L$, $\sup(X) \leq L$. For example, the supremum of $(a,b)$ is $b$, and the supremum of $[a,b]$ is also $b$, but $[0,\infty)$ has no upper bound and therefore no supremum. } 
+	\end{enumerate}
+	Then $C = [0,1]$. 
+\end{lemma}
+
+This lemma works equally well with $[0,1]$ replaced by an arbitrary interval $[a,b]$. 
+
+\begin{proof}
+	Let $C$ be as in the statement of the lemma. We want to show that $C = [0,1]$. 
+	
+	By (a), $C$ is nonempty. Furthermore, $C \subseteq [0,1]$, so $C$ is bounded above by $1$. The least upper bound property of $\R$ guarantees that the supremum of $C$ exists and moreover, $\sup(C) \leq 1$. 
+	
+	By (d), $\sup(C) \in C$, and by (b), every number between $0$ and $\sup(C)$ is in $C$ as well. Hence, $C = [0,\sup(C)]$. 
+	
+	So it remains to show that $\sup(C) = 1$. If $\sup(C) < 1$, then (c) would guarantee that $\sup(C) + \varepsilon \in C$, contradicting the fact that $\sup(C)$ must be an upper bound of $C$. Therefore, $\sup(C) = 1$. 
+\end{proof}
+
+\begin{theorem}[Heine--Borel]
+	The subspace $[0,1] \subseteq \R$ is compact. 
+\end{theorem}
+
+\begin{proof}
+	We must show that every open cover of $[0,1]$ has a finite subcover. To that end, let $\mathcal U = \{U_i \mid i \in I\}$ be an open cover of $[0,1]$. 
+	Let 
+	\[
+		X = \Big\{ x\in [0,1] \ \Big\vert\ [0,x] \text{ is covered by the union of finitely many $U_i$s } \Big\} \subseteq [0,1].
+	\]
+	The idea is to apply topological induction to $X$ to show that $X = [0,1]$, whence we are done. 
+	
+	To that end, we check the four conditions of the topological induction lemma: 
+	\begin{enumerate}[(a)]
+		\item We want to show that $0 \in X$. But since $\mathcal U$ is an open cover of $[0,1]$, then $0 \in U_i$ for some $i$. Hence, $\{0\} = [0,0] \subseteq U_i$, so $[0,0]$ is covered by a single open set in $\mathcal U$, so $0 \in X$. 
+		\item If $b \in X$, then $[0,b]$ has a finite subcover. If $0 \leq a \leq b$, then $[0,a] \subseteq [0,b]$, and it must also have a finite subcover (the same finite subcover as the one that covers $[0,b]$ works). Hence, $a \in X$. 
+		\item Let $b \in X$. Then $[0,b]$ has a finite subcover, say by open sets $U_0, \ldots, U_n \in \mathcal U$. Say that $b \in U_n$. Since $U_n$ is open, there is some $\delta > 0$ such that $B(b,\delta)\subseteq U_n$. Then $b + \delta/2 \in U_n$, and in particular $\{U_0, \ldots, U_n\}$ is still an open cover of $[0,b+\delta/2]$. Set $\varepsilon = \delta/2$. 
+		\item Finally, we have to check that the supremum of $X$ is in $X$. Let $s = \sup(X)$. By the previous three properties, we know that $X = [0,s]$ or $X = [0,s)$. We want to rule out the latter case. 
+		
+		Since $\mathcal U$ is an open cover, there is some $i$ such that $s \in V$ for some $V \in \mathcal U$. By openness of $V$, there is some $\delta > 0$ such that $B(s,\delta) \subseteq V$. In particular, $(s - \e, s] \subseteq V$, where $\e = \delta/2$. Since $s - \e \in X$, we know that $[0,s-\e]$ has a finite subcover. Adding $V$ to this finite subcover preserves its finiteness, while covering all of $[0,s] = [0,s-\e] \cup (s-\e,s]$. Hence, $s \in X$. 
+	\end{enumerate}
+	Therefore, we can apply topological induction to say that $X = [0,1]$. Since $X$ has a finite subcover, then so to $[0,1]$ has a finite subcover. Hence, $[0,1]$ is compact. 
+\end{proof}
+
+\subsection{Properties of Compact Spaces}
+
+Since it's so hard to prove that spaces are compact, we investigate ways in which we can deduce compactness from knowing that some other spaces are compact. 
+
+\begin{proposition}
+	Let $f \colon X \to Y$ be a continuous function. If $X$ is compact, then $f(X) \subseteq Y$ is compact. 
+\end{proposition}
+
+\begin{proof}
+	Without loss of generality, assume that $f$ is a surjective function, so that $f(X) = Y$. We want to show that $Y$ is compact. More precisely, we want to show that every open cover of $Y$ has a finite subcover. 
+	
+	Let $\mathcal U = \{U_i \mid i \in I\}$ be an open cover of $Y$. Then we can build an open cover of $X$ by taking 
+	\[
+		\mathcal V = \{f^{-1}(U_i) \mid i \in I\}. 
+	\]
+	Since $f$ is continuous, each $f^{-1}(U_i)$ is open, and these cover $X$ because for each $x \in X$, $f(x) \in U_i$ for some $i$ since the $U_i$s cover $Y$. 
+	
+	Then because $X$ is compact, this open cover $\mathcal V$ has a finite subcover, say 
+	\[
+		X = f^{-1}(U_1) \cup f^{-1}(U_2) \cup \ldots \cup f^{-1}(U_n). 
+	\]
+	Let's apply $f$ to both sides of this equation. Since $f$ is surjective, we get $f(X) = Y$ on the left. On the right, we can again take advantage of the fact that $f$ is surjective to get $f(f^{-1}(U_i)) = U_i$. Therefore, 
+	\[
+		Y = U_1 \cup U_2 \cup \ldots \cup U_n. 
+	\]
+	This is a finite subcover of $\mathcal U$ that covers $Y$, so $Y$ is compact. 
+\end{proof}
+
+Since a homeomorphism is (among other things) a continuous surjection, we learn that:
+
+\begin{corollary}
+	Compactness is a topological property. 
+\end{corollary}
+
+\begin{proposition}
+	Let $X$ be a compact space. Let $K$ be a closed subspace of $X$. Then $K$ is compact. 	
+\end{proposition}
+
+\begin{proof}
+	Let $\mathcal U = \{U_i \subseteq K \mid i \in I\}$ be an open cover of $K$. Since $K$ has the subspace topology, we can write $U_i = V_i \cap K$ for some open set $V_i\subseteq X$. These $V_i$ may not cover $X$, but they do cover $K$. Make an open cover of $X$ by taking all of the $V_i$s and also the open set $X \setminus K$:
+	\[
+		\mathcal V = \Big\{ V_i \subseteq X \ \Big\vert i \in I \Big\} \cup \Big\{ X \setminus K \Big\}. 
+	\]
+	Then $\mathcal V$ is an open cover of $X$, because the $V_i$s cover $K$ and $X \setminus K$ covers everything outside of $K$. Hence, it has a finite subcover, say 
+	\[
+		X = V_1 \cup V_2 \cup \ldots \cup V_n \cup (X \setminus K). 
+	\]
+	Then intersecting this finite subcover with $K$, we get 
+	\[
+		K = U_1 \cup U_2 \cup \ldots \cup U_n,
+	\]
+	which is a finite subcover of $\mathcal U$ covering $K$. Hence, $K$ is compact. 
+\end{proof}
+
+It is not always true that compact subspaces are closed, but it is true if we add the Hausdorff hypothesis. 
+
+\begin{theorem}
+	Let $X$ be a Hausdorff space, and let $A \subseteq X$ be compact. Then $A$ is closed. 
+\end{theorem}
+
+
+
 
 \nocite{*}
 \bibliographystyle{alpha}
