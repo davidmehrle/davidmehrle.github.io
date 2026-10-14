@@ -14,6 +14,21 @@
 %%%%%%%%%%%%%%
 \DeclareMathOperator{\lcm}{lcm}
 
+%%%%%%%%%%%%%
+%%% SETUP %%%
+%%%%%%%%%%%%%
+% fix the broken cref stuff
+\AddToHook{env/definition/begin}{\crefalias{equation}{definition}}
+\AddToHook{env/example/begin}{\crefalias{equation}{example}}
+\AddToHook{env/goal/begin}{\crefalias{equation}{goal}}
+\AddToHook{env/remark/begin}{\crefalias{equation}{remark}}
+\AddToHook{env/corollary/begin}{\crefalias{equation}{corollary}}
+\AddToHook{env/lemma/begin}{\crefalias{equation}{lemma}}
+\AddToHook{env/proposition/begin}{\crefalias{equation}{proposition}}
+\AddToHook{env/theorem/begin}{\crefalias{equation}{theorem}}
+
+\hypersetup{linkcolor=cyan}
+
 %%%%%%%%%%%%%%%%%%%%%%%
 %%% DOCUMENT BEGINS %%%
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -169,7 +184,7 @@ Recall that if $X$ is a set, then $\mathcal P(X)$ is the powerset of $X$: the se
 \]
 
 \begin{example}
-	The set of open balls in a metric space forms a basis for that topology. You will prove this on your homework. The proof uses similar ideas to the ones that we used in \ref{open balls are open}.
+	The set of open balls in a metric space forms a basis for that topology. You will prove this on your homework. The proof uses similar ideas to the ones that we used in \cref{open balls are open}.
 \end{example}
 
 \begin{example}
@@ -244,9 +259,9 @@ With the notion of a topological basis, we have axiomatized the idea of open bal
 \end{lemma}
 
 \begin{proof}
-	Proof by induction on $n$. For $n = 0$ the empty intersection is all of $X$, which we already showed was open in \ref{empty and everything are open}. For $n = 1$, the intersection of one open set is open again. For $n = 2$, this is the previous lemma \ref{intersection of two opens is open}. This handles the base cases. 
+	Proof by induction on $n$. For $n = 0$ the empty intersection is all of $X$, which we already showed was open in \cref{empty and everything are open}. For $n = 1$, the intersection of one open set is open again. For $n = 2$, this is the previous lemma \cref{intersection of two opens is open}. This handles the base cases. 
 	
-	For the inductive step, assume that the intersection of any $n-1$ open sets is open. Let $V = \bigcap_{i=1}^{n-1} U_i$. Then by the previous lemma \ref{intersection of two opens is open}, $U_n \cap V$ is the intersection of two opens, and is therefore open. But 
+	For the inductive step, assume that the intersection of any $n-1$ open sets is open. Let $V = \bigcap_{i=1}^{n-1} U_i$. Then by the previous lemma \cref{intersection of two opens is open}, $U_n \cap V$ is the intersection of two opens, and is therefore open. But 
 	\[
 		U_n \cap V = U_n \cap \bigcap_{i=1}^{n-1} U_i = \bigcap_{i=1}^n U_i,
 	\]
@@ -301,7 +316,7 @@ This is even more abstract than the abstract bases we talked about earlier! But 
 \end{theorem}
 
 \begin{proof}
-	This is what we proved in the last section. See \ref{arbitrary unions of basis opens} and \ref{finite intersections of basis opens}
+	This is what we proved in the last section. See \cref{arbitrary unions of basis opens} and \cref{finite intersections of basis opens}
 \end{proof}
 
 But there are many, many more examples. 
@@ -412,7 +427,7 @@ You can also define a topology by specifying the closed sets. In fact, this is p
 
 \subsection{Infinitely Many Prime Numbers}
 
-We can return to Example \ref{furstenberg} and use it to prove that there are infinitely many prime numbers. Recall that we can define a topology on $\Z$ by stating that the basic open sets are the arithmetic progressions $S(a,b)$ with $a \neq 0$, where 
+We can return to Example \cref{furstenberg} and use it to prove that there are infinitely many prime numbers. Recall that we can define a topology on $\Z$ by stating that the basic open sets are the arithmetic progressions $S(a,b)$ with $a \neq 0$, where 
 \[
 	S(a, b) = \Big\{an + b \ \Big\vert\ n \in \Z \Big\} 
 \]
@@ -448,11 +463,11 @@ This is an example of a topology in which there are many sets that are both open
 \begin{proof}
 	Proof by contradiction. Assume that there are finitely many prime numbers. 
 
-	By Lemma \ref{opens are infinite}, the set $\{-1,+1\}$ cannot be open. Therefore, $\Z \setminus \{-1, +1\}$ cannot be a closed set. However, we can write
+	By Lemma \cref{opens are infinite}, the set $\{-1,+1\}$ cannot be open. Therefore, $\Z \setminus \{-1, +1\}$ cannot be a closed set. However, we can write
 	\[
 		\Z \setminus \{-1, +1\} = \bigcup_{p \text{ prime}} S(p,0),
 	\]
-	which by Lemma \ref{basic opens are closed} is a finite union of closed sets, and therefore closed. (Remember we are operating under the assumption of finitely many primes.) This contradicts the fact that $\Z \setminus \{-1, +1\}$ cannot be closed, so our assumption must be false and there are infinitely many primes. 
+	which by Lemma \cref{basic opens are closed} is a finite union of closed sets, and therefore closed. (Remember we are operating under the assumption of finitely many primes.) This contradicts the fact that $\Z \setminus \{-1, +1\}$ cannot be closed, so our assumption must be false and there are infinitely many primes. 
 \end{proof}
 
 
@@ -485,7 +500,7 @@ Let's see how this definition of continuity matches up with the definition of co
 \begin{proposition}
 	Let $f \colon \R \to \R$ be a continuous function, meaning that for all $x_0 \in \R$ and all $\varepsilon > 0$, there is some $\delta > 0$ such that if $|x - x_0| < \delta$, then $|f(x) - f(x_0)| < \varepsilon$. 
 	
-	Then $f$ is continuous in the sense of topology (\ref{def continuous}). 
+	Then $f$ is continuous in the sense of topology (\cref{def continuous}). 
 \end{proposition}
 
 \begin{proof}
@@ -507,7 +522,7 @@ Let's see how this definition of continuity matches up with the definition of co
 \end{proof}
 
 \begin{exercise}
-	Prove that if $f \colon \R \to \R$ is continuous in the sense of topology (\ref{def continuous}), then $f \colon \R \to \R$ is continuous in the sense of analysis. 
+	Prove that if $f \colon \R \to \R$ is continuous in the sense of topology (\cref{def continuous}), then $f \colon \R \to \R$ is continuous in the sense of analysis. 
 \end{exercise}
 
 \begin{example}
@@ -686,6 +701,7 @@ There's another useful characterization of homeomorphisms.
 \end{proof}
 
 \begin{proposition}
+	\label{homeomorphism is open bijection}
 	Let $f \colon X \to Y$ be a continuous function between topological spaces. Then the following are equivalent: 
 	\begin{enumerate}[(a)]
 		\item $f \colon X \to Y$ is a homeomorphism
@@ -806,7 +822,7 @@ The projection functions help us find continuous functions into the product.
 \end{proposition}
 
 \begin{proof}
-	$(\Longrightarrow)$. If $f$ is continuous, then $p_1 \circ f$ and $p_2 \circ f$ are both continuous by \ref{composition of continuous is continuous}.
+	$(\Longrightarrow)$. If $f$ is continuous, then $p_1 \circ f$ and $p_2 \circ f$ are both continuous by \cref{composition of continuous is continuous}.
 	
 	$(\Longleftarrow)$. To show that $f$ is continuous, we must show that $f^{-1}(U \times V)$ is open in $Z$ for each basic open set $U \times V$ of $X \times Y$ by a homework problem. 
 	\[
@@ -1165,7 +1181,7 @@ must be open in $X \times Y$ as well. Since the universal property of a product 
 \end{proposition}
 
 \begin{proof}
-	We check that the set $X \times Y$, equipped this topology, satisfies the universal property of the product. Let $Z$ be a topological space and let $f \colon Z \to X$ and $g \colon Z \to Y$ be continuous functions. From \ref{product in sets}, we know that the function $h \colon Z \to X \times Y$ defined by $h(z) = \big(f(z),g(z)\big)$ is the unique function that makes the following diagram commute (as a diagram in the category $\cat{Set}$): 
+	We check that the set $X \times Y$, equipped this topology, satisfies the universal property of the product. Let $Z$ be a topological space and let $f \colon Z \to X$ and $g \colon Z \to Y$ be continuous functions. From \cref{product in sets}, we know that the function $h \colon Z \to X \times Y$ defined by $h(z) = \big(f(z),g(z)\big)$ is the unique function that makes the following diagram commute (as a diagram in the category $\cat{Set}$): 
 	\[
 		\begin{tikzcd}
 			& Z \ar[d, "h"] \ar[dl, "f"'] \ar[dr, "g"] \\
@@ -1568,6 +1584,8 @@ This last example shows that the Hausdorff property is not preserved by taking p
 	which is a union of open sets. Hence, $X \setminus \{x\}$ is open and so $\{x\}$ is closed. 
 \end{proof}
 
+\chapter{The stuff that's on test 3}
+
 \lecture{15}{5 October 2026}
 \section{Compact Spaces}
 
@@ -1614,7 +1632,7 @@ It turns out that this property of having a finite subcover will characterize co
 	By this definition, $\R^2$ is not compact, because we exhibited an example of an open cover with no finite subcover. 
 \end{example}
 
-\subsection{The Heine-Borel Theorem}
+\subsection{Closed Intervals are Compact}
 
 It takes a lot more work to prove that our second example $[0,1]$ is compact. 
 
@@ -1641,7 +1659,7 @@ This lemma works equally well with $[0,1]$ replaced by an arbitrary interval $[a
 	So it remains to show that $\sup(C) = 1$. If $\sup(C) < 1$, then (c) would guarantee that $\sup(C) + \varepsilon \in C$, contradicting the fact that $\sup(C)$ must be an upper bound of $C$. Therefore, $\sup(C) = 1$. 
 \end{proof}
 
-\begin{theorem}[Heine--Borel]
+\begin{theorem}
 	The subspace $[0,1] \subseteq \R$ is compact. 
 \end{theorem}
 
@@ -1665,11 +1683,13 @@ This lemma works equally well with $[0,1]$ replaced by an arbitrary interval $[a
 	Therefore, we can apply topological induction to say that $X = [0,1]$. Since $X$ has a finite subcover, then so to $[0,1]$ has a finite subcover. Hence, $[0,1]$ is compact. 
 \end{proof}
 
+\lecture{16}{7 October 2026}
 \subsection{Properties of Compact Spaces}
 
 Since it's so hard to prove that spaces are compact, we investigate ways in which we can deduce compactness from knowing that some other spaces are compact. 
 
 \begin{proposition}
+\label{continuous image of compact is compact}
 	Let $f \colon X \to Y$ be a continuous function. If $X$ is compact, then $f(X) \subseteq Y$ is compact. 
 \end{proposition}
 
@@ -1700,6 +1720,7 @@ Since a homeomorphism is (among other things) a continuous surjection, we learn 
 \end{corollary}
 
 \begin{proposition}
+	\label{closed subspaces of compact are compact}
 	Let $X$ be a compact space. Let $K$ be a closed subspace of $X$. Then $K$ is compact. 	
 \end{proposition}
 
@@ -1721,11 +1742,162 @@ Since a homeomorphism is (among other things) a continuous surjection, we learn 
 
 It is not always true that compact subspaces are closed, but it is true if we add the Hausdorff hypothesis. 
 
+\lecture{17}{14 October 2026}
 \begin{theorem}
+	\label{compact subspaces of Hausdorff are closed}
 	Let $X$ be a Hausdorff space, and let $A \subseteq X$ be compact. Then $A$ is closed. 
 \end{theorem}
 
+\begin{proof}
+	Proving that $A$ is closed is equivalent to proving that $X \setminus A$ is open. We will prove that $X \setminus A$ is open by proving that for each $x \in X \setminus A$, there is some open neighborhood $U \ni x$ such that $U \subseteq X \setminus A$. 
+	
+	Fix $x \in X \setminus A$. Because $X$ is Hausdorff, for each $a \in A$, there are open sets $U_a \ni x$ and $V_a \ni a$ such that $U_a \cap V_a = \emptyset$. We use the notation $U_a$ and $V_a$ to emphasize the dependence of these open sets on $a$, even though $x \in U_a$. Since $x$ is fixed, changing the point $a$ will result in varying the open set containing $x$, depending on $a$. 
+	
+	The collection $\big\{V_a \mid a \in A\big\}$ is an open cover of $A$. Since $A$ is compact, this means that there is a finite subcover of this set, say 
+	\[
+		A \subseteq V_{a_1} \cup V_{a_2} \cup \ldots \cup V_{a_n} 
+	\]
+	for some finite number of points $a_1, \ldots, a_n \in A$. Let
+	\[
+		V = V_{a_1} \cup V_{a_2} \cup \ldots \cup V_{a_n}
+	\]
+	and let 
+	\[
+		U = U_{a_1} \cap U_{a_2} \cap \ldots \cap U_{a_n}. 
+	\]
+	Then by construction, $A \subseteq V$. We also know that $V$ and $U$ are disjoint, because $V_{a_i} \cap U_{a_i} = \emptyset$ for all $i$, and $U \subset U_{a_i}$ for all $i$. Since $V$ and $U$ are disjoint, then $A$ and $U$ are disjoint since $A \subseteq V$. Furthermore, $U$ is open because it is an intersection of finitely many open sets. Finally, $x \in U$ since $x \in U_{a_i}$ for all $i$. 
+	
+	This set $U$ is the open neighborhood of $x$ that we wanted to find. We know that $x \in U$, and $U \cap A = \emptyset$, so $U \subseteq X \setminus A$. Therefore, $X \setminus A$ is open, so $A$ is closed. 
+\end{proof}
 
+We can use this to show that compact subspaces of $\R^n$ are closed and bounded. Recall that a subset $A \subseteq \R^n$ is \emph{bounded} if there is some $r > 0$ such that $A \subseteq B(\vec{0},r)$. 
+
+\begin{corollary}
+	\label{compact subsets of R^n are closed and bounded}
+	Let $A \subseteq \R^n$ be a compact subspace. Then $A$ is closed and bounded. 
+\end{corollary}
+
+\begin{proof}
+	By \cref{compact subspaces of Hausdorff are closed}, $A$ must be a closed subspace of $\R^n$. Second, consider the open cover of $\R^n$ consisting of balls of increasing radius centered at the origin. 
+	\[
+		\Big\{ B(\vec{0}, r) \ \Big\vert\ r = 1, 2, 3, \ldots\Big\}
+	\]
+	This is an open cover of $\R^n$ (the union of all such balls is all of $\R^n$), and therefore the collection 
+	\[
+		\Big\{ A \cap B(\vec{0}, r) \ \Big\vert\ r = 1, 2, 3\ldots \Big\}
+	\]
+	is an open cover of $A$. Since $A$ is compact, this open cover must have a finite subcover, and therefore $A \subseteq B(\vec{0}, r)$ for some radius $r$. In other words, $A$ is bounded. 
+\end{proof}
+
+We want to also prove the converse of this: that closed and bounded subspaces of $\R^n$ are compact. To do so, however, we will first need to analyze when a product space is compact. We will come back to this in the next section. 
+
+Finally, we have a useful theorem about when a continuous bijection is a homeomorphism. 
+
+\begin{theorem}[Fundamental Theorem of Topology]
+	Let $f \colon X \to Y$ be a continuous function that is also a bijection. Assume that $X$ is compact and that $Y$ is Hausdorff. Then $f$ is a homeomorphism. 
+\end{theorem}
+
+\begin{proof}
+	Remember from \cref{homeomorphism is open bijection} that a homeomorphism is equivalently a continuous bijection that sends open sets to open sets. So it remains to show that for any $U \subseteq X$ open, $f(U)$ is open in $Y$. Or equivalently, that for any $K \subseteq X$ closed, that $f(K)$ is closed in $Y$ (think $K = X \setminus U$).
+	
+	To that end, let $K \subseteq X$ be closed. Then because $X$ is compact, $K$ is compact as well by \cref{closed subspaces of compact are compact}. Therefore, by \cref{continuous image of compact is compact}, $f(K)$ is compact. Finally, by \cref{compact subspaces of Hausdorff are closed}, $f(K)$ is closed. Hence, $f$ sends closed sets to closed sets, and therefore $f$ is a homeomorphism.
+\end{proof}
+
+\subsection{Inheritance of Compactness}
+
+Whenever we have a new topological property, we should ask how it behaves with respect to the constructions from chapter 2. In particular, we wonder how this topological property behaves with respect to subspaces, quotients, products, and coproducts. (Since pushouts are built out of coproducts and quotients, this will also give us the answer for pushouts.) 
+
+For compactness, we already answered the question of subspaces in \cref{closed subspaces of compact are compact}: the answer is that closed subspaces of compact spaces are compact, but not necessarily open ones. 
+
+\begin{example}
+	$[0,1]$ is a compact space, but $(0,1)$ is not compact because it is homeomorphic to $\R$, which is not compact. 
+\end{example}
+
+We also already have the tools we need to figure out whether or not quotients of compact spaces are compact. 
+
+\begin{proposition}
+	If $Q$ is a quotient of $X$ by some equivalence relation, and $X$ is compact, then $Q$ is compact. 
+\end{proposition}
+
+\begin{proof}
+	Let $q \colon X \to Q$ be the quotient map. Since $X$ is compact and $q$ is surjective, \cref{continuous image of compact is compact} shows that $Q$ is compact as well. 
+\end{proof}
+
+The tricky part for compactness is to deal with products. Coproducts are not nearly as hard as products, so you'll tackle that for your homework.  
+
+\begin{lemma}[Tube Lemma]
+	Let $X$ and $Y$ be spaces such that $Y$ is compact. Let $x \in X$. Suppose that $W \subseteq X \times Y$ is an open neighborhood\footnotemark\footnotetext{If $X$ is a space and $A \subseteq X$ is a subset of $X$, then we say that an open set $U \subseteq X$ is an \emph{open neighborhood} of $A$ if $U \supseteq A$. This generalizes the idea of an open neighborhood of a point to an open neighborhood of a set.} of $\{x\} \times Y$. Then there is an open neighborhood $U \ni x$ in $X$ such that $U \times Y \subseteq W$. 
+\end{lemma}
+
+\begin{proof}
+	Since $W$ is open, and $W \supseteq \{x\} \times Y$, then for any $y \in Y$ there are open sets $x \in U_y \subseteq X$ and $y \in V_y \subseteq Y$ such that $U_y \times V_y \subseteq Y$. The collection 
+	\[
+		\Big\{ V_y \ \Big\vert\ y \in Y\Big\}
+	\] 
+	is then an open cover of $Y$. Since $Y$ is compact, there is a finite subcover, say 
+	\[
+		Y = V_{y_1} \cup V_{y_2} \cup \ldots \cup V_{y_n}. 
+	\]
+	Let 
+	\[
+		U = U_{y_1} \cap U_{y_2} \cap \ldots \cap U_{y_n}. 
+	\]
+	Since $x \in U_y$ for all $y \in Y$, then $x \in U$. Also, $U$ is open because it is a finite intersection of open sets. We claim that $U$ is the set we desire. 
+	\[
+		U \times Y \subseteq U \times (V_{y_1} \cup V_{y_2} \cup \ldots \cup V_{y_n}) \subseteq (U_{y_1} \times V_{y_1}) \cup (U_{y_2} \times V_{y_2}) \cup \ldots \cup (U_{y_n} \times V_{y_n}) \subseteq W 
+	\]
+\end{proof}
+
+\begin{theorem}
+	\label{product of compacts is compact}
+	Let $X$ and $Y$ be compact spaces. Then $X \times Y$ is compact.  
+\end{theorem}
+
+\begin{proof}
+	To prove that $X \times Y$ is compact, we have to prove that every open cover has a finite subcover. 
+	
+	Let $\mathcal{A} = \{W_i \mid i \in I\}$ be an open cover of $X \times Y$. For each $x \in X$, the subspace $\{x\} \times Y$ is homeomorphic to $Y$. Therefore, $\{x\} \times Y$ is compact and may therefore be covered by finitely many elements of $\mathcal{A}$, say 
+	\[
+		\{x\} \times Y \subseteq W_1 \cup W_2 \cup \ldots \cup W_n. 
+	\]
+	Then $W = W_1 \cup W_2 \cup \ldots \cup W_n$ is an open set containing $\{x\} \times Y$, so there is an open neighborhood $U_x \ni x$ in $X$ such that $U_x \times Y \subseteq W$. In particular, 
+	\[
+		U_x \times Y \subseteq W = W_1 \cup W_2 \cup \ldots \cup W_n. 
+	\]
+	In other words, $U_x \times Y$ is covered by finitely many open sets $W_1, \ldots, W_n$ from $\mathcal{A}$. 
+	
+	Now we have to use compactness of $X$. In the previous paragraph, we constructed an open set $U_x \ni x$ for each $x \in X$; these form an open cover of $X$. Since $X$ is compact, there is a finite number of these that covers $X$, say 
+	\[
+		X = U_1 \cup U_2 \cup \ldots \cup U_n. 
+	\]
+	Then the union of the tubes $U_i \times Y$ is all of $X \times Y$. 
+	\[
+		X \times Y = \bigcup_{i=1}^n U_i \times Y. 
+	\]
+	Since each $U_i \times Y$ may be covered by a finite number of open sets from $\mathcal A$, and there are finitely many of them, so too may $X \times Y$ be covered by a finite number of open sets from $\mathcal A$. 
+\end{proof}
+
+\begin{example}
+	This theorem shows that the closed square $[0,1] \times [0,1]$ is compact, because $[0,1]$ is compact. By induction, we can also show that the closed box $[0,1]^n \subseteq \R^n$ is compact. 
+\end{example}
+
+\subsection{Compact Subspaces of $\R^n$}
+
+We have already seen in \cref{compact subsets of R^n are closed and bounded} that a compact subspace of $\R^n$ is both closed and bounded. Here, we prove the converse as well. 
+
+\begin{theorem}[Heine--Borel]
+	A subset $A \subseteq \R^n$ is compact if and only if it is closed and bounded. 
+\end{theorem}
+
+\begin{proof}
+	If $A$ is compact, then it is closed and bounded by \cref{compact subsets of R^n are closed and bounded}. 
+	
+	\bigskip
+	
+	Conversely, assume that $A$ is both closed and bounded. Then $A \subseteq B(\vec{0},r)$ for some radius $r > 0$. Enlarging the ball a little bit, we also see that $A \subseteq [-r,r]^n$. In fact, $A$ will be a closed subspace of $[-r,r]^n$, so by \cref{closed subspaces of compact are compact}, it suffices to show that $[-r,r]^n$ is closed. But we know by \cref{product of compacts is compact} that products of compact spaces are compact, and we know that $[-r,r]$ is compact (because it is homeomorphic to $[0,1]$), so $[-r,r]^n$ is compact. Therefore, $A$ is compact as well. 
+\end{proof}
+
+\section{Connected Spaces}
 
 
 \nocite{*}
