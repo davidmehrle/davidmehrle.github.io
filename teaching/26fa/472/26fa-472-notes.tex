@@ -1897,8 +1897,167 @@ We have already seen in \cref{compact subsets of R^n are closed and bounded} tha
 	Conversely, assume that $A$ is both closed and bounded. Then $A \subseteq B(\vec{0},r)$ for some radius $r > 0$. Enlarging the ball a little bit, we also see that $A \subseteq [-r,r]^n$. In fact, $A$ will be a closed subspace of $[-r,r]^n$, so by \cref{closed subspaces of compact are compact}, it suffices to show that $[-r,r]^n$ is closed. But we know by \cref{product of compacts is compact} that products of compact spaces are compact, and we know that $[-r,r]$ is compact (because it is homeomorphic to $[0,1]$), so $[-r,r]^n$ is compact. Therefore, $A$ is compact as well. 
 \end{proof}
 
+%%% CONNECTED SPACES 
 \section{Connected Spaces}
 
+
+
+\begin{definition}
+	Let $X$ be a topological space. 
+	\begin{enumerate}[(a)]
+		\item A \emph{separation} of $X$ is a pair of nonempty open subsets $A$ and $B$ such that $A \cup B = X$ and $A \cap B = \emptyset$. 
+		\item We say that $X$ is \emph{connected} if there is no separation of $X$. 
+	\end{enumerate}
+\end{definition}
+
+If there is a separation $X = A \cup B$ of $X$, then $X \cong A \sqcup B$. In many ways, the study of connected spaces is the study of disjoint unions. 
+
+\begin{example}
+	The space $X = [-1,0) \cup (0,1]$ is not connected; $A = [-1,0)$ and $B = (0,1]$ is a separation of $X$. 
+\end{example}
+
+\begin{example}
+	We can write the space $X = [-1,1]$ as $[-1,1] = [-1,0] \cup (0,1]$. Setting $A = [-1,0]$ and $B = (0,1]$, we have $A \cup B = X$ and $A \cap B = \emptyset$. But this is not a separation because $A = [-1,0]$ is not closed in $X = [-1,1]$. 
+\end{example}
+
+\begin{example}
+	Any space $X$ with the indiscrete topology (the only open sets are $X$ and $\emptyset$) is connected. 
+\end{example}
+
+\begin{example}
+	The rational numbers $\Q$ are \emph{not} connected. If $a$ is any rational number, then $A = (-\infty, a) \cap \Q$ and $B = (a, \infty) \cap \Q$ form a separation of $\Q$. In fact, the only connected subspaces of $\Q$ are singletons. We call any such space \emph{totally disconnected}. 
+\end{example}
+
+\begin{example}
+	Consider the subspace of $\R^2$ given by 
+	\[
+		X = \Big\{ (x,0) \ \big\vert \ x \in \R \Big\} \cup \Big\{ \left(x,\tfrac{1}{x}\right) \ \Big\vert\ x > 0\Big\}
+	\]
+	If we let $A$ be the $x$-axis and let $B$ be the graph of the function $y = 1/x$, then these two subsets form a separation of $X$. Therefore, $X$ is disconnected, even though the two sets get asymptotically close. 
+\end{example}
+
+The simplest way to tell whether or not a space is connected is to draw it and look. But some spaces are very hard to draw, so we need other ways to tell. 
+
+\begin{proposition}
+	A space $X$ is connected if and only if the only subsets of $X$ which are both open and closed are $\emptyset$ and $X$. 
+\end{proposition}
+
+\begin{proof}
+	We prove both directions of this proposition by proving the contrapositive, which is the statement: 
+	\begin{quote}
+		A space $X$ is disconnected if and only if there is a proper nonempty subset $A \subseteq X$ such that $A$ is both open and closed. 
+	\end{quote}
+	
+	Assume that $X$ is disconnected. Then there are disjoint, nonempty open sets $A$ and $B$ such that $X = A \cup B$. Since $B$ is open, and $X \setminus B = A$, then $A$ is closed. But $A$ is also open. Since $A \neq \emptyset$ and $A \neq X$, then $A$ is a proper nonempty subset that is both open and closed. 
+	
+	Conversely, assume that $A \subseteq X$ is a proper nonempty subset that is both open and closed. Then $B := X \setminus A$ is open, and $X = A \cup B$ is a separation of $X$. 
+\end{proof}
+
+\begin{proposition}
+\label{continuous image of compact is compact}
+	Let $f \colon X \to Y$ be a continuous function with $X$ a connected space. Then $f(X) \subseteq Y$ is connected. 
+\end{proposition}
+
+\begin{proof}
+	Assume without loss of generality that $f(X) = Y$ (so that $f$ is surjective). Assume that $A \subseteq Y$ is both open and closed. If $Y$ is to be connected, we must prove that $A = \emptyset$ or $A = Y$. 
+	
+	Since $f$ is continuous and $A$ is open, then $f^{-1}(A)$ is open. Similarly, since $f$ is continuous and $A$ is closed, then $f^{-1}(A)$ is closed. Hence, $f^{-1}(A) \subseteq X$ is both open and closed. Since $X$ is connected then either $f^{-1}(A) = \emptyset$, or $f^{-1}(A) = X$. 
+	\begin{itemize}
+		\item If $f^{-1}(A) = \emptyset$, then $A = \emptyset$ because $f$ is surjective. 
+		\item If $f^{-1}(A) = X$, then $A = Y$ since $f$ is surjective. 
+	\end{itemize}
+	Therefore, $A = \emptyset$ or $A = Y$, so $Y$ must be connected. 
+\end{proof}	
+
+\begin{corollary}
+	Connectedness is a topological property. 
+\end{corollary}
+
+\subsection{Inheritance of Connectedness} 
+
+Thus far, we have not yet proved that any spaces are connected, but you can probably guess that $\R$, $[0,1]$, $(0,1)$ and many other spaces are connected. We will prove this later, when we get to path-connectedness. For now, let's assume that these spaces are connected and think about how we might build new connected spaces from old ones. As always, we focus on products, coproducts, quotients, and subspaces. For connected spaces, we know that $A \sqcup B$ is always disconnected, so we can skip thinking about coproducts in this context. 
+
+Let's start with subspaces. Since $\Q \subseteq \R$ is (totally) disconnected, then it can't be the case that subspaces of a connected space are connected. But we can nevertheless say something about connected subspaces of disconnected spaces. 
+
+\begin{proposition}
+\label{connected subspaces are in one component}
+	Let $X$ be a topological space with a separation $X = A \cup B$. Let $Y \subseteq X$ be a connected subspace. Then $Y \subseteq A$ or $Y \subseteq B$. 
+\end{proposition}
+
+We might equally well phrase this proposition as follows: If $Y$ is connected, and $Y \hookrightarrow A \sqcup B$, then $Y \hookrightarrow A$ or $Y \hookrightarrow B$. 
+
+\begin{proof}
+	Since $A$ and $B$ are both open in $X$, then $A \cap Y$ and $B \cap Y$ are both open in $Y$. These two sets are disjoint (since $A$ and $B$ are disjoint) and their union is $Y$ (since $A \cup B = X$). If they were both nonempty, then they would constitute a separation of $Y$, so one or the other must be empty. If $A \cap Y = \emptyset$, then $B \cap Y = Y$ and so $Y \subseteq B$. Similarly, if $B \cap Y = \emptyset$, then $Y \subseteq A$. 
+\end{proof}
+
+As with compact spaces, the quotient of a connected space is connected. This is another corollary of
+\cref{continuous image of compact is compact}, but we will state it as a separate proposition. 
+
+\begin{proposition}
+	If $X$ is a connected space, then any quotient $Q$ of $X$ is connected. 
+\end{proposition}
+
+Finally, this brings us to products of connected spaces. This is the hard one, even though it's not quite as hard as products of compact spaces. First, we need a lemma. 
+
+\begin{lemma}
+\label{wedge of connected is connected}
+	Let $X$ be a topological space and let $x \in X$. Let $\{A_i \subseteq X \mid i \in I\}$ be a collection of connected subspaces of $X$ such that $x \in A_i$ for all $i \in I$. Then $\bigcup_{i \in I} A_i$ is connected. 
+\end{lemma}
+
+\begin{proof}
+	Let $Y = \bigcup_{i \in I} A_i$. We prove that $Y$ is connected by contradiction. 
+
+
+	Assume that $Y$ is disconnected, and that $Y = B \cup C$ is a separation of $Y$. Then $B$ and $C$ are nonempty, and $B \cup C = Y$ and $B \cap C = \emptyset$. Since $x \in Y$, then $x$ is in only one of $B$ or $C$. Without loss of generality, say $x \in C$. Then since $x\in A_i$ for all $i \in I$, and $A_i$ is connected, $A_i \subseteq C$ by \cref{connected subspaces are in one component}. Since $A_i \subseteq C$ for all $i$, and $Y$ is the union of the $A_i$, then $Y \subseteq C$. This contradicts the fact that $B$ was assumed to be nonempty. 
+\end{proof}
+
+\begin{theorem}
+	If $X$ and $Y$ are connected spaces, then $X \times Y$ is connected. 
+\end{theorem}
+
+\begin{proof}
+	Let $a \in X$ and $b \in Y$. Then $(a,b) \in X \times Y$, and $X \times \{b\}$ is connected, being homeomorphic to $X$, and for each $x \in X$, $\{x\} \times Y$ is connected, being homeomorphic to $Y$. Therefore, the $T$-shaped subspace 
+	\[
+		T_x = \Big(\{x\} \times Y\Big) \cup \Big(X \times \{b\}\Big)
+	\] 
+	is connected by \cref{wedge of connected is connected}. Note that the ``cross" $X \times \{b\}$ of the $T$ is always at the same height, but the ``stem" $\{x\} \times Y$ of the $T$ moves left-to-right. 
+	
+	Since $(a,b) \in T_x$ for all $x \in X$, then the union of these sets is connected, again by \cref{wedge of connected is connected}. But 
+	\[
+		X \times Y = \bigcup_{x \in X} T_x,
+	\]	
+	so $X \times Y$ is connected. 
+\end{proof}
+
+\subsection{Connected Components}
+
+Let $X$ be a topological space. Define an equivalence relation $\sim$ on $X$ by $x \sim y$ if and only if there is a connected subspace $A \subseteq X$ such that $x \in A$ and $y \in A$. 
+
+\begin{definition}
+	The equivalence classes of $X$ with respect to this equivalence relation are called the \emph{connected components} of $X$. 
+\end{definition}
+
+\begin{example}
+	If $X$ is connected, it only has one connected component, namely $X$ itself. 
+\end{example}
+
+\begin{example}
+	If $X = A \sqcup B$ with $A$ and $B$ connected, then there are two connected components: $A$ and $B$. 
+\end{example}
+
+\begin{example}
+	The connected components of $\Q$ are the individual rational numbers: each $\{a\}$ is a connected component of $\Q$. This is what it means to say that $\Q$ is \emph{totally disconnected}. 
+\end{example}
+
+\begin{remark}
+	A space $X$ is connected if and only if $X$ has only one connected component. 
+\end{remark}
+
+%\subsection{Path Connectedness}
+
+%\section{Functors}
+
+%\section{Homotopy}
 
 \nocite{*}
 \bibliographystyle{alpha}
