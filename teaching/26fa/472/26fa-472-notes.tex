@@ -1637,6 +1637,7 @@ It turns out that this property of having a finite subcover will characterize co
 It takes a lot more work to prove that our second example $[0,1]$ is compact. 
 
 \begin{lemma}[Topological Induction]
+\label{topological induction}
 	Let $C$ be a subspace of $[0,1]$. Assume that:
 	\begin{enumerate}[(a)]
 		\item $0 \in C$
@@ -2029,6 +2030,58 @@ Finally, this brings us to products of connected spaces. This is the hard one, e
 	so $X \times Y$ is connected. 
 \end{proof}
 
+\subsection{Connectedness of $[0,1]$}
+
+\begin{theorem}
+	The unit interval $[0,1]$ is connected. 
+\end{theorem}
+
+\begin{proof}
+	We again prove this via topological induction (\cref{topological induction}).
+	
+	Let $U \subseteq [0,1]$ be a nonempty open subset of $[0,1]$ that is both open and closed. To prove that $[0,1]$ is connected, it suffices to show that $U = [0,1]$. Since $U$ is nonempty, either $0 \in U$ or $0 \in [0,1] \setminus U$. Replacing $U$ by its complement (which will also be both open and closed) if necessary, we may assume that $0 \in U$. Let 
+	\[
+		C = \Big\{ t \in [0,1] \mid [0,t] \subseteq U \Big\}. 
+	\]
+	We will prove by topological induction that $C = [0,1]$, whence $U = [0,1]$. 
+	\begin{enumerate}[(a)]
+		\item $0 \in C$, since $0 \in U$. 
+		\item Let $b \in C$ and let $0 \leq a \leq b$. To show that $a \in C$, consider that $[0,a] \subseteq [0,b] \subseteq U$, so $[0,a] \subseteq U$. Hence, $a \in C$. 
+		\item Let $b \in C$ with $b < 1$. We want to show that $b + \e \in C$ for some $\e > 0$. To that end, note that $[0,b] \subseteq U$, so $b \in U$. Since $U$ is open, there is some $\delta > 0$ such that $B(b,\delta) \subseteq U$. Set $\e = \delta/2$. Then $b + \e \in B(b,\delta) \subseteq U$, and therefore $[0,b + \e] \subseteq U$ (also using item (b)). 
+		\item Finally, we must check that the supremum of $C$ is in $C$\footnotemark\footnotetext{If you use the analysis definition of closed (a set is closed if and only if it contains all its limit points), then you can prove this using limit points. The supremum of $C$ is a limit point of $C$, and therefore a limit point of $U$. Since $U$ is closed, it contains all of its limit points. Therefore, the supremum is in $U$, and hence the supremum is in $C$.}. Since $C$ is nonempty and bounded above, the supremum of $C$ exists. Let $s = \sup(C)$. If $s \not \in C$, then $s \not \in U$. But since $s$ is the least upper bound of elements in $U$, then $[0,s) \subseteq U$. 
+		
+		Since $U$ is closed, then the complement $V = [0,1] \setminus U$ is open. Since $s \not \in U$, then $s \in V$. Since $V$ is open, there is some $\delta > 0$ and an open ball $B(s,\delta)$ around $s$ such that $B(s, \delta) \subseteq V$. Set $\e = \delta / 2$. Then $s - \e \in B(s,\delta) \subseteq V$. Therefore, $s - \e \in V$ and by definition, $s - \e \not \in U$. This contradicts the fact that $s$ was the supremum of $C$, and therefore the assumption that $s \not \in C$ cannot be. 
+		
+		Hence, $s \in C$, so $C$ contains its supremum. 
+	\end{enumerate}	
+	
+	By topological induction, $C = [0,1]$, and therefore $U = [0,1]$ as well. 
+\end{proof}
+
+\begin{corollary}
+	For any $a, b \in \R$, $[a,b]$ is connected. 
+\end{corollary}
+
+\begin{proof}
+	$[a,b]$ is homeomorphic to $[0,1]$, which is connected. 
+\end{proof}
+
+\begin{corollary}
+	$\R$ is connected. 
+\end{corollary}
+
+\begin{proof}
+	Suppose for the sake of contradiction that $\R$ is disconnected. That is, assume $\R = A \cup B$, with $A \cap B = \emptyset$ and both $A, B$ nonempty and open in $\R$. Then let $a \in A$ and $b \in B$. Then 
+	\[
+		A_0 = A \cap [a,b] \text{ and } B_0 = B \cap [a,b]
+	\]
+	constitutes a separation of $[a,b]$, since $a \in A_0$ and $b \in B_0$ (so neither is empty), and $A_0 \cup B_0 = [a,b]$ and $A_0 \cap B_0 = \emptyset$. This contradicts the fact that $[a,b]$ is connected. Therefore, the assumption that $\R$ is disconnected cannot be. 
+\end{proof}
+
+\begin{remark}
+	This proof actually works to show that any \emph{convex} (see \cref{convex subsets are path connected}) subset of $\R$ is connected. But we can also deduce that from path-connectedness. 
+\end{remark}
+
 \subsection{Connected Components}
 
 Let $X$ be a topological space. Define an equivalence relation $\sim$ on $X$ by $x \sim y$ if and only if there is a connected subspace $A \subseteq X$ such that $x \in A$ and $y \in A$. 
@@ -2053,7 +2106,81 @@ Let $X$ be a topological space. Define an equivalence relation $\sim$ on $X$ by 
 	A space $X$ is connected if and only if $X$ has only one connected component. 
 \end{remark}
 
-%\subsection{Path Connectedness}
+\subsection{Path Connectedness}
+
+Thus far we have yet to prove that anything is actually connected. In general, proving that things are connected is tough, whereas proving that things are not connected is more straightforward. Instead of directly proving that anything is connected, we introduce a new topological property: path-connectedness. We will show that path-connectedness implies connectedness, and therefore deduce that many spaces are connected. 
+
+\begin{definition}
+	Let $X$ be a topological space. A \emph{path} in $X$ is a continuous function $\gamma \colon [0,1] \to X$. 
+\end{definition}
+
+We say that $\gamma(0) \in X$ is the start of the path, and $\gamma(1) \in X$ is the end of the path. 
+
+\begin{definition}
+	A space $X$ is \emph{path-connected} if for every pair of points $x, y \in X$, there is a path $\gamma \colon [0,1] \to X$ such that $\gamma(0) = x$ and $\gamma(1) = y$. 
+\end{definition}
+
+\begin{example}
+	The space $[0,1]$ is itself path-connected. For any $a, b\in \R$, the line segment 
+	\[
+		\gamma(t) = ta + (1-t)b
+	\]
+	is a path with $\gamma(0) = a$ and $\gamma(1) = b$. 
+\end{example}
+
+\begin{example}
+	Similarly, $\R^n$ is path-connected. For any $\vec v, \vec u \in \R^n$, the line segment 
+	\[
+		\gamma(t) = t\vec v + (1-t) \vec u
+	\]
+	connects them, and satisfies $\gamma(0) = \vec v$ and $\gamma(1) = \vec u$. 
+\end{example}
+
+\begin{example}
+\label{convex subsets are path connected}
+	A subset $A \subseteq \R^n$ is \emph{convex} if for any two points $\vec a, \vec b \in A$, the line segment connecting $\vec a$ and $\vec b$ is entirely contained inside $A$:
+	\[
+		\Big\{ t \vec a + (1-t) \vec b \ \Big\vert\ t \in [0,1] \Big\} \subseteq A. 
+	\]
+	Any convex subset of $\R^n$ is path-connected. 
+\end{example}
+
+\begin{proposition}
+	If $f \colon X \to Y$ is a homeomorphism, and $X$ is path-connected, then so is $f(X) \subseteq Y$. 
+\end{proposition}
+
+\begin{proof}
+	Without loss of generality, we may assume that $f(X) = Y$ (so that $f$ is surjective). Let $y_0, y_1 \in Y$. We want to find a continuous function $\gamma \colon [0,1] \to Y$ such that $\gamma(0) = y_0$ and $\gamma(1) = y_1$. Since $f$ is surjective, choose $x_0 \in X$ such that $f(x_0) = y_0$, and $x_1 \in X$ such that $f(x_1) = y_1$. Then since $X$ is path connected, there is a path $\gamma \colon [0,1] \to X$ such that $\gamma(0) = x_0$ and $\gamma(1) = x_1$. Then $f \circ \gamma \colon [0,1] \to Y$ is the desired path connecting $y_0$ and $y_1$. 
+\end{proof}
+
+\begin{corollary}
+	Path-connectedness is a topological property. 
+\end{corollary}
+
+\begin{theorem}
+	If $X$ is path connected, then $X$ is connected. 
+\end{theorem}
+
+\begin{proof}
+	Assume that $X$ is path-connected. Then suppose for the sake of contradiction that $X$ is not connected. In other words, assume that there is a nonempty, proper subset $A \subseteq X$ which is both open and closed. 
+	
+	Then let $a \in A$ and let $b \in X \setminus A$, and join them by a path $\gamma \colon [0,1] \to X$ such that $\gamma(0) = a$ and $\gamma(1) = b$. Then $\gamma^{-1}(A)$ is a nonempty (because $\gamma(0) \in A$) and proper (because $\gamma(1) \not \in A$) subset of $[0,1]$, which by continuity, must be both open and closed in $[0,1]$. This contradicts the connectedness of $[0,1]$. Therefore, $X$ must be connected. 
+\end{proof}
+
+
+Finally, we have an example of a space which is connected but not path-connected. Yuck. 
+
+\begin{example}[The ``Topologist's Sine Curve", {\cite[Pages 62-63]{armstrong}}]
+	Let $X \subseteq \R^2$ be the subspace of $\R^2$ defined by the union of 
+	\[
+		Y = \{0\} \times [0,1] \quad \text{and} \quad Z = \Big\{ \left(x, \sin(\tfrac{\pi}{x}) \right) \ \Big\vert\ 0 < x \leq 1\Big\}. 
+	\]
+	This space is connected; each piece $Z$ and $Y$ in the union is connected, so the only possibility for a separation is ``between" the two components. But any open set containing $Y = \{0\} \times [0,1]$ intersects $Z$ nontrivially, so this is impossible. (This isn't rigorous, but this example is terrible so we're not going to linger on it.) 
+	
+	On the other hand, this space isn't path connected. Let $y \in Y$. Then any path starting at $y$ cannot jump onto $Z$ at any reasonable spot; it oscillates too fast. Go look at the book I cited if you want to see a precise proof of this fact; it's really not worth our time. 
+\end{example}
+
+
 
 %\section{Functors}
 
