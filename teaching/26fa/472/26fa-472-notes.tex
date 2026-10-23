@@ -2106,7 +2106,7 @@ Let $X$ be a topological space. Define an equivalence relation $\sim$ on $X$ by 
 	A space $X$ is connected if and only if $X$ has only one connected component. 
 \end{remark}
 
-\subsection{Path Connectedness}
+\section{Path Connectedness}
 
 Thus far we have yet to prove that anything is actually connected. In general, proving that things are connected is tough, whereas proving that things are not connected is more straightforward. Instead of directly proving that anything is connected, we introduce a new topological property: path-connectedness. We will show that path-connectedness implies connectedness, and therefore deduce that many spaces are connected. 
 
@@ -2146,7 +2146,7 @@ We say that $\gamma(0) \in X$ is the start of the path, and $\gamma(1) \in X$ is
 \end{example}
 
 \begin{proposition}
-	If $f \colon X \to Y$ is a homeomorphism, and $X$ is path-connected, then so is $f(X) \subseteq Y$. 
+	If $f \colon X \to Y$ is a continuous function, and $X$ is path-connected, then so is $f(X) \subseteq Y$. 
 \end{proposition}
 
 \begin{proof}
@@ -2156,6 +2156,26 @@ We say that $\gamma(0) \in X$ is the start of the path, and $\gamma(1) \in X$ is
 \begin{corollary}
 	Path-connectedness is a topological property. 
 \end{corollary}
+
+This also tells us that quotients of path-connected spaces are path-connected. 
+
+\begin{corollary}
+	If $Q$ is a quotient of $X$, and $X$ is path-connected, then so is $Q$. 
+\end{corollary}
+
+While we're here, we can also show that products of path-connected spaces are path-connected. This is much easier than proving that products of compact spaces are compact, or products of connected spaces are connected.
+
+\begin{proposition}
+	Let $X$ and $Y$ be path-connected spaces. Then $X \times Y$ is path-connected. 
+\end{proposition}
+
+\begin{proof}
+	Let $X$ and $Y$ be path connected spaces. For any two points $(x_0, y_0)$ and $(x_1, y_1)$ in $X \times Y$, we must find a path starting at one and ending at the other. Since $X$ is connected, we can find a path connecting any two points in $X$. In particular, we can find a path $\gamma_X \colon [0,1] \to X$ with $\gamma(0) = x_0$ and $\gamma(1) = x_1$. Similarly, since $Y$ is path connected, we can find a path $\gamma_Y \colon [0,1] \to Y$ such that $\gamma_Y(0) = y_0$ and $\gamma_Y(1) = y_1$. Then we can build a path $\Gamma \colon [0,1] \to X \times Y$ by
+	\[
+		\Gamma(t) = (\gamma_X(t), \gamma_Y(t). 
+	\]
+	We have $\Gamma(0) = (\gamma_X(0),\gamma_Y(0)) = (x_0, y_0)$, and $\Gamma(1) = (\gamma_X(1), \gamma_Y(1)) = (x_1, y_1)$, and $\Gamma$ is continuous because both $\gamma_X$ and $\gamma_Y$ are continuous. This is the desired path. Since this works for any pair of points in $X \times Y$, we have shown that $X \times Y$ is path-connected. 
+\end{proof}
 
 \begin{theorem}
 	If $X$ is path connected, then $X$ is connected. 
@@ -2177,12 +2197,14 @@ Finally, we have an example of a space which is connected but not path-connected
 	\]
 	This space is connected; each piece $Z$ and $Y$ in the union is connected, so the only possibility for a separation is ``between" the two components. But any open set containing $Y = \{0\} \times [0,1]$ intersects $Z$ nontrivially, so this is impossible. (This isn't rigorous, but this example is terrible so we're not going to linger on it.) 
 	
-	On the other hand, this space isn't path connected. Let $y \in Y$. Then any path starting at $y$ cannot jump onto $Z$ at any reasonable spot; it oscillates too fast. Go look at the book I cited if you want to see a precise proof of this fact; it's really not worth our time. 
+	On the other hand, this space isn't path connected. Let $y \in Y$. Then any path starting at $y$ cannot jump onto $Z$ at any reasonable spot because it oscillates too fast. Go look at the book I cited if you want to see a precise proof of this fact; it's really not worth our time. 
 \end{example}
 
+\section{Functors}
+
+When we first discussed the 
 
 
-%\section{Functors}
 
 %\section{Homotopy}
 
