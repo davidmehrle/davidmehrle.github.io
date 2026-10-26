@@ -2172,7 +2172,7 @@ While we're here, we can also show that products of path-connected spaces are pa
 \begin{proof}
 	Let $X$ and $Y$ be path connected spaces. For any two points $(x_0, y_0)$ and $(x_1, y_1)$ in $X \times Y$, we must find a path starting at one and ending at the other. Since $X$ is connected, we can find a path connecting any two points in $X$. In particular, we can find a path $\gamma_X \colon [0,1] \to X$ with $\gamma(0) = x_0$ and $\gamma(1) = x_1$. Similarly, since $Y$ is path connected, we can find a path $\gamma_Y \colon [0,1] \to Y$ such that $\gamma_Y(0) = y_0$ and $\gamma_Y(1) = y_1$. Then we can build a path $\Gamma \colon [0,1] \to X \times Y$ by
 	\[
-		\Gamma(t) = (\gamma_X(t), \gamma_Y(t). 
+		\Gamma(t) = (\gamma_X(t), \gamma_Y(t)). 
 	\]
 	We have $\Gamma(0) = (\gamma_X(0),\gamma_Y(0)) = (x_0, y_0)$, and $\Gamma(1) = (\gamma_X(1), \gamma_Y(1)) = (x_1, y_1)$, and $\Gamma$ is continuous because both $\gamma_X$ and $\gamma_Y$ are continuous. This is the desired path. Since this works for any pair of points in $X \times Y$, we have shown that $X \times Y$ is path-connected. 
 \end{proof}
@@ -2195,14 +2195,49 @@ Finally, we have an example of a space which is connected but not path-connected
 	\[
 		Y = \{0\} \times [0,1] \quad \text{and} \quad Z = \Big\{ \left(x, \sin(\tfrac{\pi}{x}) \right) \ \Big\vert\ 0 < x \leq 1\Big\}. 
 	\]
-	This space is connected; each piece $Z$ and $Y$ in the union is connected, so the only possibility for a separation is ``between" the two components. But any open set containing $Y = \{0\} \times [0,1]$ intersects $Z$ nontrivially, so this is impossible. (This isn't rigorous, but this example is terrible so we're not going to linger on it.) 
+	This space is connected; each piece $Z$ and $Y$ in the union is connected, so the only possibility for a separation is ``between" the two components. But any open set containing $Y = \{0\} \times [0,1]$ intersects $Z$ nontrivially, so this is impossible. (This isn't the most rigorous, but this example is terrible so we're not going to linger on it.) 
 	
-	On the other hand, this space isn't path connected. Let $y \in Y$. Then any path starting at $y$ cannot jump onto $Z$ at any reasonable spot because it oscillates too fast. Go look at the book I cited if you want to see a precise proof of this fact; it's really not worth our time. 
+	On the other hand, this space isn't path connected. To see this, let $\gamma \colon [0,1] \to X$ be a path such that $\gamma(0) \in Y$ and $\gamma(1) \in Z$. We will show that this is impossible. 
+	
+	Since $Y$ is closed in $\R^2$, it is a closed subset of $X$, and therefore $\gamma^{-1}(Y) \subseteq [0,1]$ is a closed subset. Note also that $0 \in \gamma^{-1}(Y)$, so if we can show that $\gamma^{-1}(Y)$ is also open in $[0,1]$, then we will have shown that $[0,1]$ is disconnected, which is a contradiction. 
+	
+	To show that $\gamma^{-1}(Y)$ is open in $[0,1]$, it suffices to prove that around every point $t \in \gamma^{-1}(Y)$, there is $\e > 0$ such that $(t - \e, t + \e) \subseteq \gamma^{-1}(Y)$. This is equivalent to proving that $\gamma((t-\e,t+\e)) \subseteq Y$. 
+	
+	Let $t \in \gamma^{-1}(Y)$. Choose $\e > 0$ such that $\gamma((t-\e,t+\e))$ is contained in the closed disk $D$ of radius $1/2$ with center $\gamma(t)$. The intersection $D \cap X$ contains a closed interval $D \cap Y$ on the $y$-axis, together with a number of segments of the curve $y = \sin(\pi/x)$, each of which is homeomorphic to a closed interval. Moreover, any two such segments are separated from one another in $D \cap X$. Therefore, $D \cap Y$ is a connected component of $D \cap X$. Since $\gamma(t) \in D \cap Y$, and $(t - \e, t + \e)$ is connected, we must have that $\gamma((t-\e,t+\e))$ is connected as well, and therefore $\gamma((t-\e,t+\e)) \subseteq D \cap Y$. 
+	
+	The previous paragraph argues that for any $t \in \gamma^{-1}(Y)$, there is $\e > 0$ such that $(t-\e,t+\e) \subseteq \gamma^{-1}(Y)$. Hence, $\gamma^{-1}(Y)$ is open. Since $Y$ is closed in $X$, we also know that $\gamma^{-1}(Y)$ is closed as well. Since $0 \in \gamma^{-1}(Y)$ and $1 \not \in \gamma^{-1}(Y)$, we have a nonempty proper open and closed subset of $[0,1]$, which contradicts the fact that $[0,1]$ is connected. 
+	
+	Therefore, $X$ cannot be path connected; you cannot join a point in $Y$ to a point in $X$ by a path. 
 \end{example}
+
+\subsection{Path Components}
+
+Let $X$ be a topological space. We do not assume that $X$ is or is not path connected. Define an equivalence relation $\sim$ on points of $X$ by $x \sim y$ if and only if there is a path $\gamma \colon [0,1] \to X$ that starts at $x$ ($\gamma(0) = x$) and ends at $y$ ($\gamma(1) = y$). 
+
+\begin{definition}
+	The \textit{path components} of $X$ are the equivalence classes of points in $X$ the equivalence relation $\sim$ described above. We write $\pi_0(X)$ for the set of path components of $X$. 
+\end{definition}
+
+\begin{example}
+	If $X$ is a path-connected space, then $\pi_0(X) = \{X\}$. This is a set with one element, and that element is the set $X$.  
+\end{example}
+
+\begin{example}
+	Let $X = \R \setminus \{0\}$ with the subspace topology. Then there are two path components: the positive numbers and the negative numbers. Therefore, $\pi_0(X) = \{\R_{<0}, \R_{>0}\}.$
+\end{example}
+
+\begin{example}
+	Since between every two rational numbers you can find an irrational number, each rational number $a \in \Q$ is its own path component. Therefore, $\pi_0(\Q) = \{\{a\} \mid a \in \Q\}$. 
+\end{example}
+
+\begin{remark}
+	A space is path-connected if and only if it has only one path component. 
+\end{remark}
+
 
 \section{Functors}
 
-When we first discussed the 
+When we first discussed the idea of categories, we talked about the idea that morphisms are more important than 
 
 
 
