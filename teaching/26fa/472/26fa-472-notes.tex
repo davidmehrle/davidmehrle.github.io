@@ -2235,11 +2235,29 @@ Let $X$ be a topological space. We do not assume that $X$ is or is not path conn
 \end{remark}
 
 
-\section{Functors}
-
-When we first discussed the idea of categories, we talked about the idea that morphisms are more important than 
-
-
+%\section{Functors}
+%
+%When we first discussed the idea of categories, we talked about the idea that morphisms are just as important as the objects, if not more so. But then we defined categories, and didn't define morphisms between categories! We do so now that we've seen our first example of a functor. 
+%
+%\begin{definition}
+%	Let $\cat C$ and $\cat D$ be categories. A \textit{functor} $F \colon \cat C \to \cat D$ is the following data:
+%	\begin{itemize}
+%		\item for each object $X \in \Ob(\cat C)$, there is an object $F(X) \in \Ob(\cat D)$,
+%		\item for each morphism $f \colon X \to Y$ in $\cat C$, there is a morphism $F(f) \colon F(X) \to F(Y)$ in $\cat D$,
+%	\end{itemize} 
+%	satisfying the following conditions: 
+%	\begin{itemize}
+%		\item if $\id_X \colon X \to X$ is the identity morphism of $X \in \Ob(\cat C)$, then
+%		\[
+%			F(\id_X) = \id_{F(X)} \colon F(X) \to F(X) \text{ in } \cat D.
+%		\]
+%		\item if $f \colon X \to Y$ and $g \colon Y \to Z$ are morphisms in $\cat C$, then 
+%		\[
+%			F(g \circ f) = F(g) \circ F(f) \text{ in } \cat D. 
+%		\]
+%	\end{itemize}
+%\end{definition}
+%
 
 %\section{Homotopy}
 
