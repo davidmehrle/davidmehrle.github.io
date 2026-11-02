@@ -1804,6 +1804,7 @@ Finally, we have a useful theorem about when a continuous bijection is a homeomo
 	To that end, let $K \subseteq X$ be closed. Then because $X$ is compact, $K$ is compact as well by \cref{closed subspaces of compact are compact}. Therefore, by \cref{continuous image of compact is compact}, $f(K)$ is compact. Finally, by \cref{compact subspaces of Hausdorff are closed}, $f(K)$ is closed. Hence, $f$ sends closed sets to closed sets, and therefore $f$ is a homeomorphism.
 \end{proof}
 
+\lecture{18}{16 October 2026}
 \subsection{Inheritance of Compactness}
 
 Whenever we have a new topological property, we should ask how it behaves with respect to the constructions from chapter 2. In particular, we wonder how this topological property behaves with respect to subspaces, quotients, products, and coproducts. (Since pushouts are built out of coproducts and quotients, this will also give us the answer for pushouts.) 
@@ -1902,7 +1903,7 @@ We have already seen in \cref{compact subsets of R^n are closed and bounded} tha
 \section{Connected Spaces}
 
 
-
+\lecture{19}{19 October 2026}
 \begin{definition}
 	Let $X$ be a topological space. 
 	\begin{enumerate}[(a)]
@@ -1980,6 +1981,7 @@ Thus far, we have not yet proved that any spaces are connected, but you can prob
 
 Let's start with subspaces. Since $\Q \subseteq \R$ is (totally) disconnected, then it can't be the case that subspaces of a connected space are connected. But we can nevertheless say something about connected subspaces of disconnected spaces. 
 
+\lecture{20}{21 October 2026}
 \begin{proposition}
 \label{connected subspaces are in one component}
 	Let $X$ be a topological space with a separation $X = A \cup B$. Let $Y \subseteq X$ be a connected subspace. Then $Y \subseteq A$ or $Y \subseteq B$. 
@@ -2106,6 +2108,7 @@ Let $X$ be a topological space. Define an equivalence relation $\sim$ on $X$ by 
 	A space $X$ is connected if and only if $X$ has only one connected component. 
 \end{remark}
 
+\lecture{21}{23 October 2026}
 \section{Path Connectedness}
 
 Thus far we have yet to prove that anything is actually connected. In general, proving that things are connected is tough, whereas proving that things are not connected is more straightforward. Instead of directly proving that anything is connected, we introduce a new topological property: path-connectedness. We will show that path-connectedness implies connectedness, and therefore deduce that many spaces are connected. 
@@ -2190,6 +2193,7 @@ While we're here, we can also show that products of path-connected spaces are pa
 
 Finally, we have an example of a space which is connected but not path-connected. Yuck. 
 
+\lecture{22}{26 October 2026}
 \begin{example}[The ``Topologist's Sine Curve", {\cite[Pages 62-63]{armstrong}}]
 	Let $X \subseteq \R^2$ be the subspace of $\R^2$ defined by the union of 
 	\[
@@ -2260,6 +2264,169 @@ Let $X$ be a topological space. We do not assume that $X$ is or is not path conn
 %
 
 %\section{Homotopy}
+
+\chapter{Homotopy}
+
+Topological properties like compactness and connectedness have been pretty useful so far; they've let us show that $[0,1]$ and $(0,1)$ are not homeomorphic, because the latter is not compact but the former is. Similarly, we saw that $\R$ and $\R^2$ are not homeomorphic, because removing a point from $\R$ disconnects it, but removing a point from $\R^2$ does not. Compactness and connectedness are also essential to prove the extreme value theorem and the intermediate value theorem, which are super useful in their own right. 
+
+But we've barely scratched the surface. For example, we can't tell whether or not $\R^2$ and $\R^3$ are homeomorphic using any of the topological properties we've learned thus far. Similarly, we haven't justified that a torus $T$ is not homeomorphic to a sphere $S^2$, nor that a torus is not homeomorphic to $\RP^2$ or a Klein bottle. 
+
+However, I'm willing to bet that you've seen a topological property in Calc 3 that \textit{will} distinguish between $\R^3$ and $\R^2$, however briefly. When you studied line integrals, you probably talked about spaces that are \textit{simply connected}. We'll make this rigorous later, but roughly speaking, a space is simply connected if every closed loop in the space can be shrunk to a point. Deleting a point in $\R^2$ leaves a space that is not simply connected, but deleting a point in $\R^3$ leaves a space that is simply connected. Therefore, they cannot be homeomorphic. 
+
+To introduce the idea of simply connected, we introduce a stronger invariant of spaces called the \textit{fundamental group}. If two spaces are homeomorphic, then they have isomorphic fundamental groups. Therefore, we can prove that a sphere $S^2$ and a torus $T$ are not homeomorphic by calculating their fundamental groups: it will turn out that the fundamental group of $S^2$ is trivial, but the fundamental group of the torus is not. 
+
+The fundamental group is important for much much more than just distinguishing spaces. We can use the ideas that we develop here to prove other important theorems: the fundamental theorem of algebra, and the Jordan curve theorem. 
+
+%\bigskip
+%
+%We've briefly discussed it before, but here it is again. The idea of the fundamental group is to think about loops in a space $X$. A loop in $X$ will be understood to be a path $\alpha \colon [0,1] \to X$ such that $\alpha(0) = \alpha(1)$
+%
+%
+
+\section{Homotopy}
+
+To properly define the fundamental group, we must first discuss how to continuously deform one path in a space into another path. %For various reasons, it's actually advantageous to consider not only paths $\gamma \colon [0,1] \to Y$, but instead arbitrary continuous functions $f \colon X \to Y$. If it helps, we can think of the image of $f$ inside $Y$ as a space parameterized by $X$. For example, paths are parameterized by maps $[0,1] \to Y$, and a segment of a surface might be parameterized by $[0,1] \times [0,1] \to Y$, etc. 
+
+\begin{definition}
+	Let $X$ be a space. Let $\alpha \colon [0,1] \to X$ and $\beta \colon [0,1] \to X$ be two paths in $X$. 
+	
+	We say that $\alpha$ and $\beta$ are \textit{path homotopic} if $\alpha(0) = \beta(0)$ (they start at the same point, call it $x_0$), $\alpha(1) = \beta(1)$ (they end at the same point, call it $x_1)$, and  
+	there is a continuous map $H \colon [0,1] \times [0,1] \to X$ such that 
+	\begin{align*}
+		H(s,0) &= \alpha(s),\\
+		H(s,1) &= \beta(s),\\
+		H(0,t) &= x_0,\\
+		H(1,t) &= x_1,
+	\end{align*}
+	for all $s,t \in [0,1]$. The map $H$ is a \textit{path homotopy} between $\alpha$ and $\beta$. 
+\end{definition}
+
+\begin{example}
+	Let $X = \R^2 \setminus \{\vec 0\}$, and consider the following two paths from $\vec x_0 = (-1,0)$ to $\vec x_1 = (1,0)$: 
+	\begin{align*}
+		\alpha(s) &= (\cos(\pi s), \sin(\pi s))\\
+		\beta(s) &= (\cos(\pi s), 2 \sin(\pi s)). 
+	\end{align*}
+	There is a path homotopy between these given by 
+	\[
+		H(s,t) = (1-t)\alpha(s) + t \beta(s). 
+	\]
+	This is an example of a \textit{straight line homotopy}. 
+\end{example}
+
+\begin{example}
+	In the same setup as the previous example with $X = \R^2 \setminus \{\vec 0\}$, consider the path 
+	\[
+		\gamma(s) = (\cos(\pi s), - \sin(\pi s)). 
+	\]
+	The straight line homotopy between $\alpha$ and $\gamma$ is no longer allowed, because its image does not lie entirely inside the space $\R^2 \setminus \{\vec 0\}$. In fact, there is no path homotopy between $\alpha$ and $\gamma$ in this setup. Hopefully it's intuitive that one cannot stretch and bend $\alpha$ around the ``hole" at $\vec 0$ while keeping the endpoints fixed at $(\pm 1, 0)$. We can't prove it yet, but we'll return to it later. 
+	
+	Another comment here: whether or not two paths are homotopic depends on the space $X$: $\alpha$ and $\gamma$ would be homotopic if they were paths in $\R^2$. 
+\end{example}
+
+\begin{definition}
+	Let $X$ be a space. Let $\alpha, \beta \colon [0,1] \to X$ be two paths in $X$. If $\alpha$ and $\beta$ are path homotopic, we write $\alpha \simeq \beta$. We write $[\alpha]$ for the path-homotopy class of $\alpha$ under this equivalence relation. 
+\end{definition}
+
+\begin{proposition}
+	The relation $\simeq$ is an equivalence relation on paths in $X$. 
+\end{proposition}
+
+\begin{proof}
+	To check that this is an equivalence relation, we must check that it is reflexive, symmetric, and transitive. 
+	
+	To check reflexivity, let $\alpha \colon [0,1] \to X$ be a path. Then we can define a homotopy $H \colon [0,1] \times [0,1] \to X$ by 
+	\[
+		H(s,t) = \alpha(s). 
+	\]
+	This is a path homotopy from $\alpha$ to $\alpha$, so $\alpha \simeq \alpha$. 
+	
+	To check symmetry, suppose that $\alpha \simeq \beta$. We want to show that $\beta \simeq \alpha$. Since $\alpha \simeq \beta$, there is a homotopy $H \colon [0,1] \times [0,1] \to X$ such that:
+	\begin{align*}
+		H(s,0) &= \alpha(s),\\
+		H(s,1) &= \beta(s),
+	\end{align*}
+	Then we can reverse the $t$-coordinate so to get a homotopy from $\beta$ to $\alpha$: let $\bar{H}(s,t) = H(s,1-t)$. Then 
+	\begin{align*}
+		\bar H(s,0) &= H(s,1-0) = \beta(s),\\
+		\bar H(s,1) &= H(s,1-1) = \alpha(s),
+	\end{align*}
+	so $\bar H$ is the homotopy that we seek. Thus $\beta \simeq \alpha$. 
+	
+	Finally, to check transitivity, suppose that $\alpha \simeq \beta$ via a homotopy $H_1$ and that $\beta \simeq \gamma$ via a homotopy $H_2$. Then we seek a homotopy $H$ from $\alpha$ to $\gamma$. That is, we seek a continuous function $H  \colon [0,1] \times [0,1] \to X$ such that 
+	\begin{align*}
+		H(s,0) &= \alpha(s),\\
+		H(s,1) &= \gamma(s),\\
+		H(0,t) &= x_0, \\
+		H(1,t) &= x_1. 
+	\end{align*}
+	To construct this homotopy, let
+	\[
+		H(s,t) = 
+		\begin{cases}
+			H_1(s,2t) & 0 \leq t \leq \frac{1}{2} \\
+			H_2(s,2t-1) &= \frac{1}{2} \leq t \leq 1. 
+		\end{cases}
+	\]
+	This map is well-defined because when $t = \frac 1 2$, we have 
+	\begin{align*}
+		H_1(s,2(\tfrac{1}{2})) &= H_1(s,1) = \beta(s)\\
+		H_2(s,2(\tfrac{1}{2}) - 1) &= H_2(s,0) = \beta(s), 
+	\end{align*}
+	so the pieces agree on the overlaps. Therefore, $H$ is continuous by the pasting lemma (remember that one?), because both $H_1$ and $H_2$ are continuous and they agree on the overlap of the domains. By construction, 
+	\begin{align*}
+		H(s,0) &= H_1(s,2(0)) = H_1(s,0) = \alpha(s)\\
+		H(s,1) &= H_2(s,2(1) - 1) = H_2(s,1) = \gamma(s),
+	\end{align*}
+	and 
+	\begin{align*}
+		H(0,t) &= 
+		\begin{cases}
+			H_1(0,2t) = x_0 & t \leq \frac 1 2,\\
+			H_2(0,2t-1) = x_0 & t \geq \frac 1 2,
+		\end{cases}\\
+		H(1,t) &= 
+		\begin{cases}
+			H_1(1,2t) = x_1 & t \leq \frac 1 2,\\[3mm]
+			H_2(1,2t-1) = x_1 & t \geq \frac 1 2.
+		\end{cases}
+	\end{align*}
+	Therefore, $H$ is the desired homotopy that witnesses $\alpha \simeq \gamma$. 
+\end{proof}
+
+We are now ready to introduce our first bit of algebra into the mix. This will be the group operation in the fundamental group, when we get there.  
+
+\begin{definition}
+	If $\alpha \colon [0,1] \to X$ is a path from $x_0$ to $x_1$, and $\beta \colon [0,1] \to X$ is a path from $x_1$ to $x_2$, then we define the \textit{product} $\alpha \ast \beta$ of $\alpha$ and $\beta$ to be the path defined by the equation 
+	\[
+		(\alpha \ast \beta)(s) = 
+		\begin{cases}
+			\alpha(2s) & 0 \leq s \leq \frac 1 2, \\
+			\beta(2s-1) & \frac 1 2 \leq s \leq 1. 
+		\end{cases}
+	\]
+\end{definition}
+
+\begin{lemma}
+	The product of paths is a well-defined operation on equivalence classes of paths: if $\alpha \simeq \alpha'$ and $\beta \simeq \beta'$, then $\alpha * \beta \simeq \alpha' * \beta'$. 
+\end{lemma}
+
+\begin{proof}
+	Let $H_1$ be a path homotopy between $\alpha$ and $\alpha'$, and let $H_2$ be a path homotopy between $\beta$ and $\beta'$. Then we may define 
+	\[
+		H(s,t) = 
+		\begin{cases}
+			H_1(2s,t) & 0 \leq s \leq \frac 1 2, \\
+			H_2(2s-1,t) & \frac 1 2 \leq s \leq 1. 
+		\end{cases}
+	\]
+	You can check that $H$ is well-defined, continuous, and is the required path homotopy between $\alpha * \beta$ and $\alpha' * \beta'$. 
+\end{proof}
+
+Knowing this, we have a well-defined product operation on path-homotpy classes defined by  
+\[
+	[\alpha] * [\beta] = [\alpha * \beta].
+\]
 
 \nocite{*}
 \bibliographystyle{alpha}
