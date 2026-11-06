@@ -2283,7 +2283,7 @@ The fundamental group is important for much much more than just distinguishing s
 %
 %
 
-\section{Homotopy}
+\section{Homotopy of Paths}
 
 To properly define the fundamental group, we must first discuss how to continuously deform one path in a space into another path. %For various reasons, it's actually advantageous to consider not only paths $\gamma \colon [0,1] \to Y$, but instead arbitrary continuous functions $f \colon X \to Y$. If it helps, we can think of the image of $f$ inside $Y$ as a space parameterized by $X$. For example, paths are parameterized by maps $[0,1] \to Y$, and a segment of a surface might be parameterized by $[0,1] \times [0,1] \to Y$, etc. 
 
@@ -2394,6 +2394,8 @@ To properly define the fundamental group, we must first discuss how to continuou
 	Therefore, $H$ is the desired homotopy that witnesses $\alpha \simeq \gamma$. 
 \end{proof}
 
+\subsection{Products of Paths}
+
 We are now ready to introduce our first bit of algebra into the mix. This will be the group operation in the fundamental group, when we get there.  
 
 \begin{definition}
@@ -2423,10 +2425,126 @@ We are now ready to introduce our first bit of algebra into the mix. This will b
 	You can check that $H$ is well-defined, continuous, and is the required path homotopy between $\alpha * \beta$ and $\alpha' * \beta'$. 
 \end{proof}
 
-Knowing this, we have a well-defined product operation on path-homotpy classes defined by  
+Knowing this, we have a well-defined product operation on path-homotopy classes defined by  
 \[
 	[\alpha] * [\beta] = [\alpha * \beta].
 \]
+This operation will work very much like a group operation, even though it can't be a group operation because it's only defined for homotopy classes of paths $[\alpha] * [\beta]$ when the endpoint of $\alpha$ is the start point of $\beta$. A group operation must be defined for all elements of the group. This is something weirder called a \textit{groupoid}. 
+
+\begin{theorem}
+\label{groupoid properties of path product}
+	The operation $*$ on homotopy classes of paths in $X$ has the following properties: 
+	\begin{enumerate}[(a)]
+		\item (Right/Left Identity) Given $x \in X$, let $e_x \colon [0,1] \to X$ be the constant path defined by $e_x(t) = x$ for all $t \in [0,1]$. Then if $\alpha \colon [0,1] \to X$ is a path from $x_0$ to $x_1$, then 
+		\[
+			[\alpha] * [e_{x_1}] = [\alpha] \text{ and } [e_{x_0}] * [\alpha] = [\alpha]. 
+		\]
+		\item (Inverse) Given a path $\alpha \colon [0,1] \to X$ from $x_0$ to $x_1$, let $\bar \alpha$ be the path defined by $\bar \alpha(t) = \alpha(1-t)$. It is called the \textit{reverse} of $\alpha$. Then 
+		\[
+			[\bar \alpha] * [\alpha] = [e_{x_1}] \text{ and } [\alpha]*[\bar \alpha] = [e_{x_0}].
+		\]
+		\item (Associativity) If $[\alpha] * ([\beta] * [\gamma])$ is defined, then so is $([\alpha] * [\beta]) * [\gamma]$ and they are equal. 
+	\end{enumerate}
+\end{theorem}
+
+The proof of this theorem will occupy the next several classes. We first need to prove a few lemmas. 
+
+\begin{lemma}
+\label{composing with homotopies}
+	If $f \colon X \to Y$ is a continuous map, and $H$ is a path homotopy between paths $\alpha \colon [0,1] \to X$ and $\beta \colon [0,1] \to X$, then $f \circ H$ is a path homotopy between paths $f \circ \alpha$ and $f \circ \beta$ in $Y$. 
+\end{lemma}
+
+\begin{proof}
+	We must check the conditions of a path homotopy in $Y$. 
+\end{proof}
+
+\begin{lemma}
+\label{composing paths with functions}
+	If $f \colon X \to Y$ is a continuous map and if $\alpha \colon [0,1] \to X$ is a path from $x_0$ to $x_1$, and $\beta \colon [0,1] \to X$ is a path from $x_1$ to $x_2$, then we have
+	\[
+		f \circ (\alpha * \beta) = (f \circ \alpha) * (f \circ \beta). 
+	\]
+\end{lemma}
+
+\begin{proof}
+	This follows directly from the definition of the operation $*$. 
+\end{proof}
+
+Next, we check the identity property of the product of paths. 
+
+\begin{proposition}
+\label{identity}
+	Given $x \in X$, let $e_x \colon [0,1] \to X$ be the constant path defined by $e_x(t) = x$ for all $t \in [0,1]$. Then if $\alpha \colon [0,1] \to X$ is a path from $x_0$ to $x_1$, then 
+		\[
+			[\alpha] * [e_{x_1}] = [\alpha] \text{ and } [e_{x_0}] * [\alpha] = [\alpha]. 
+		\]
+\end{proposition}
+
+\begin{proof}
+	Consider the identity map $\id \colon [0,1] \to [0,1]$, $\id(t) = t$. This is a path in $[0,1]$ if we interpret it that way. There is another path in $[0,1]$ given by the constant path at zero, $e_0 \colon [0,1] \to [0,1]$, $e_0(t) = 0$. Then we can take the product of these two paths, $e_0 * \id$, to get a new path from $[0,1]$ to itself, given by 
+	\[
+		(e_0 * \id)(t) = \begin{cases}
+			0 & t \leq \frac 1 2\\
+			2t - 1 & t \geq \frac 1 2.
+		\end{cases}
+	\]
+	Since the unit interval $[0,1]$ is convex, there is a path homotopy $H$ in $[0,1]$ from $\id$ and $e_0 * \id$. 
+	
+	Then if $\alpha \colon [0,1] \to X$ is a path in $X$ from $x_0$ to $x_1$, we can use \cref{composing with homotopies,composing paths with functions} and compose $\alpha$ with the homotopy $H$ to get a new homotopy between $\alpha \circ \id = \alpha$ and 
+	\[
+		\alpha \circ (e_0 * \id) = (\alpha \circ e_0) * (\alpha \circ \id) = e_{x_0} * \alpha.
+	\]
+	Therefore, $\alpha \simeq e_{x_0} * \alpha$, so $\alpha$ has a left identity. Similarly, we can show that $\alpha \simeq \alpha * e_{x_1}$. 
+\end{proof}
+
+\begin{proposition}
+\label{inverse}
+	Given a path $\alpha \colon [0,1] \to X$ from $x_0$ to $x_1$, let $\bar \alpha$ be the path defined by $\bar \alpha(t) = \alpha(1-t)$. It is called the \textit{reverse} of $\alpha$. Then 
+		\[
+			[\bar \alpha] * [\alpha] = [e_{x_1}] \text{ and } [\alpha]*[\bar \alpha] = [e_{x_0}].
+		\]
+\end{proposition}
+
+\begin{proof}
+	Consider again the identity map $\id \colon [0,1] \to [0,1]$ given by $\id(t) = t$. The reverse of this map is $\bar{\id}$, given by $\bar\id(t) = \id(1-t) = 1-t$. Then $\id * \bar{\id}$ is a path in $[0,1]$ that both begins and ends at 0. Another path that both begins and ends at $0$ is the constant path $e_0$. Because $[0,1]$ is convex, there is a path homotopy $H$ in $[0,1]$ between $e_0$ and $\id * \bar\id$. 
+	
+Now let $\alpha \colon [0,1] \to X$ be a path in $X$ from $x_0$ to $x_1$. 
+Using \cref{composing with homotopies,composing paths with functions}, we find that $\alpha \circ H$ is a path homotopy between $\alpha \circ e_0 = e_{x_0}$ and 
+\[
+	(\alpha \circ \id) * (\alpha \circ \bar\id) = \alpha * \bar\alpha.
+\]
+Therefore, $\alpha * \bar\alpha \simeq e_{x_0}$. A similar argument, using the fact that $\bar\id * \id$ is path homotopic to $e_1$, shows that $\bar \alpha * \alpha = e_{x_1}$. 
+\end{proof}
+
+\begin{proposition}
+\label{associativity}
+	If $[\alpha] * ([\beta] * [\gamma])$ is defined, then so is $([\alpha] * [\beta]) * [\gamma]$ and they are equal. 
+\end{proposition}
+
+\begin{proof}
+	This is the hardest of the three. Consider the map $f \colon [0,1] \to [0,1]$ given by 
+	\[
+		f(s) = 
+		\begin{cases}
+			2s & 0 \leq s \leq \frac 1 4,\\
+			s + \frac{1}{4} & \frac{1}{4} \leq s \leq \frac{1}{2}, \\
+			\frac{s + 1}{2} & \frac{1}{2} \leq s \leq 1.
+		\end{cases}
+	\]
+	We claim that $f \colon [0,1] \to [0,1]$ is path-homotopic to $\id \colon [0,1] \to [0,1]$. Indeed, 
+	\[
+		H(s,t) = (1-t)\id(s) + t f(s)f
+	\]
+	is the desired homotopy. Then we have 
+	\[
+		(\alpha * \beta) * \gamma = (\alpha * (\beta * \gamma)) \circ f \simeq (\alpha * (\beta * \gamma)) \circ \id = \alpha * (\beta * \gamma). 
+	\]
+\end{proof}
+
+\begin{proof}[Proof of \cref{groupoid properties of path product}]
+	This is proved in \cref{identity,inverse,associativity}. 
+\end{proof}
+
 
 \nocite{*}
 \bibliographystyle{alpha}
